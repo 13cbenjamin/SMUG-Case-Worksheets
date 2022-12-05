@@ -1,0 +1,43 @@
+<div id="previous_baseCalcs_collapse" class="container collapse">
+    |~SELECT CASE WHEN EXISTS (SELECT TOP 1 BaseCalcDate FROM tblTAC_BaseCalc where CaseID = {CaseID} order by planid desc ) THEN 
+'<table class="table table-condensed table-bordered table-striped" style="background-color:#909090; width:100%;"> 
+    <thead> 
+        <tr style="background-color: #4096f8;">
+            <th colspan="8" style="text-align:center;">Previous Base Calcs</th>                    
+        </tr>
+        <tr> 
+            <th scope="col" style="width:auto;">Calc Date</th> 
+            <th scope="col" style="width:auto;">Worksheet</th> 
+            <th scope="col" style="width:auto;">Section</th> 
+            <th scope="col" style="width:auto;">Amount</th> 
+            <th scope="col" style="width:auto;">Description</th> 
+            <th scope="col" style="width:auto;">Periods</th> 
+            <th scope="col" style="width:auto;">Pay Scheduled Type</th> 
+            <th scope="col" style="width:auto;">Effective Date</th> 
+        </tr> 
+    </thead>' END as FieldData, '9/9/9999' AS CreatedDate 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 PlanID from tblTAC_BaseCalc where CaseID = {CaseID} order by BaseCalcDate ASC ) THEN 
+'<tbody> 
+    <tr>
+        <td style="width:auto;">' + ISNULL(CONVERT(VARCHAR, BaseCalcDate, 101), '') + '</td>' + 
+        '<td style="width:auto;">' + CASE WHEN tblTAC_BaseCalc.WorksheetID = 222 THEN 'Base Calculator Worksheet' WHEN WorksheetID = 186 THEN 'Plan Narrative Worksheet' ELSE '' END + '</td>' + 
+        '<td style="width:auto;">' + CASE WHEN tblTAC_BaseCalc.SECTION = 1 THEN 'Plan Payment' WHEN SECTION = 2 THEN 'Additional Payment'  WHEN SECTION = 3 THEN 'Forgive Amount'  WHEN SECTION = 4 THEN 'Stain' ELSE '' END + '</td>' + 
+        '<td style="width:auto;">$' + CASE WHEN tblTAC_BaseCalc.Amount = 0 then '' ELSE CONVERT(VARCHAR, tblTAC_BaseCalc.Amount) END + '</span></td>' + 
+        '<td style="width:auto;">' + ISNULL(CONVERT(VARCHAR, Description), '') + '</span></td>' + 
+        '<td style="width:auto;">' + CASE WHEN tblTAC_BaseCalc.Periods = 0 then '' ELSE CONVERT(VARCHAR, tblTAC_BaseCalc.Periods) END + '</span></td>' + 
+        '<td style="width:auto;">' + CASE WHEN tblTAC_BaseCalc.PmtsPerMonth = 0 then '' ELSE CONVERT(VARCHAR, tblTAC_BaseCalc.PmtsPerMonth) END + '</span></td>' + 
+        '<td style="width:auto;">' + CASE WHEN tblTAC_BaseCalc.EffectiveDate = '1/1/1900' then '' ELSE CONVERT(VARCHAR, EffectiveDate, 101) END + '</span></td>' + 
+    '</tr>
+</tbody>' END as FieldData,'3/3/3333' AS CreatedDate  
+FROM tblTAC_BaseCalc where CaseID = {CaseID}
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 BaseCalcDate FROM tblTAC_BaseCalc where CaseID = {CaseID} ) THEN 
+'</tbody>' + 
+'</table>' END AS FieldData, '1/2/1900' AS CreatedDate 
+ORDER BY CreatedDate DESC~|
+</div>

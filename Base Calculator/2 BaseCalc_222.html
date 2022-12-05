@@ -1,0 +1,1953 @@
+<div id="Base_Calc" class="container">
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    "
+  >
+    <div style="width: 100px; align-items: center; margin: auto">
+      <h2 id="testNumber"></h2>
+    </div>
+    <section id="Calculator" style="padding-left: 2%">
+      <section id="planpayments">
+        <table
+          id="table_template_100"
+          class="table table-bordered table-striped"
+        >
+          <caption>
+            Plan Payments
+          </caption>
+          <thead>
+            <tr>
+              <td colspan="6">
+                <span style="text-align: center; font-weight: bold"
+                  >Use the Pay Schedule Figures table above to determine the #
+                  of Periods in the plan based on payment type and the # of
+                  Payments per Month for that pay schedule type.
+                </span>
+           
+              </td>
+            </tr>
+            <tr style="background-color: #bee5eb">
+              <td>Amount of Payment</td>
+              <td># of Periods</td>
+              <td>Schedule Type / # of Pmts Per Month</td>
+              <td>Effective Date</td>
+              <td>Subtotal</td>
+              <td>Months</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tac_money">[TextBox100.200]</td>
+              <td>[TextBox^Numbers^200.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select100"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+
+                [TextBox^Numbers^300.200]
+              </td>
+              <td>[TextBox600.150]</td>
+              <td><span id="subtotal100"></span></td>
+              <td><span id="months100"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox101.200]</td>
+              <td>[TextBox^Numbers^201.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select101"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^301.200]
+              </td>
+              <td>[TextBox601.150]</td>
+              <td><span id="subtotal101"></span></td>
+              <td><span id="months101"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox102.200]</td>
+              <td>[TextBox^Numbers^202.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select102"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^302.200]
+              </td>
+              <td>[TextBox602.150]</td>
+              <td><span id="subtotal102"></span></td>
+              <td><span id="months102"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox103.200]</td>
+              <td>[TextBox^Numbers^203.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select103"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^303.200]
+              </td>
+              <td>[TextBox603.150]</td>
+              <td><span id="subtotal103"></span></td>
+              <td><span id="months103"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox104.200]</td>
+              <td>[TextBox^Numbers^204.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select104"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^304.200]
+              </td>
+              <td>[TextBox604.150]</td>
+              <td><span id="subtotal104"></span></td>
+              <td><span id="months104"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox105.200]</td>
+              <td>[TextBox^Numbers^205.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select105"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^305.200]
+              </td>
+              <td>[TextBox605.150]</td>
+              <td><span id="subtotal105"></span></td>
+              <td><span id="months105"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox106.200]</td>
+              <td>[TextBox^Numbers^206.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select106"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^306.200]
+              </td>
+              <td>[TextBox606.150]</td>
+              <td><span id="subtotal106"></span></td>
+              <td><span id="months106"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox107.200]</td>
+              <td>[TextBox^Numbers^207.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select107"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^307.200]
+              </td>
+              <td>[TextBox607.150]</td>
+              <td><span id="subtotal107"></span></td>
+              <td><span id="months107"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox108.200]</td>
+              <td>[TextBox^Numbers^208.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select108"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^308.200]
+              </td>
+              <td>[TextBox608.150]</td>
+              <td><span id="subtotal108"></span></td>
+              <td><span id="months108"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox109.200]</td>
+              <td>[TextBox^Numbers^209.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select109"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^309.200]
+              </td>
+              <td>[TextBox609.150]</td>
+              <td><span id="subtotal109"></span></td>
+              <td><span id="months109"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox110.200]</td>
+              <td>[TextBox^Numbers^210.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select110"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^310.200]
+              </td>
+              <td>[TextBox610.150]</td>
+              <td><span id="subtotal110"></span></td>
+              <td><span id="months110"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox111.200]</td>
+              <td>[TextBox^Numbers^211.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select111"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^311.200]
+              </td>
+              <td>[TextBox611.150]</td>
+              <td><span id="subtotal111"></span></td>
+              <td><span id="months111"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox112.200]</td>
+              <td>[TextBox^Numbers^212.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select112"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^312.200]
+              </td>
+              <td>[TextBox612.150]</td>
+              <td><span id="subtotal112"></span></td>
+              <td><span id="months112"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox113.200]</td>
+              <td>[TextBox^Numbers^213.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select113"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^313.200]
+              </td>
+              <td>[TextBox613.150]</td>
+              <td><span id="subtotal113"></span></td>
+              <td><span id="months113"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox114.200]</td>
+              <td>[TextBox^Numbers^214.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select114"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^314.200]
+              </td>
+              <td>[TextBox614.150]</td>
+              <td><span id="subtotal114"></span></td>
+              <td><span id="months114"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox115.200]</td>
+              <td>[TextBox^Numbers^215.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select115"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^315.200]
+              </td>
+              <td>[TextBox615.150]</td>
+              <td><span id="subtotal115"></span></td>
+              <td><span id="months115"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox116.200]</td>
+              <td>[TextBox^Numbers^216.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select116"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^316.200]
+              </td>
+              <td>[TextBox616.150]</td>
+              <td><span id="subtotal116"></span></td>
+              <td><span id="months116"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox117.200]</td>
+              <td>[TextBox^Numbers^217.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select117"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^317.200]
+              </td>
+              <td>[TextBox617.150]</td>
+              <td><span id="subtotal117"></span></td>
+              <td><span id="months117"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox118.200]</td>
+              <td>[TextBox^Numbers^218.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select118"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^318.200]
+              </td>
+              <td>[TextBox618.150]</td>
+              <td><span id="subtotal118"></span></td>
+              <td><span id="months118"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox119.200]</td>
+              <td>[TextBox^Numbers^219.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select119"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^319.200]
+              </td>
+              <td>[TextBox619.150]</td>
+              <td><span id="subtotal119"></span></td>
+              <td><span id="months119"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox120.200]</td>
+              <td>[TextBox^Numbers^220.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select120"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^320.200]
+              </td>
+              <td>[TextBox620.150]</td>
+              <td><span id="subtotal120"></span></td>
+              <td><span id="months120"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox121.200]</td>
+              <td>[TextBox^Numbers^221.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select121"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^321.200]
+              </td>
+              <td>[TextBox621.150]</td>
+              <td><span id="subtotal121"></span></td>
+              <td><span id="months121"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox122.200]</td>
+              <td>[TextBox^Numbers^222.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select122"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^322.200]
+              </td>
+              <td>[TextBox622.150]</td>
+              <td><span id="subtotal122"></span></td>
+              <td><span id="months122"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox123.200]</td>
+              <td>[TextBox^Numbers^223.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select123"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^323.200]
+              </td>
+              <td>[TextBox623.150]</td>
+              <td><span id="subtotal123"></span></td>
+              <td><span id="months123"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox124.200]</td>
+              <td>[TextBox^Numbers^224.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select124"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^324.200]
+              </td>
+              <td>[TextBox624.150]</td>
+              <td><span id="subtotal124"></span></td>
+              <td><span id="months124"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox125.200]</td>
+              <td>[TextBox^Numbers^225.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select125"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^325.200]
+              </td>
+              <td>[TextBox625.150]</td>
+              <td><span id="subtotal125"></span></td>
+              <td><span id="months125"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox126.200]</td>
+              <td>[TextBox^Numbers^226.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select126"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^326.200]
+              </td>
+              <td>[TextBox626.150]</td>
+              <td><span id="subtotal126"></span></td>
+              <td><span id="months126"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox127.200]</td>
+              <td>[TextBox^Numbers^227.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select127"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^327.200]
+              </td>
+              <td>[TextBox627.150]</td>
+              <td><span id="subtotal127"></span></td>
+              <td><span id="months127"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox128.200]</td>
+              <td>[TextBox^Numbers^228.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select128"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^328.200]
+              </td>
+              <td>[TextBox628.150]</td>
+              <td><span id="subtotal128"></span></td>
+              <td><span id="months128"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox129.200]</td>
+              <td>[TextBox^Numbers^229.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select129"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^329.200]
+              </td>
+              <td>[TextBox629.150]</td>
+              <td><span id="subtotal129"></span></td>
+              <td><span id="months129"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox130.200]</td>
+              <td>[TextBox^Numbers^230.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select130"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^330.200]
+              </td>
+              <td>[TextBox630.150]</td>
+              <td><span id="subtotal130"></span></td>
+              <td><span id="months130"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox131.200]</td>
+              <td>[TextBox^Numbers^231.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select131"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^331.200]
+              </td>
+              <td>[TextBox631.150]</td>
+              <td><span id="subtotal131"></span></td>
+              <td><span id="months131"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox132.200]</td>
+              <td>[TextBox^Numbers^232.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select132"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^332.200]
+              </td>
+              <td>[TextBox632.150]</td>
+              <td><span id="subtotal132"></span></td>
+              <td><span id="months132"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox133.200]</td>
+              <td>[TextBox^Numbers^233.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select133"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^333.200]
+              </td>
+              <td>[TextBox633.150]</td>
+              <td><span id="subtotal133"></span></td>
+              <td><span id="months133"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox134.200]</td>
+              <td>[TextBox^Numbers^234.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select134"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^334.200]
+              </td>
+              <td>[TextBox634.150]</td>
+              <td><span id="subtotal134"></span></td>
+              <td><span id="months134"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox135.200]</td>
+              <td>[TextBox^Numbers^235.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select135"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^335.200]
+              </td>
+              <td>[TextBox635.150]</td>
+              <td><span id="subtotal135"></span></td>
+              <td><span id="months135"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox136.200]</td>
+              <td>[TextBox^Numbers^236.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select136"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^336.200]
+              </td>
+              <td>[TextBox636.150]</td>
+              <td><span id="subtotal136"></span></td>
+              <td><span id="months136"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox137.200]</td>
+              <td>[TextBox^Numbers^237.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select137"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^337.200]
+              </td>
+              <td>[TextBox637.150]</td>
+              <td><span id="subtotal137"></span></td>
+              <td><span id="months137"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox138.200]</td>
+              <td>[TextBox^Numbers^238.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select138"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^338.200]
+              </td>
+              <td>[TextBox638.150]</td>
+              <td><span id="subtotal138"></span></td>
+              <td><span id="months138"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox139.200]</td>
+              <td>[TextBox^Numbers^239.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select139"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^339.200]
+              </td>
+              <td>[TextBox639.150]</td>
+              <td><span id="subtotal139"></span></td>
+              <td><span id="months139"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox140.200]</td>
+              <td>[TextBox^Numbers^240.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select140"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^340.200]
+              </td>
+              <td>[TextBox640.150]</td>
+              <td><span id="subtotal140"></span></td>
+              <td><span id="months140"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox141.200]</td>
+              <td>[TextBox^Numbers^241.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select141"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^341.200]
+              </td>
+              <td>[TextBox641.150]</td>
+              <td><span id="subtotal141"></span></td>
+              <td><span id="months141"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox142.200]</td>
+              <td>[TextBox^Numbers^242.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select142"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^342.200]
+              </td>
+              <td>[TextBox642.150]</td>
+              <td><span id="subtotal142"></span></td>
+              <td><span id="months142"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox143.200]</td>
+              <td>[TextBox^Numbers^243.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select143"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^343.200]
+              </td>
+              <td>[TextBox643.150]</td>
+              <td><span id="subtotal143"></span></td>
+              <td><span id="months143"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox144.200]</td>
+              <td>[TextBox^Numbers^244.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select144"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^344.200]
+              </td>
+              <td>[TextBox644.150]</td>
+              <td><span id="subtotal144"></span></td>
+              <td><span id="months144"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox145.200]</td>
+              <td>[TextBox^Numbers^245.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select145"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^345.200]
+              </td>
+              <td>[TextBox645.150]</td>
+              <td><span id="subtotal145"></span></td>
+              <td><span id="months145"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox16.200]</td>
+              <td>[TextBox^Numbers^246.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select146"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^346.200]
+              </td>
+              <td>[TextBox646.150]</td>
+              <td><span id="subtotal146"></span></td>
+              <td><span id="months146"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox147.200]</td>
+              <td>[TextBox^Numbers^247.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select147"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^347.200]
+              </td>
+              <td>[TextBox647.150]</td>
+              <td><span id="subtotal147"></span></td>
+              <td><span id="months147"></span></td>
+            </tr>
+
+            <tr>
+              <td class="tac_money">[TextBox148.200]</td>
+              <td>[TextBox^Numbers^248.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select148"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^348.200]
+              </td>
+              <td>[TextBox648.150]</td>
+              <td><span id="subtotal148"></span></td>
+              <td><span id="months148"></span></td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox149.200]</td>
+              <td>[TextBox^Numbers^249.200]</td>
+              <td>
+                <select
+                  name="scheduleType"
+                  id="select149"
+                  data-select-payment-type
+                >
+                  <option value="0">Choose One</option>
+                  <option value="1">Monthly</option>
+                  <option value="2">Semi-Monthly (SM)</option>
+                  <option value="3">Bi-Weekly (BW)</option>
+                  <option value="4">Weekly (WK)</option>
+                  <option value="5">Semi-Annually (SA)</option>
+                  <option value="6">Quarterly (QU)</option>
+                  <option value="7">Annually (YR)</option>
+                </select>
+                [TextBox^Numbers^349.200]
+              </td>
+              <td>[TextBox649.150]</td>
+              <td><span id="subtotal149"></span></td>
+              <td><span id="months149"></span></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3">
+                <h5>Total: <span id="planPaymentsTotal">0.00</span></h5>
+              </td>
+              <td colspan="3">
+                <div style="display: flex; justify-content: space-evenly">
+                  <span
+                    class="btn btn-success btn-sm"
+                    tabindex="100"
+                    data-add-row-button
+                    id="addrow_222.100"
+                    ><img
+                      border="0"
+                      style="cursor: pointer"
+                      src="tac_images/addButton.png"
+                      width="15"
+                      height="15"
+                      title="Add Row to this Table"
+                  /></span>
+                  <span
+                    class="btn btn-danger btn-sm"
+                    tabindex="100"
+                    data-delete-row-button
+                    id="delrow_222.100"
+                    ><img
+                      border="0"
+                      style="cursor: pointer"
+                      src="tac_images/delButton.png"
+                      width="15"
+                      height="15"
+                      title="Delete this row"
+                  /></span>
+                </div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+      <section id="stainPayments">
+        <span class="btn btn-primary" id="stainCollapseButton"
+          >Show Stain Case Section</span
+        >
+        <div id="stainCollapse" class="collapse">
+          <table
+            id="table_template_900"
+            class="table table-bordered table-striped"
+          >
+            <caption>
+              Stain Cases
+            </caption>
+            <thead>
+              <tr>
+                <td colspan="2">Delinquency: [TextBox^Money^900.250]</td>
+              </tr>
+              <tr style="background-color: #bee5eb">
+                <td>Monthly $ To Curing Delinquency</td>
+                <td>Months to Cure</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="tac_money">[TextBox901.200]</td>
+                <td><span id="months905"></span></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2">
+                  <h5>
+                    Total Months to Cure Delinquency:
+                    <span id="stainMonthsTotal">0</span> <br />
+                    Total Paid to Delinquency: <span id="stainTotalPaid"></span>
+                  </h5>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+      <!-- End Stain Payment Section -->
+      <!-- Begin Additional Payments Section -->
+      <section id="additionalpayments">
+        <table
+          id="table_template_400"
+          class="table table-bordered table-striped"
+        >
+          <caption>
+            Additional Payments
+          </caption>
+          <thead>
+            <tr style="background-color: #bee5eb">
+              <td>Amount of Payment</td>
+              <td>Description</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tac_money">[TextBox400.200]</td>
+              <td>[TextBox500.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox401.200]</td>
+              <td>[TextBox501.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox402.200]</td>
+              <td>[TextBox502.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox403.200]</td>
+              <td>[TextBox503.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox404.200]</td>
+              <td>[TextBox504.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox405.200]</td>
+              <td>[TextBox505.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox406.200]</td>
+              <td>[TextBox506.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox407.200]</td>
+              <td>[TextBox507.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox408.200]</td>
+              <td>[TextBox508.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox409.200]</td>
+              <td>[TextBox509.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox410.200]</td>
+              <td>[TextBox510.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox411.200]</td>
+              <td>[TextBox511.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox412.200]</td>
+              <td>[TextBox512.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox413.200]</td>
+              <td>[TextBox513.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox414.200]</td>
+              <td>[TextBox514.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox415.200]</td>
+              <td>[TextBox515.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox416.200]</td>
+              <td>[TextBox516.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox417.200]</td>
+              <td>[TextBox517.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox418.200]</td>
+              <td>[TextBox518.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox419.200]</td>
+              <td>[TextBox519.200]</td>
+            </tr>
+
+            <tr>
+              <td class="tac_money">[TextBox420.200]</td>
+              <td>[TextBox520.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox421.200]</td>
+              <td>[TextBox521.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox422.200]</td>
+              <td>[TextBox522.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox423.200]</td>
+              <td>[TextBox523.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox424.200]</td>
+              <td>[TextBox524.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox425.200]</td>
+              <td>[TextBox525.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox426.200]</td>
+              <td>[TextBox526.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox427.200]</td>
+              <td>[TextBox527.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox428.200]</td>
+              <td>[TextBox528.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox429.200]</td>
+              <td>[TextBox529.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox430.200]</td>
+              <td>[TextBox530.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox431.200]</td>
+              <td>[TextBox531.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox432.200]</td>
+              <td>[TextBox532.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox433.200]</td>
+              <td>[TextBox533.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox434.200]</td>
+              <td>[TextBox534.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox435.200]</td>
+              <td>[TextBox535.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox436.200]</td>
+              <td>[TextBox536.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox437.200]</td>
+              <td>[TextBox537.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox438.200]</td>
+              <td>[TextBox538.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox439.200]</td>
+              <td>[TextBox539.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox440.200]</td>
+              <td>[TextBox540.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox441.200]</td>
+              <td>[TextBox541.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox442.200]</td>
+              <td>[TextBox542.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox443.200]</td>
+              <td>[TextBox543.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox444.200]</td>
+              <td>[TextBox544.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox445.200]</td>
+              <td>[TextBox545.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox446.200]</td>
+              <td>[TextBox546.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox447.200]</td>
+              <td>[TextBox547.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox448.200]</td>
+              <td>[TextBox548.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox449.200]</td>
+              <td>[TextBox549.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox450.200]</td>
+              <td>[TextBox550.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox451.200]</td>
+              <td>[TextBox551.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox452.200]</td>
+              <td>[TextBox552.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox453.200]</td>
+              <td>[TextBox553.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox454.200]</td>
+              <td>[TextBox554.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox455.200]</td>
+              <td>[TextBox555.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox456.200]</td>
+              <td>[TextBox556.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox457.200]</td>
+              <td>[TextBox557.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox458.200]</td>
+              <td>[TextBox558.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox459.200]</td>
+              <td>[TextBox559.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox460.200]</td>
+              <td>[TextBox560.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox461.200]</td>
+              <td>[TextBox561.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox462.200]</td>
+              <td>[TextBox562.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox463.200]</td>
+              <td>[TextBox563.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox464.200]</td>
+              <td>[TextBox564.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox465.200]</td>
+              <td>[TextBox565.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox466.200]</td>
+              <td>[TextBox566.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox467.200]</td>
+              <td>[TextBox567.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox468.200]</td>
+              <td>[TextBox568.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox469.200]</td>
+              <td>[TextBox569.200]</td>
+            </tr>
+
+            <tr>
+              <td class="tac_money">[TextBox470.200]</td>
+              <td>[TextBox570.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox471.200]</td>
+              <td>[TextBox571.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox472.200]</td>
+              <td>[TextBox572.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox473.200]</td>
+              <td>[TextBox573.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox474.200]</td>
+              <td>[TextBox574.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox475.200]</td>
+              <td>[TextBox575.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox476.200]</td>
+              <td>[TextBox576.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox477.200]</td>
+              <td>[TextBox577.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox478.200]</td>
+              <td>[TextBox578.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox479.200]</td>
+              <td>[TextBox579.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox480.200]</td>
+              <td>[TextBox580.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox481.200]</td>
+              <td>[TextBox581.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox482.200]</td>
+              <td>[TextBox582.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox483.200]</td>
+              <td>[TextBox583.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox484.200]</td>
+              <td>[TextBox584.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox485.200]</td>
+              <td>[TextBox585.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox486.200]</td>
+              <td>[TextBox586.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox487.200]</td>
+              <td>[TextBox587.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox488.200]</td>
+              <td>[TextBox588.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox489.200]</td>
+              <td>[TextBox589.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox490.200]</td>
+              <td>[TextBox590.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox491.200]</td>
+              <td>[TextBox591.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox492.200]</td>
+              <td>[TextBox592.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox493.200]</td>
+              <td>[TextBox593.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox494.200]</td>
+              <td>[TextBox594.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox495.200]</td>
+              <td>[TextBox595.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox496.200]</td>
+              <td>[TextBox596.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox497.200]</td>
+              <td>[TextBox597.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox498.200]</td>
+              <td>[TextBox598.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox499.200]</td>
+              <td>[TextBox599.200]</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>
+                <h5>Total: <span id="additionalPaymentsTotal">0.00</span></h5>
+              </td>
+              <td>
+                <div style="display: flex; justify-content: space-evenly">
+                  <span
+                    class="btn btn-success btn-sm"
+                    tabindex="100"
+                    data-add-row-button
+                    id="addrow_222.400"
+                    ><img
+                      border="0"
+                      style="cursor: pointer"
+                      src="tac_images/addButton.png"
+                      width="15"
+                      height="15"
+                      title="Add Row to this Table"
+                  /></span>
+                  <span
+                    class="btn btn-danger btn-sm"
+                    tabindex="100"
+                    data-delete-row-button
+                    id="delrow_222.400"
+                    ><img
+                      border="0"
+                      style="cursor: pointer"
+                      src="tac_images/delButton.png"
+                      width="15"
+                      height="15"
+                      title="Delete this row" /></span
+                  >\
+                </div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+      <section id="forgiveamounts">
+        <table
+          id="table_template_700"
+          class="table table-bordered table-striped"
+        >
+          <caption>
+            Forgive Amounts
+          </caption>
+          <thead>
+            <tr style="background-color: #bee5eb">
+              <td>Amount Forgiven</td>
+              <td>Description</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tac_money">[TextBox700.200]</td>
+              <td>[TextBox800.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox701.200]</td>
+              <td>[TextBox801.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox702.200]</td>
+              <td>[TextBox802.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox703.200]</td>
+              <td>[TextBox803.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox704.200]</td>
+              <td>[TextBox804.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox705.200]</td>
+              <td>[TextBox805.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox706.200]</td>
+              <td>[TextBox806.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox707.200]</td>
+              <td>[TextBox807.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox708.200]</td>
+              <td>[TextBox808.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox709.200]</td>
+              <td>[TextBox809.200]</td>
+            </tr>
+
+            <tr>
+              <td class="tac_money">[TextBox710.200]</td>
+              <td>[TextBox810.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox711.200]</td>
+              <td>[TextBox811.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox712.200]</td>
+              <td>[TextBox812.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox713.200]</td>
+              <td>[TextBox813.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox714.200]</td>
+              <td>[TextBox814.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox715.200]</td>
+              <td>[TextBox815.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox716.200]</td>
+              <td>[TextBox816.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox717.200]</td>
+              <td>[TextBox817.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox718.200]</td>
+              <td>[TextBox818.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox719.200]</td>
+              <td>[TextBox819.200]</td>
+            </tr>
+            <tr>
+              <td class="tac_money">[TextBox720.200]</td>
+              <td>[TextBox820.200]</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>
+                <h5>Total: <span id="forgiveAmountsTotal">0.00</span></h5>
+              </td>
+              <td>
+                <div style="display: flex; justify-content: space-evenly">
+                  <span
+                    class="btn btn-success btn-sm"
+                    tabindex="100"
+                    data-add-row-button
+                    id="addrow_222.700"
+                    ><img
+                      border="0"
+                      style="cursor: pointer"
+                      src="tac_images/addButton.png"
+                      width="15"
+                      height="15"
+                      title="Add Row to this Table"
+                  /></span>
+                  <br />
+                  <span
+                    class="btn btn-danger btn-sm"
+                    tabindex="100"
+                    data-delete-row-button
+                    id="delrow_222.700"
+                    ><img
+                      border="0"
+                      style="cursor: pointer"
+                      src="tac_images/delButton.png"
+                      width="15"
+                      height="15"
+                      title="Delete this row"
+                  /></span>
+                </div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+      <section id="baseTotal">
+        <table id="table_template_900" class="table table-bordered">
+          <caption>
+            Base Total
+          </caption>
+          <thead>
+            <tr>
+              <td>
+                <div style="display: flex; justify-content: space-evenly">
+                  <span class="btn btn-success" id="calculateButton"
+                    >Calculate</span
+                  >
+                  <span class="btn btn-info" id="generateButton"
+                    >Generate Note</span
+                  >
+                </div>
+              </td>
+            </tr>
+            <tr style="background-color: #bee5eb">
+              <td>
+                <h5>Base <span id="baseTotalSpan">0</span></h5>
+              </td>
+            </tr>
+          </thead>
+        </table>
+      </section>
+    </section>
+  </div>
+</div>

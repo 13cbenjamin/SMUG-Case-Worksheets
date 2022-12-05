@@ -1,0 +1,202 @@
+<div id="Base_Calc" class="container">
+    <main>
+        <h4 style="text-align: center;">Base Calculator</h4>
+        <p style="text-align: center;">This worksheet allows you to calculate a base amount given a set of plan payments, additional payments, and any forgive amounts <br> 
+            You can use the Green Add Row button to add additional rows or delete additional rows as needed. </p>
+    </main>
+    <div style="display: flex; flex-direction:column; justify-content: space-between;">
+        <section id="PayScheduleCalulation" >
+            <table class="table table-bordered table-striped table-sm">
+                <caption>Pay Schedule Figures</caption>
+                <thead>
+                    <tr style="background-color: #bee5eb;">
+                        <td>Pay Schedule Type</td>
+                        <td>Payments Per Month</td>
+                        <td>Periods in 12 Months</td>
+                        <td>Periods in 36 Months</td>
+                        <td>Periods in 60 Months</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Monthly (MO)</td>
+                        <td>1</td>
+                        <td>12</td>
+                        <td>36</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>Semi-Monthly (SM)</td>
+                        <td>2</td>
+                        <td>24</td>
+                        <td>72</td>
+                        <td>120</td>
+                    </tr>
+                    <tr>
+                        <td>Bi-Weekly (BW)</td>
+                        <td>2.166</td>
+                        <td>26</td>
+                        <td>78</td>
+                        <td>130</td>
+                    </tr>
+                    <tr>
+                        <td>Weekly (WK)</td>
+                        <td>4.<span style="text-decoration: overline">33</span></td>
+                        <td>52</td>
+                        <td>156</td>
+                        <td>260</td>
+                    </tr>
+                    <tr>
+                        <td>Semi-Annually (SA)</td>
+                        <td>0.1<span style="text-decoration: overline">66</span></td>
+                        <td>2</td>
+                        <td>6</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>Quarterly (QU)</td>
+                        <td>0.<span style="text-decoration: overline">33</span></td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>Annually (YR)</td>
+                        <td>0.08<span style="text-decoration: overline">33</span></td>
+                        <td>1</td>
+                        <td>3</td>
+                        <td>5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <div style="width: 100px; align-items: center; margin: auto;">
+            <h2 id="testNumber"></h2>
+        </div>
+        <section id="Calculator" style="padding-left: 2%;">
+            <section id="planpayments">
+                <table id="table_template_100" class="table table-bordered table-striped">
+                    <caption>Plan Payments</caption>
+                    <thead>
+                        <tr style="background-color: #bee5eb;">
+                            <td>Amount</td>
+                            <td>Periods</td>
+                            <td>Per Month</td>
+                            <td>Subtotal</td>
+                            <td>Months</td>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="tac_money">[TextBox100.200]</td>
+                            <td>[TextBox^Numbers^200.200]</td>
+                            <td>[TextBox^Numbers^300.200]</td>
+                            <td><span id="subtotal100"></span></td>
+                            <td><span id="months100"></span></td>
+                            </tr>
+                  </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"><h5>Total: <span id="planPaymentsTotal">0.00</span></h5>
+                                Table Rows: [TextBox900.50]
+                               
+                            </td>
+                            <td colspan="3">
+                                <div style="display: flex; justify-content: space-evenly;">
+                                <span class="btn btn-success btn-sm" tabindex="100" data-add-row-button id="addrow_222.100"><img border="0" style="cursor:pointer" src="tac_images/addButton.png" width="15" height="15" title="Add Row to this Table"/></span>
+                                <span class="btn btn-danger btn-sm" tabindex="100" data-delete-row-button id="delrow_222.100"><img border="0" style="cursor:pointer" src="tac_images/delButton.png" width="15" height="15" title="Delete this row"/></span>
+                                </div>
+                               </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+            <section id="additionalpayments">
+                <table id="table_template_400" class="table table-bordered table-striped">
+                    <caption>Additional Payments</caption>
+                    <thead>
+                        <tr style="background-color: #bee5eb;">
+                            <td>Amount</td>
+                            <td>Description</td>
+                       
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="tac_money">[TextBox400.200]</td>
+                            <td>[TextBox500.200]</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                <h5>Total: <span id="additionalPaymentsTotal">0.00</span></h5>
+                                Table Rows: [TextBox901.50]
+                            </td>
+                            <td>
+                                <div style="display: flex; justify-content: space-evenly;">
+
+                                <span class="btn btn-success btn-sm" tabindex="100" data-add-row-button id="addrow_222.400"><img border="0" style="cursor:pointer" src="tac_images/addButton.png" width="15" height="15" title="Add Row to this Table"/></span>
+                                <span class="btn btn-danger btn-sm" tabindex="100" data-delete-row-button id="delrow_222.400"><img border="0" style="cursor:pointer" src="tac_images/delButton.png" width="15" height="15" title="Delete this row"/></span>\
+                                    </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+            <section id="forgiveamounts">
+                <table id="table_template_700" class="table table-bordered table-striped">
+                    <caption>Forgive Amounts</caption>
+                    <thead>
+                        <tr style="background-color: #bee5eb;">
+                            <td>Amount</td>
+                            <td>Description</td>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="tac_money">[TextBox700.200]</td>
+                            <td>[TextBox800.200]</td>
+
+                            </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                <h5>Total: <span id="forgiveAmountsTotal">0.00</span></h5>
+                                Table Rows: [TextBox902.50]
+                            </td>
+                            <td>
+                                <div style="display: flex; justify-content: space-evenly;">
+                                <span class="btn btn-success btn-sm" tabindex="100" data-add-row-button id="addrow_222.700"><img border="0" style="cursor:pointer" src="tac_images/addButton.png" width="15" height="15" title="Add Row to this Table"/></span>     <br>
+                                <span class="btn btn-danger btn-sm" tabindex="100" data-delete-row-button id="delrow_222.700"><img border="0" style="cursor:pointer" src="tac_images/delButton.png" width="15" height="15" title="Delete this row"/></span>
+                                    </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+            <section id="baseTotal">
+                <table id="table_template_900" class="table table-bordered ">
+                    <caption>Base Total</caption>
+                    <thead>
+                        <tr>
+                            <td>
+                                <div style="display: flex; justify-content: space-evenly;">
+                                    <span class="btn btn-success" id="calculateButton">Calculate</span>
+                                    <span class="btn btn-info" id="generateButton">Generate Note</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="background-color: #bee5eb;">
+                            <td><h5>Base <span id="baseTotalSpan">0</span></h5></td>
+                        </tr>
+                    </thead>    
+                </table>    
+            </section>
+        </section>
+
+    </div>
+</div>
