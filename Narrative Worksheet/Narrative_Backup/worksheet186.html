@@ -1,0 +1,1842 @@
+<div class="mainHeader container-fluid">
+    <div id="header_186_1" class="titleSection">
+        <ul>
+            <li>Plan Narrative</li>
+        </ul>
+    </div> <!--Version 3-->
+    <div id="datepicker"></div>
+    <div id="contentDivImg_186" class="mainContent">
+            <div id="section_186_1">
+                    <div class="headerSection"> 
+                        <table class="table headerTable">
+                            <thead class="worksheetHeader">
+                                <tr>
+                                    <td colspan="5">|~SELECT vwCRMainCase.DisplayCaseNumber AS FieldData FROM vwCRMainCase WHERE vwCRMainCase.CaseNumber = '{CaseNumber}'~| Plan Narrative</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><h6>Current Court Doc:</h6></td>
+                                    <td>[TextBox111.50]</td>
+                                    <td><h6>Previous Court Doc:</h6></td>
+                                    <td>[TextBox112.50]</td>
+                                    <td><label for="CheckBox_186_111"><h6>Original:</h6></label></td>
+                                    <td>[CheckBox111]</td>
+                                    <td><label for="CheckBox_186_112"><h6>Amended:</h6></label></td>
+                                    <td>[CheckBox112]</td>
+                                    <td><h6>Date Plan Filed:</h6></td>
+                                    <td>[TextBox3.125]</td>
+
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </br>
+                        <ul class="actionButtons" > 
+                            <li><a onclick="WCgoToApp('CaseWorksheet.aspx?xwin=&amp;wstype=41')" title="Refresh" class="btn btn-primary" style="color: #FFFFFF" tabindex="-1">Refresh</a></li>
+                            <li style="display: inline;">|~Select '<a href="' + tblReportSetup.ReportServerHTTPAddress + 'PleaseWait.aspx?progskip=~&prog=getPSProg&&qs=uid=' + '|:UserCodeID:|' + '|id=571|trucode=' + tblReportSetup.TruCode + '|WinSuffix=1|windesc=WorksheetForm|AppServerName=' + tblTrusteeDefaults.ApplicationHTTPAddress + '|psprog=PrintForm.aspx|sucid=' + '|:UserCodeID:|' + '|cn=' + '{CaseNumber}' + '|' + '" target="_blank" class="btn btn-success" style="color: #FFFFFF;" tabindex="-1">Create Forum Note</a>' as FieldData From tblReportSetup, tblTrusteeDefaults Where tblReportSetup.TruCode = tblTrusteeDefaults.TrusteeCode~|</li>
+                            <li><a onclick="if(!(confirm('Are you sure you want to remove all the data from this worksheet?  This action cannot be undone.')))return false;WCgoToApp('CaseWorksheet.aspx?clear=1&amp;xwin=&amp;wstype=41')" title="Reset Worksheet" class="btn btn-danger" style="color:#FFFFFF;" tabindex="-1">Reset Worksheet</a></li>
+                        </ul>
+                    </div>
+                    <div class="controlButtons">
+                        <a id="controlCollapse" data-collapse-control class="btn btn-primary">Expand/Collapse</a>
+                    </div>
+                    <div class="sectionTitle" id="section_I_title">
+                        <h5>Part I: Disclosure of NonStandard Provisions and Plan's Modification of Secured Debt</h5> 
+                    </div>
+                    <div id="section_I_collapse" class="collapsable" data-collapse-area>
+                    <div id="section_186_2">
+                        <h6>Check if Yes</h6>
+                        <div class="checkboxradio inline">
+                            <ul>
+                                <li>
+                                    <label for="CheckBox_186_211">A:</label> [CheckBox211] <label for="CheckBox_186_212">B:</label> [CheckBox212]   <label for="CheckBox_186_213">C:</label>  [CheckBox213] 
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                        <div id="section_186_3">
+                            <div class="sectionTitle" id="section_II_title">
+                                <h5>Part II: Means Test Result and Plan Duration</h5> 
+                            </div>
+                            <div id="section_II_collapse" class="collapsable" data-collapse-area>
+                            <h6>
+                                Select One:
+                            </h6>
+                        <div class="checkboxradio">
+                            <ul >
+                                <li>
+                                    [CheckBox311] <label for="CheckBox_186_311">a below median income debtor with a 36 month applicable commitment period</label>
+                                </li>
+                                <li>
+                                    [CheckBox312] <label for="CheckBox_186_312">an above median income debtor with a 60 month applicable commitment period</label>
+                                </li>
+                            </ul>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="sectionTitle" id="section_III_title">
+                            <h5>Part III: Plan Payments to the Trustee</h5> 
+                        </div>
+                        <div id="section_III_collapse" class="collapsable" data-collapse-area>
+                        <div id="section_186_4">
+                        <p class="tac_money"> 
+                            Plan Payment Amount: [TextBox40.250] Step Payments? [CheckBox100]
+                            <!--If StepPayment Checkbox 100 is checked, then toggle Collapse Class for ppStepPayment
+                            Will also need to update Template to show this information
+                            Will also need to update SQL to log this information to database
+                            -->
+                            <div class="ppStepPayment" id='ppStepPayment'>
+                                <table id="table_template_186_40" class="table table-striped table-bordered" >
+                                    <thead class="tableHeaders"> <!--Add Collapse for default-->
+                                    <tr>
+                                            <th scope="col" class="wide150">Start Month</th>
+                                            <th scope="col" class="wide150">End Month</th>
+                                            <th scope="col" class="wide150">Amount</th>                                          
+                                            <th scope="col" class="wide90"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="tac_calendar">[TextBox4001.100]</td>
+                                            <td class="tac_calendar" class="wide150">[TextBox4002.150]</td>
+                                            <td class="tac_money">[TextBox4003.100]</td>
+                                            <td class="wide90">
+                                                <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tac_calendar">[TextBox4011.100]</td>
+                                            <td class="tac_calendar" class="wide150">[TextBox4012.150]</td>
+                                            <td class="tac_money">[TextBox4013.100]</td>
+                                            <td class="wide90">
+                                                <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tac_calendar">[TextBox4021.100]</td>
+                                            <td class="tac_calendar" class="wide150">[TextBox4022.150]</td>
+                                            <td class="tac_money">[TextBox4023.100]</td>
+
+                                            <td class="wide90">
+                                                <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tac_calendar">[TextBox4031.100]</td>
+                                            <td class="tac_calendar" class="wide150">[TextBox4032.150]</td>
+                                            <td class="tac_money">[TextBox4033.100]</td>
+                                            <td class="wide90">
+                                                <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tac_calendar">[TextBox4041.100]</td>
+                                            <td class="tac_calendar" class="wide150">[TextBox4042.150]</td>
+                                            <td class="tac_money">[TextBox4043.100]</td>
+                                            <td class="wide90">
+                                                <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="4">
+                                                <input type="button" class="btn btn-primary btn-sm btn-block" tabindex="100" id="addrow_186.40" value="Add Row" />
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <h7>[CheckBox402] Comments</h7>
+                                <div class="commentbox">
+                                    [CommentBox402.100]
+                                </div>
+                            </div>
+                            <div class="checkboxradio">
+                                <ul >
+                                    <li>
+                                    Does Payment Plan Match I-J Amount:  <label for="CheckBox_186_40">Yes</label> [CheckBox40] <label for="CheckBox_186_412">No</label> [CheckBox41]
+                                    </li>
+
+                        </ul>
+                        </div>
+                        </p>
+                            <h7>B: Frequency (select one)</h7>
+                        <div class="checkboxradio">
+                            <ul >
+                                <li>
+                                    [CheckBox411] <label for="CheckBox_186_411">Monthly</label> 
+                                </li>
+                                <li>
+                                    [CheckBox412] <label for="CheckBox_186_412">Twice Per Month</label>
+                                </li>
+                                <li>
+                                    [CheckBox413] <label for="CheckBox_186_413">Every Two Weeks</label>
+                                </li>
+                                <li>
+                                    [CheckBox414] <label for="CheckBox_186_414">Weekly</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <h7>Base Calculations</h7> [CommentBox301.500]
+                        <p>
+                            <h7>C: Tax Refund (check one)</h7>
+                        </p>
+                        <div class="checkboxradio">
+                            <ul >
+                                <li>
+                                    [CheckBox421] <label for="CheckBox_186_421">commits all tax refunds to funding the plan</label>
+                                </li>
+                                <li>
+                                    [CheckBox422] <label for="CheckBox_186_422">does not commit all tax refunds to funding the plan</label>
+                                </li>
+                            </ul>
+                        </div>
+                            <h7>E: Other</h7>
+                    [TextBox431.500]
+
+                    <h7>[CheckBox900] Comments</h7>
+                    <div class="commentbox">
+                    [CommentBox900.50]
+                    </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="sectionTitle" id="section_IV_title">
+                        <h5>Part IV: Distribution of Plan Payments by the Trustee </h5> 
+                    </div>
+                    <div id="section_IV_collapse" class="collapsable" data-collapse-area>
+                    <div id="section_186_5">
+                        <p class="tac_money">
+                           Administrative Expenses
+                        </br>
+                        Attorney Fees: [TextBox501.150]
+                        </br>
+                        Amount paid prior to Filing: [TextBox502.150]
+                        </p>
+                    </br>
+                    <div class="checkboxradio">
+                        <h7>Attorney Fees to be paid:</h7>
+                        <ul >
+                            <li>
+                                [CheckBox511] <label for="CheckBox_186_511">Prior to all Creditors</label>
+                            </li>
+                            <li class="tac_money">
+                                [CheckBox512] <label for="CheckBox_186_512"> Monthly Payment of </label>[TextBox512.150]
+                            </li>
+                            <li class="tac_money">
+                                [CheckBox513] <label for="CheckBox_186_513">All remaining funds available after designated monthly payments to creditors:</label> [TextBox513.500]
+                            </li>
+                            <li class="tac_money">
+                                [CheckBox514] <label for="CheckBox_186_514">Other: </label>[TextBox514.700]
+                            </li>
+                        </ul>
+                    </div>
+                    <h7>[CheckBox901] Comments</h7>
+                    <div class="commentbox">
+                    [CommentBox901.100]
+                    </div>
+                    </div>
+                    </div>
+                    <div class="sectionTitle" id="section_0_title">
+                        <h5>Current Domestic Support Obligations:</h5> 
+                    </div>
+        <div id="section_0_collapse" class="collapsable" data-collapse-area>
+                <table id="table_template_186_51" class="table table-striped table-bordered" >
+                <thead class="tableHeaders">
+                <tr>
+                        <th scope="col" class="wide400">Creditor</th>
+                        <th scope="col" class="wide150">Monthly Amount</th>
+                        <th scope="col" class="wide90"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="wide400">[TextBox5101.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5102.150]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="wide400">[TextBox5111.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5112.150]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="wide400">[TextBox5121.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5122.150]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="wide400">[TextBox5131.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5132.150]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="wide400">[TextBox5141.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5142.150]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="wide400">[TextBox5151.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5152.150]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="wide400">[TextBox5161.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5162.150]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="wide400">[TextBox5171.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5172.150]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="wide400">[TextBox5181.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5182.150]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="wide400">[TextBox5191.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5192.150]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>                        
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">
+                            <input type="button" class="btn btn-primary btn-sm btn-block" tabindex="100" id="addrow_186.1" value="Add Row" />
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            <h7>[CheckBox902] Comments</h7>
+            <div class="commentbox">
+                [CommentBox902.100]
+            </div>
+        </div>
+        <div class="sectionTitle" id="section_1_title">
+        <h5>1. Ongoing Payments:</h5> 
+        </div>
+        <div id="section_1_collapse" class="collapsable" data-collapse-area>
+                
+            <table id="table_template_186_52" class="table table-striped table-bordered" >
+                <thead class="tableHeaders">
+                    <tr>
+                        <th scope="col" class="wide100">Rank</th>
+                        <th scope="col" class="wide150">Monthly Payment</th>
+                        <th scope="col" class="wide350">Creditor</th>
+                        <th scope="col" class="wide450">Collateral</th>
+                        <th scope="col" class="wide90"></th>
+                    </tr>
+                </thead>    
+                    <tbody>
+                    <tr>
+                        <td class="wide100">[TextBox5201.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5202.150]</td>
+                        <td class="wide100">[TextBox5203.300]</td>
+                        <td class="wide100">[TextBox5204.300]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="wide100">[TextBox5211.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5212.150]</td>
+                        <td class="wide100">[TextBox5213.300]</td>
+                        <td class="wide100">[TextBox5214.300]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="wide100">[TextBox5221.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5222.150]</td>
+                        <td class="wide100">[TextBox5223.300]</td>
+                        <td class="wide100">[TextBox5224.300]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>                                
+                    <tr>
+                        <td class="wide100">[TextBox5231.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5232.150]</td>
+                        <td class="wide100">[TextBox5233.300]</td>
+                        <td class="wide100">[TextBox5234.300]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>                                
+                    <tr>
+                        <td class="wide100">[TextBox5241.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5242.150]</td>
+                        <td class="wide100">[TextBox5243.300]</td>
+                        <td class="wide100">[TextBox5244.300]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>                                
+                    <tr>
+                        <td class="wide100">[TextBox5251.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5252.150]</td>
+                        <td class="wide100">[TextBox5253.300]</td>
+                        <td class="wide100">[TextBox5254.300]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>                                
+                    <tr>
+                        <td class="wide100">[TextBox5261.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5262.150]</td>
+                        <td class="wide100">[TextBox5263.300]</td>
+                        <td class="wide100">[TextBox5264.300]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>                                
+                    <tr>
+                        <td class="wide100">[TextBox5271.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5272.150]</td>
+                        <td class="wide100">[TextBox5273.300]</td>
+                        <td class="wide100">[TextBox5274.300]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>                                
+                    <tr>
+                        <td class="wide100">[TextBox5281.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5282.150]</td>
+                        <td class="wide100">[TextBox5283.300]</td>
+                        <td class="wide100">[TextBox5284.300]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>                                
+                    <tr>
+                        <td class="wide100">[TextBox5291.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5292.150]</td>
+                        <td class="wide100">[TextBox5293.300]</td>
+                        <td class="wide100">[TextBox5294.300]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <input type="button" class="btn btn-primary btn-sm btn-block" tabindex="100" id="addrow_186_5_2" value="Add Row" />
+                        </td>
+                    </tr>
+                    <tr></tr>
+                </tfoot>
+            </table>
+            <h7>[CheckBox903] Comments</h7>
+            <div class="commentbox">
+            [CommentBox903.100]
+            </div>
+        </div>
+        <div class="sectionTitle" id="section_2_title">
+                <h5>1. Cure Payment:</h5></center>
+                </div>
+        <div id="section_2_collapse" class="collapsable" data-collapse-area>
+            <table id="table_template_186_53" class="table table-striped table-bordered" >
+                <thead class="tableHeaders">
+                    <tr>
+                        <th scope="col" class="wide100">Rank</th>
+                        <th scope="col" class="wide150">Monthly Payment</th>
+                        <th scope="col" class="wide350">Creditor</th>
+                        <th scope="col" class="wide450">Collateral</th>
+                        <th scope="col" class="wide150">Arrears to be Cured</th>
+                        <th scope="col" class="wide150">Interest Rate %</th>
+                        <th scope="col" class="wide90"></th>
+                    </tr>
+                </thead>
+                    <tbody>
+                    <tr>
+                        <td class="wide100">[TextBox5301.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5302.150]</td>
+                        <td class="wide100">[TextBox5303.300]</td>
+                        <td class="wide100">[TextBox5304.300]</td>
+                        <td class="tac_money" class="wide150">[TextBox5305.150]</td>
+                        <td class="tac_percent" class="wide100">[TextBox5306.100]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="wide100">[TextBox5311.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5312.150]</td>
+                        <td class="wide100">[TextBox5313.300]</td>
+                        <td class="wide100">[TextBox5314.300]</td>
+                        <td class="tac_money" class="wide150">[TextBox5315.150]</td>
+                        <td class="tac_percent" class="wide100">[TextBox5316.100]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="wide100">[TextBox5321.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5322.150]</td>
+                        <td class="wide100">[TextBox5323.300]</td>
+                        <td class="wide100">[TextBox5324.300]</td>
+                        <td class="tac_money" class="wide150">[TextBox5325.150]</td>
+                        <td class="tac_percent" class="wide100">[TextBox5326.100]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>                                
+                    <tr>
+                        <td class="wide100">[TextBox5331.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5332.150]</td>
+                        <td class="wide100">[TextBox5333.300]</td>
+                        <td class="wide100">[TextBox5334.300]</td>
+                        <td class="tac_money" class="wide150">[TextBox5335.150]</td>
+                        <td class="tac_percent" class="wide100">[TextBox5336.100]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>                                
+                    <tr>
+                        <td class="wide100">[TextBox5341.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5342.150]</td>
+                        <td class="wide100">[TextBox5343.300]</td>
+                        <td class="wide100">[TextBox5344.300]</td>
+                        <td class="tac_money" class="wide150">[TextBox5345.150]</td>
+                        <td class="tac_percent" class="wide100">[TextBox5346.100]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>                                
+                    <tr>
+                        <td class="wide100">[TextBox5351.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5352.150]</td>
+                        <td class="wide100">[TextBox5353.300]</td>
+                        <td class="wide100">[TextBox5354.300]</td>
+                        <td class="tac_money" class="wide150">[TextBox5355.150]</td>
+                        <td class="tac_percent" class="wide100">[TextBox5356.100]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>                                
+                    <tr>
+                        <td class="wide100">[TextBox5361.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5362.150]</td>
+                        <td class="wide100">[TextBox5363.300]</td>
+                        <td class="wide100">[TextBox5364.300]</td>
+                        <td class="tac_money" class="wide150">[TextBox5365.150]</td>
+                        <td class="tac_percent" class="wide100">[TextBox5366.100]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>                               
+                    <tr>
+                        <td class="wide100">[TextBox5371.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5372.150]</td>
+                        <td class="wide100">[TextBox5373.300]</td>
+                        <td class="wide100">[TextBox5374.300]</td>
+                        <td class="tac_money" class="wide150">[TextBox5375.150]</td>
+                        <td class="tac_percent" class="wide100">[TextBox5376.100]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>                                
+                    <tr>
+                        <td class="wide100">[TextBox5381.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5382.150]</td>
+                        <td class="wide100">[TextBox5383.300]</td>
+                        <td class="wide100">[TextBox5384.300]</td>
+                        <td class="tac_money" class="wide150">[TextBox5385.150]</td>
+                        <td class="tac_percent" class="wide100">[TextBox5386.100]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>                                
+                    <tr>
+                        <td class="wide100">[TextBox5391.100]</td>
+                        <td class="tac_money" class="wide150">[TextBox5392.150]</td>
+                        <td class="wide100">[TextBox5393.300]</td>
+                        <td class="wide100">[TextBox5394.300]</td>
+                        <td class="tac_money" class="wide150">[TextBox5395.150]</td>
+                        <td class="tac_percent" class="wide100">[TextBox5396.100]</td>
+                        <td class="wide90">
+                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="7">
+                            <input type="button" class="btn btn-primary btn-sm btn-block" tabindex="100" id="addrow_186_5.3" value="Add Row" />
+                        </td>
+                    </tr>
+                    <tr></tr>
+                </tfoot>
+            </table>
+            <h7>[CheckBox904] Comments</h7>
+            <div class="commentbox">
+            [CommentBox904.100]
+            </div>
+        </div> 
+        <div class="sectionTitle" id="section_3_title">
+<h5>2. Ongoing Payments:</h5>
+        </div>
+        <div id="section_3_collapse" class="collapsable" data-collapse-area>
+    <table id="table_template_186_54" class="table table-striped table-bordered" >
+        <thead class="tableHeaders">
+            <tr>
+                <th scope="col" class="wide100">Rank</th>
+                <th scope="col" class="wide150">Monthly Payment</th>
+                <th scope="col" class="wide350">Creditor</th>
+                <th scope="col" class="wide450">Collateral</th>
+                <th scope="col" class="wide250">Interest Rate %</th>
+                <th scope="col" class="wide90"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="wide100">[TextBox5401.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5402.150]</td>
+                <td class="wide100">[TextBox5403.300]</td>
+                <td class="wide100">[TextBox5404.300]</td>
+                <td class="tac_percent" class="wide100">[TextBox5405.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="wide100">[TextBox5411.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5412.150]</td>
+                <td class="wide100">[TextBox5413.300]</td>
+                <td class="wide100">[TextBox5414.300]</td>
+                <td class="tac_percent" class="wide100">[TextBox5415.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="wide100">[TextBox5421.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5422.150]</td>
+                <td class="wide100">[TextBox5423.300]</td>
+                <td class="wide100">[TextBox5424.300]</td>
+                <td class="tac_percent" class="wide100">[TextBox5425.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                
+            <tr>
+                <td class="wide100">[TextBox5431.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5432.150]</td>
+                <td class="wide100">[TextBox5433.300]</td>
+                <td class="wide100">[TextBox5434.300]</td>
+                <td class="tac_percent" class="wide100">[TextBox5435.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                
+            <tr>
+                <td class="wide100">[TextBox5441.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5442.150]</td>
+                <td class="wide100">[TextBox5443.300]</td>
+                <td class="wide100">[TextBox5444.300]</td>
+                <td class="tac_percent" class="wide100">[TextBox5445.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                
+            <tr>
+                <td class="wide100">[TextBox5451.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5452.150]</td>
+                <td class="wide100">[TextBox5453.300]</td>
+                <td class="wide100">[TextBox5454.300]</td>
+                <td class="tac_percent" class="wide100">[TextBox5455.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                
+            <tr>
+                <td class="wide100">[TextBox5461.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5462.150]</td>
+                <td class="wide100">[TextBox5463.300]</td>
+                <td class="wide100">[TextBox5464.300]</td>
+                <td class="tac_percent" class="wide100">[TextBox5465.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                
+            <tr>
+                <td class="wide100">[TextBox5471.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5472.150]</td>
+                <td class="wide100">[TextBox5473.300]</td>
+                <td class="wide100">[TextBox5474.300]</td>
+                <td class="tac_percent" class="wide100">[TextBox5475.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                
+            <tr>
+                <td class="wide100">[TextBox5481.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5482.150]</td>
+                <td class="wide100">[TextBox5483.300]</td>
+                <td class="wide100">[TextBox5484.300]</td>
+                <td class="tac_percent" class="wide100">[TextBox5485.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                
+            <tr>
+                <td class="wide100">[TextBox5491.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5492.150]</td>
+                <td class="wide100">[TextBox5493.300]</td>
+                <td class="wide100">[TextBox5494.300]</td>
+                <td class="tac_percent" class="wide100">[TextBox5495.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">
+                    <input type="button" class="btn btn-primary btn-sm btn-block" tabindex="100" id="addrow_186_5.4" value="Add Row" />
+                </td>
+            </tr>
+            <tr></tr>
+        </tfoot>
+    </table>
+    <h7>[CheckBox905] Comments</h7>
+    <div class="commentbox">
+    [CommentBox905.100]
+    </div>
+        </div>
+        <div class="sectionTitle" id="section_4_title">
+        <h5>2. Cure Payments:</h5>
+        </div>
+        <div id="section_4_collapse" class="collapsable" data-collapse-area>
+    <table id="table_template_186_55" class="table table-striped table-bordered" >
+        <thead class="tableHeaders">
+            <tr>
+                <th scope="col" class="wide100">Rank</th>
+                <th scope="col" class="wide150">Monthly Payment</th>
+                <th scope="col" class="wide250">Creditor</th>
+                <th scope="col" class="wide250">Collateral</th>
+                <th scope="col" class="wide250">Arrears to be Cured</th>
+                <th scope="col" class="wide250">Interest Rate %</th>
+                <th scope="col" class="wide90"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="wide100">[TextBox5501.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5502.150]</td>
+                <td class="wide100">[TextBox5503.300]</td>
+                <td class="wide100">[TextBox5504.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5505.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5506.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="wide100">[TextBox5511.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5512.150]</td>
+                <td class="wide100">[TextBox5513.300]</td>
+                <td class="wide100">[TextBox5514.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5515.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5516.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="wide100">[TextBox5521.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5522.150]</td>
+                <td class="wide100">[TextBox5523.300]</td>
+                <td class="wide100">[TextBox5524.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5525.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5526.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                <tr>
+                <td class="wide100">[TextBox5531.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5532.150]</td>
+                <td class="wide100">[TextBox5533.300]</td>
+                <td class="wide100">[TextBox5534.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5535.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5536.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                <tr>
+                <td class="wide100">[TextBox5541.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5542.150]</td>
+                <td class="wide100">[TextBox5543.300]</td>
+                <td class="wide100">[TextBox5544.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5545.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5546.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                <tr>
+                <td class="wide100">[TextBox5551.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5552.150]</td>
+                <td class="wide100">[TextBox5553.300]</td>
+                <td class="wide100">[TextBox5554.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5555.150]</td>
+                <td class="wide100">[TextBox5556.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                <tr>
+                <td class="wide100">[TextBox5561.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5562.150]</td>
+                <td class="wide100">[TextBox5563.300]</td>
+                <td class="wide100">[TextBox5564.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5565.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5566.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                <tr>
+                <td class="wide100">[TextBox5571.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5572.150]</td>
+                <td class="wide100">[TextBox5573.300]</td>
+                <td class="wide100">[TextBox5574.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5575.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5576.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                <tr>
+                <td class="wide100">[TextBox5581.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5582.150]</td>
+                <td class="wide100">[TextBox5583.300]</td>
+                <td class="wide100">[TextBox5584.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5585.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5586.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                <tr>
+                <td class="wide100">[TextBox5591.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5592.150]</td>
+                <td class="wide100">[TextBox5593.300]</td>
+                <td class="wide100">[TextBox5594.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5595.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5596.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7">
+                    <input type="button" class="btn btn-primary btn-sm btn-block" tabindex="100" id="addrow_186_5.5" value="Add Row" />
+                </td>
+            </tr>
+            <tr></tr>
+        </tfoot>
+    </table>
+    <h7>[CheckBox906] Comments</h7>
+    <div class="commentbox">
+        [CommentBox906.100]
+        </div>
+        </div>
+        <div class="sectionTitle" id="section_5_title">
+        <h5>3. 910 Collateral:</h5> 
+        </div>
+        <div id="section_5_collapse" class="collapsable" data-collapse-area>
+    <table id="table_template_186_56" class="table table-striped table-bordered" >
+        <thead class="tableHeaders">
+            <tr>
+                <th scope="col" class="wide100">Rank</th>
+                <th scope="col" class="wide150">Monthly Payment</th>
+                <th scope="col" class="wide250">Creditor</th>
+                <th scope="col" class="wide450">Collateral</th>
+                <th scope="col" class="wide150">Pre-Confirmation Adequate Protection Monthly Payment</th>
+                <th scope="col" class="wide150">Interest Rate %</th>
+                <th scope="col" class="wide90"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="wide100">[TextBox5601.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5602.150]</td>
+                <td class="wide100">[TextBox5603.300]</td>
+                <td class="wide100">[TextBox5604.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5605.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5606.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="wide100">[TextBox5611.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5612.150]</td>
+                <td class="wide100">[TextBox5613.300]</td>
+                <td class="wide100">[TextBox5614.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5615.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5616.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="wide100">[TextBox5621.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5622.150]</td>
+                <td class="wide100">[TextBox5623.300]</td>
+                <td class="wide100">[TextBox5624.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5625.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5626.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                <tr>
+                <td class="wide100">[TextBox5631.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5632.150]</td>
+                <td class="wide100">[TextBox5633.300]</td>
+                <td class="wide100">[TextBox5634.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5635.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5636.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                <tr>
+                <td class="wide100">[TextBox5641.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5642.150]</td>
+                <td class="wide100">[TextBox5643.300]</td>
+                <td class="wide100">[TextBox5644.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5645.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5646.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                <tr>
+                <td class="wide100">[TextBox5651.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5652.150]</td>
+                <td class="wide100">[TextBox5653.300]</td>
+                <td class="wide100">[TextBox5654.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5655.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5656.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                <tr>
+                <td class="wide100">[TextBox5661.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5662.150]</td>
+                <td class="wide100">[TextBox5663.300]</td>
+                <td class="wide100">[TextBox5664.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5665.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5666.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                <tr>
+                <td class="wide100">[TextBox5671.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5672.150]</td>
+                <td class="wide100">[TextBox5673.300]</td>
+                <td class="wide100">[TextBox5674.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5675.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5676.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                <tr>
+                <td class="wide100">[TextBox5681.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5682.150]</td>
+                <td class="wide100">[TextBox5683.300]</td>
+                <td class="wide100">[TextBox5684.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5685.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5686.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>                                <tr>
+                <td class="wide100">[TextBox5691.100]</td>
+                <td class="tac_money" class="wide150">[TextBox5692.150]</td>
+                <td class="wide100">[TextBox5693.300]</td>
+                <td class="wide100">[TextBox5694.300]</td>
+                <td class="tac_money" class="wide150">[TextBox5695.150]</td>
+                <td class="tac_percent" class="wide100">[TextBox5696.100]</td>
+                <td class="wide90">
+                    <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7">
+                    <input type="button" class="btn btn-primary btn-sm btn-block" tabindex="100" id="addrow_186_5.6" value="Add Row" />
+                </td>
+            </tr>
+            <tr></tr>
+        </tfoot>
+    </table>
+    <h7>[CheckBox907] Comments</h7>
+    <div class="commentbox">
+    [CommentBox907.100]
+    </div>
+        </div>
+        <div class="sectionTitle" id="section_6_title">
+            <h5>3. Non-910 Collateral: </h5> 
+        </div>
+        <div id="section_6_collapse" class="collapsable" data-collapse-area>
+        <table id="table_template_186_57" class="table table-striped table-bordered" >
+            <thead class="tableHeaders">
+                <tr>
+                    <th scope="col" class="wide100">Rank</th>
+                    <th scope="col" class="wide150">Monthly Payment</th>
+                    <th scope="col" class="wide250">Creditor</th>
+                    <th scope="col" class="wide150">Debtor's Value of Collateral</th>
+                    <th scope="col" class="wide450">Collateral</th>
+                    <th scope="col" class="wide150">Pre-Confirmation Adequate Protection Monthly Payment</th>
+                    <th scope="col" class="wide150">Interest Rate %</th>
+                    <th scope="col" class="wide90"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="none" class="wide100">[TextBox5701.100]</td>
+                    <td class="tac_money" class="wide150">[TextBox5702.150]</td>
+                    <td class="wide100">[TextBox5703.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5704.150]</td>
+                    <td class="wide100">[TextBox5705.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5706.150]</td>
+                    <td class="tac_percent" class="wide100">[TextBox5707.100]</td>
+                    <td class="wide90">
+                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="none" class="wide100">[TextBox5711.100]</td>
+                    <td class="tac_money" class="wide150">[TextBox5712.150]</td>
+                    <td class="wide100">[TextBox5713.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5714.150]</td>
+                    <td class="wide100">[TextBox5715.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5716.150]</td>
+                    <td class="tac_percent" class="wide100">[TextBox5717.100]</td>
+                    <td class="wide90">
+                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="none" class="wide100">[TextBox5721.100]</td>
+                    <td class="tac_money" class="wide150">[TextBox5722.150]</td>
+                    <td class="wide100">[TextBox5723.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5724.150]</td>
+                    <td class="wide100">[TextBox5725.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5726.150]</td>
+                    <td class="tac_percent" class="wide100">[TextBox5727.100]</td>
+                    <td class="wide90">
+                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                    </td>
+                </tr>                                <tr>
+                    <td class="none" class="wide100">[TextBox5731.100]</td>
+                    <td class="tac_money" class="wide150">[TextBox5732.150]</td>
+                    <td class="wide100">[TextBox5733.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5734.150]</td>
+                    <td class="wide100">[TextBox5735.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5736.150]</td>
+                    <td class="tac_percent" class="wide100">[TextBox5737.100]</td>
+                    <td class="wide90">
+                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                    </td>
+                </tr>                                <tr>
+                    <td class="none" class="wide100">[TextBox5741.100]</td>
+                    <td class="tac_money" class="wide150">[TextBox5742.150]</td>
+                    <td class="wide100">[TextBox5743.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5744.150]</td>
+                    <td class="wide100">[TextBox5745.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5746.150]</td>
+                    <td class="tac_percent" class="wide100">[TextBox5747.100]</td>
+                    <td class="wide90">
+                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                    </td>
+                </tr>                                <tr>
+                    <td class="none" class="wide100">[TextBox5751.100]</td>
+                    <td class="tac_money" class="wide150">[TextBox5752.150]</td>
+                    <td class="wide100">[TextBox5753.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5754.150]</td>
+                    <td class="wide100">[TextBox5755.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5756.150]</td>
+                    <td class="tac_percent" class="wide100">[TextBox5757.100]</td>
+                    <td class="wide90">
+                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                    </td>
+                </tr>                                <tr>
+                    <td class="none" class="wide100">[TextBox5761.100]</td>
+                    <td class="tac_money" class="wide150">[TextBox5762.150]</td>
+                    <td class="wide100">[TextBox5763.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5764.150]</td>
+                    <td class="wide100">[TextBox5765.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5766.150]</td>
+                    <td class="tac_percent" class="wide100">[TextBox5767.100]</td>
+                    <td class="wide90">
+                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                    </td>
+                </tr>                                <tr>
+                    <td class="none" class="wide100">[TextBox5771.100]</td>
+                    <td class="tac_money" class="wide150">[TextBox5772.150]</td>
+                    <td class="wide100">[TextBox5773.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5774.150]</td>
+                    <td class="wide100">[TextBox5775.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5776.150]</td>
+                    <td class="tac_percent" class="wide100">[TextBox5777.100]</td>
+                    <td class="wide90">
+                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                    </td>
+                </tr>                                <tr>
+                    <td class="none" class="wide100">[TextBox5781.100]</td>
+                    <td class="tac_money" class="wide150">[TextBox5782.150]</td>
+                    <td class="wide100">[TextBox5783.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5784.150]</td>
+                    <td class="wide100">[TextBox5785.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5786.150]</td>
+                    <td class="tac_percent" class="wide100">[TextBox5787.100]</td>
+                    <td class="wide90">
+                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                    </td>
+                </tr>                                <tr>
+                    <td class="none" class="wide100">[TextBox5791.100]</td>
+                    <td class="tac_money" class="wide150">[TextBox5792.150]</td>
+                    <td class="wide100">[TextBox5793.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5794.150]</td>
+                    <td class="wide100">[TextBox5795.300]</td>
+                    <td class="tac_money" class="wide150">[TextBox5796.150]</td>
+                    <td class="tac_percent" class="wide100">[TextBox5797.100]</td>
+                    <td class="wide90">
+                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="8">
+                        <input type="button" class="btn btn-primary btn-sm btn-block" tabindex="100" id="addrow_186_5.7" value="Add Row" />
+                    </td>
+                </tr>
+                <tr></tr>
+            </tfoot>
+        </table>
+        <div>
+                <h7>[CheckBox908] Comments</h7>
+                            [CommentBox908.100]
+                            </div>
+        </div>
+        <div class="sectionTitle" id="section_7_title">
+            <h5>E: Non-Priority Unsecured Claims:</h5> 
+                                       </div>
+        <div id="section_7_collapse" class="collapsable" data-collapse-area>
+                        <div class="tac_money">
+                            <ul >
+                                <li>
+                                    [CheckBox580] <label for="CheckBox_186_580">None</label>
+                                </li>
+                                <li>
+                                    [CheckBox581] <label for="CheckBox_186_581">100%</label>
+                                </li>
+                                <li class="tac_money">
+                                    [CheckBox582] <label for="CheckBox_186_582">At Least: </label>[TextBox5821.150]
+                                </li>
+                            </ul>
+                        </div>
+                        <h7>[CheckBox909] Comments</h7>
+                            <div class="commentbox">
+                            [CommentBox909.100]
+                            </div>
+                        </div>
+
+    <div class="sectionTitle" id="section_8_title">
+            <h5>Specially classified non-priority unsecured claims: </h5>
+
+    </div>
+                <div id="section_8_collapse" class="collapsable" data-collapse-area>
+                        <table id="table_template_186_59" class="table table-striped table-bordered" >
+                            <thead class="tableHeaders">
+                                <tr>
+                                    <th scope="col" class="wide100">Rank</th>
+                                    <th scope="col" class="wide250">Creditor</th>
+                                    <th scope="col" class="wide150">Amount of Claim</th>
+                                    <th scope="col" class="wide150">Percentage to be Paid %</th>
+                                    <th scope="col" class="wide400">Reason for Special Classification</th>
+                                    <th scope="col" class="wide90"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="none" class="wide100">[TextBox5901.100]</td>
+                                    <td class="wide250">[TextBox5902.250]</td>
+                                    <td class="tac_money" class="wide150">[TextBox5903.150]</td>
+                                    <td class="tac_percent" class="wide100">[TextBox5904.100]</td>
+                                    <td class="wide400">[TextBox5905.400]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="none" class="wide100">[TextBox5911.100]</td>
+                                    <td class="wide250">[TextBox5912.250]</td>
+                                    <td class="tac_money" class="wide150">[TextBox5913.150]</td>
+                                    <td class="tac_percent" class="wide100">[TextBox5914.100]</td>
+                                    <td class="wide400">[TextBox5915.400]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="none" class="wide100">[TextBox5921.100]</td>
+                                    <td class="wide250">[TextBox5922.250]</td>
+                                    <td class="tac_money" class="wide150">[TextBox5923.150]</td>
+                                    <td class="tac_percent" class="wide100">[TextBox5924.100]</td>
+                                    <td class="wide400">[TextBox5925.400]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="none" class="wide100">[TextBox5931.100]</td>
+                                    <td class="wide250">[TextBox5932.250]</td>
+                                    <td class="tac_money" class="wide150">[TextBox5933.150]</td>
+                                    <td class="tac_percent" class="wide100">[TextBox5934.100]</td>
+                                    <td class="wide400">[TextBox5935.400]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="none" class="wide100">[TextBox5941.100]</td>
+                                    <td class="wide250">[TextBox5942.250]</td>
+                                    <td class="tac_money" class="wide150">[TextBox5943.150]</td>
+                                    <td class="tac_percent" class="wide100">[TextBox5944.100]</td>
+                                    <td class="wide400">[TextBox5945.400]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="none" class="wide100">[TextBox5951.100]</td>
+                                    <td class="wide250">[TextBox5952.250]</td>
+                                    <td class="tac_money" class="wide150">[TextBox5953.150]</td>
+                                    <td class="tac_percenttac_percent" class="wide100">[TextBox5954.100]</td>
+                                    <td class="wide400">[TextBox5955.400]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="none" class="wide100">[TextBox5961.100]</td>
+                                    <td class="wide250">[TextBox5962.250]</td>
+                                    <td class="tac_money" class="wide150">[TextBox5963.150]</td>
+                                    <td class="tac_percent" class="wide100">[TextBox5964.100]</td>
+                                    <td class="wide400">[TextBox5965.400]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="none" class="wide100">[TextBox5971.100]</td>
+                                    <td class="wide250">[TextBox5972.250]</td>
+                                    <td class="tac_money" class="wide150">[TextBox5973.150]</td>
+                                    <td class="tac_percent" class="wide100">[TextBox5974.100]</td>
+                                    <td class="wide400">[TextBox5975.400]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="none" class="wide100">[TextBox5981.100]</td>
+                                    <td class="wide250">[TextBox5982.250]</td>
+                                    <td class="tac_money" class="wide150">[TextBox5983.150]</td>
+                                    <td class="tac_percent" class="wide100">[TextBox5984.100]</td>
+                                    <td class="wide400">[TextBox5985.400]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="none" class="wide100">[TextBox5991.100]</td>
+                                    <td class="wide250">[TextBox5992.250]</td>
+                                    <td class="tac_money" class="wide150">[TextBox5993.150]</td>
+                                    <td class="tac_percent" class="wide100">[TextBox5994.100]</td>
+                                    <td class="wide400">[TextBox5995.400]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>  
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6">
+                                        <input type="button" class="btn btn-primary btn-sm btn-block" tabindex="100" id="addrow_186_5.9" value="Add Row" />
+                                    </td>
+                                </tr>
+                                <tr></tr>
+                            </tfoot>
+                        </table><h7>[CheckBox910] Comments</h7>
+                        <div class="commentbox">
+                        [CommentBox910.100]
+                        </div>
+                    </div>
+
+    <div class="sectionTitle" id="section_9_title">
+        <h5>Part V: Direct Payments to be made by the Debtor and not by the Trustee </h5> 
+    </div>
+            <div class="sectionSubTitle" id="section_9_1_title">
+                        <p>
+                            <h7>A. Direct payment of domestic support obligations:</h7>
+                        </p>
+                </div>
+                <div id="section_9_1_collapse" class="collapsable" data-collapse-area>
+                        <table id="table_template_186_61" class="table table-striped table-bordered" >
+                            <thead class="tableHeaders">
+                                <tr>
+                                    <th scope="col" class="wide650">Creditor</th>
+                                    <th scope="col" class="wide150">Current Monthly Support Obligation</th>
+                                    <th scope="col" class="wide150">Monthly Arrearage Payment</th>
+                                    <th scope="col" class="wide90"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="wide650">[TextBox6101.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6102.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6103.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6111.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6112.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6113.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6121.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6122.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6123.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6131.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6132.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6133.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6141.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6142.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6143.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6151.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6152.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6153.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6161.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6162.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6163.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6171.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6172.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6173.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6181.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6182.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6183.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6191.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6192.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6193.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                              
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4">
+                                        <input type="button" class="btn btn-primary btn-sm btn-block" tabindex="100" id="addrow_186_6" value="Add Row" />
+                                    </td>
+                                </tr>
+                                <tr></tr>
+                            </tfoot>
+                        </table>
+                        <h7>[CheckBox911] Comments</h7>
+                        <div class="commentbox">
+                        [CommentBox911.100]
+                        </div>
+                        </div>
+                    <div class="sectionSubTitle" id="section_9_2_title">
+                        <p>
+                            <h7>B. Other Direct Payments:</h7>
+                        </p>
+                    </div>
+                <div id="section_9_2_collapse" class="collapsable" data-collapse-area>
+                        <table id="table_template_186_62" class="table table-striped table-bordered" >
+                            <thead class="tableHeaders">
+                                <tr>
+                                    <th scope="col" class="wide650">Creditor</th>
+                                    <th scope="col" class="wide250">Nature of Debt</th>
+                                    <th scope="col" class="wide300">Amount of Claim</th>
+                                    <th scope="col" class="wide300">Monthly Payment</th>
+                                    <th scope="col" class="wide90"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="wide650">[TextBox6201.100]</td>
+                                    <td class="wide250">[TextBox6202.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6203.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6204.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6211.100]</td>
+                                    <td class="wide250">[TextBox6212.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6213.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6214.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6221.100]</td>
+                                    <td class="wide250">[TextBox6222.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6223.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6224.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6231.100]</td>
+                                    <td class="wide250">[TextBox6232.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6233.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6234.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6241.100]</td>
+                                    <td class="wide250">[TextBox6242.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6243.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6244.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6251.100]</td>
+                                    <td class="wide250">[TextBox6252.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6253.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6254.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6261.100]</td>
+                                    <td class="wide250">[TextBox6262.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6263.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6264.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6271.100]</td>
+                                    <td class="wide250">[TextBox6272.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6273.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6274.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6281.100]</td>
+                                    <td class="wide250">[TextBox6282.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6283.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6284.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="wide650">[TextBox6291.100]</td>
+                                    <td class="wide250">[TextBox6292.100]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6293.150]</td>
+                                    <td class="tac_money" class="wide150">[TextBox6294.150]</td>
+                                    <td class="wide90">
+                                        <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                    </td>
+                                </tr>
+                              
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <input type="button" class="btn btn-primary btn-sm btn-block" tabindex="100" id="addrow_186_6.2" value="Add Row" />
+                                    </td>
+                                </tr>
+                                <tr></tr>
+                            </tfoot>
+                        </table>
+                        <h7>[CheckBox912] Comments</h7>
+                        <div class="commentbox">
+                        [CommentBox912.100]
+                        </div>
+                    </div> 
+                    <div class="sectionTitle" id="section_10_title">
+                        <h5>Part VI. Secured Property Surrendered  </h5> 
+                    </div>
+
+        
+                           
+                    <div id="section_10_collapse" class="collapsable" data-collapse-area>
+                        <p>
+                            <strong><center>Property to be surrendered</center></strong>   
+                        </p>
+                              <table id="table_template_186_63" class="table table-striped table-bordered" >
+                                <thead class="tableHeaders">
+                                    <tr>
+                                        <th scope="col" class="wide650">Creditor</th>
+                                        <th scope="col" class="wide650">Property to be Surrendered</th>
+                                        <th scope="col" class="wide90"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="wide650">[TextBox6301.400]</td>
+                                        <td class="wide650">[TextBox6302.400]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide650">[TextBox6311.400]</td>
+                                        <td class="wide650">[TextBox6312.400]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide650">[TextBox6321.400]</td>
+                                        <td class="wide650">[TextBox6322.400]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide650">[TextBox6331.400]</td>
+                                        <td class="wide650">[TextBox6332.400]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide650">[TextBox6341.400]</td>
+                                        <td class="wide650">[TextBox6342.400]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide650">[TextBox6351.400]</td>
+                                        <td class="wide650">[TextBox6352.400]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide650">[TextBox6361.400]</td>
+                                        <td class="wide650">[TextBox6362.400]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide650">[TextBox6371.400]</td>
+                                        <td class="wide650">[TextBox6372.400]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide650">[TextBox6381.400]</td>
+                                        <td class="wide650">[TextBox6382.400]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide650">[TextBox6391.400]</td>
+                                        <td class="wide650">[TextBox6392.400]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>                        
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3">
+                                            <input type="button" class="btn btn-primary btn-sm btn-block" tabindex="100" id="addrow_186.6.3" value="Add Row" />
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <h7>[CheckBox913] Comments</h7>
+                            <div class="commentbox">
+                            [CommentBox913.100]
+                            </div>
+                        </div>
+                    <div class="sectionTitle" id="section_11_title">
+                    <h5>Part VII. Executory Contracts and Leases </h5> 
+                        
+                        </div>
+                            <div id="section_11_collapse" class="collapsable" data-collapse-area>
+                                  <table id="table_template_186_64" class="table table-striped table-bordered">
+                                    <thead class="tableHeaders">
+                                        <tr>
+                                            <th scope="col" class="wide650">Contract / Lease</th>
+                                            <th scope="col" class="wide200">Assumed or Rejected</th>
+                                            <th scope="col" class="wide90"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="wide650">[TextBox6401.400]</td>
+                                            <td class="wide200">[TextBox6402.400]</td>
+                                            <td class="wide90">
+                                                <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="wide650">[TextBox6411.400]</td>
+                                            <td class="wide200">[TextBox6412.400]</td>
+                                            <td class="wide90">
+                                                <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="wide650">[TextBox6421.400]</td>
+                                            <td class="wide200">[TextBox6422.400]</td>
+                                            <td class="wide90">
+                                                <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="wide650">[TextBox6431.400]</td>
+                                            <td class="wide200">[TextBox6432.400]</td>
+                                            <td class="wide90">
+                                                <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="wide650">[TextBox6441.400]</td>
+                                            <td class="wide200">[TextBox6442.400]</td>
+                                            <td class="wide90">
+                                                <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="wide650">[TextBox6451.400]</td>
+                                            <td class="wide200">[TextBox6452.400]</td>
+                                            <td class="wide90">
+                                                <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="wide650">[TextBox6461.400]</td>
+                                            <td class="wide200">[TextBox6462.400]</td>
+                                            <td class="wide90">
+                                                <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="wide650">[TextBox6471.400]</td>
+                                            <td class="wide200">[TextBox6472.400]</td>
+                                            <td class="wide90">
+                                                <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="wide650">[TextBox6481.400]</td>
+                                            <td class="wide200">[TextBox6482.400]</td>
+                                            <td class="wide90">
+                                                <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="wide650">[TextBox6491.400]</td>
+                                            <td class="wide200">[TextBox6492.400]</td>
+                                            <td class="wide90">
+                                                <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                            </td>
+                                        </tr>                        
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3">
+                                                <input type="button" class="btn btn-primary btn-sm btn-block" tabindex="100" id="addrow_186.6.4" value="Add Row" />
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>       
+                                <h7>[CheckBox914] Comments</h7>
+                                <div class="commentbox">
+                        [CommentBox914.100]             
+                        </div>            
+                        </div>
+                        <div class="sectionTitle" id="section_12_title">
+                            <h5>Part IX. Liquidation Analysis </h5>
+                        </div>
+                        <div id="section_12_collapse" class="collapsable" data-collapse-area>
+                           <p class="tac_money">The liquidation value of the estate is: [TextBox6501.150] </p>
+                           <p class="tac_percent">Rate of Interest: [TextBox^Number^6502.150]</p>
+                            <h7>[CheckBox915] Comments</h7>
+                            <div class="commentbox">
+                            [CommentBox915.100]
+                            </div>
+                        </div>
+                        <div class="sectionTitle" id="section_13_title">
+                        <h5>Part X: Non-Standard Provisions  </h5> 
+                            </div>
+                        <div id="section_13_collapse" class="collapsable" data-collapse-area>
+                              <table id="tablex_template_186_66" class="table table-striped table-bordered">
+                                <thead class="tableHeaders">
+                                    <tr>
+                                        <th scope="col" class="wide900">Non-Standard Provisions</th>
+                                        <th scope="col" class="wide90"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="wide900">[CommentBox6601.100]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide900">[CommentBox6611.100]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide900">[CommentBox6621.100]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide900">[CommentBox6631.100]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide900">[CommentBox6641.100]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide900">[CommentBox6651.100]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide900">[CommentBox6661.100]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide900">[CommentBox6671.100]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide900">[CommentBox6681.100]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wide900">[CommentBox6691.100]</td>
+                                        <td class="wide90">
+                                            <a class="deleteRow"><input type="button" class="tac_btnDel btn btn-sm btn-danger " tabindex="-1" value="Delete"></a>
+                                        </td>
+                                    </tr>                        
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3">
+                                            <input type="button" class="btn btn-primary btn-sm btn-block" tabindex="100" id="addrow_186.6.6" value="Add Row" />
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>       
+                    <h7>[CheckBox916] Comments</h7>
+                    <div class="commentbox">
+                    [CommentBox916.100]
+                    </div>
+        </div>
+       
+        </div>
+</div>
