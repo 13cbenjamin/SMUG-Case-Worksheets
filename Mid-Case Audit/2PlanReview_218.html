@@ -1,0 +1,1487 @@
+<hr>
+<div class="container">
+    <Section id="header" style="text-align: center;">
+       <p style="font-size: medium; font-weight:bold;text-align:center">Plan Review</p>
+    </Section>
+    
+    <section id="documents">
+        
+<div class="container" style="">
+    <!-- Copied from Plan Narrative Template 189 -->
+    <div class="" >
+        <span class="btn btn-info" id="section_1_title">Show/Hide Plan Documents</span> 
+    </div>
+    <div id="section_1_collapse" class="collapse" data-collapse-area> 
+    |~SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                               FROM tblDocumentDetail INNER JOIN 
+                               tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                               tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                               tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                               WHERE tblCaseData.CaseID = {CaseID} 
+                               AND tblDocumentFormSubType.FormSubTypeAbbr = 'Plan') THEN 
+        '<table class="table table-condensed table-bordered table-striped" style="background-color:#909090; width:100%;"> 
+            <thead> 
+                <tr style="background-color: #4096f8;">
+                    <th colspan="4" style="text-align:center;">Open a Plan</th>                    
+                </tr>
+                <tr> 
+                    <th scope="col" style="width:25px;text-align: center;">PDF</th> 
+                    <th scope="col" style="width:30px;text-align: center;">Doc #</th> 
+                    <th scope="col" style="width:90px;">Date Downloaded</th> 
+                    <th scope="col" style="width:auto;">Document Inofrmation</th> 
+                </tr> 
+            </thead>' END as FieldData, '9/9/9999' AS CreatedDate 
+    
+        UNION ALL 
+    
+        SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                                 FROM tblDocumentDetail INNER JOIN 
+                                 tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                                 tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                                 tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                                 WHERE tblCaseData.CaseID = {CaseID} 
+                                 AND tblDocumentFormSubType.FormSubTypeAbbr = 'Plan') THEN 
+        '<tbody>' + 
+            '<tr>' + 
+                '<td style="width:25px;text-align: center;">' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+                '<td style="width:30px;text-align: center;">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+                '<td style="width:90px;">' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+                '<td style="width:auto;">' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(ISNULL(DocketText,''), 0,CHARINDEX('filed by', ISNULL(DocketText,''))))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"','') + '</span></td>' + 
+            '</tr>' + 
+        '</tbody>' END as FieldData, CreatedDate 
+        FROM tblDocumentDetail INNER JOIN 
+        tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+        tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+        tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+        tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+        tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+        tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+        WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+        AND tblDocumentFormSubType.FormSubTypeAbbr = 'Plan' 
+        and tblCourtDocument.CourtDocumentNumber <> ''
+    
+        UNION ALL 
+    
+        SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                                 FROM tblDocumentDetail INNER JOIN 
+                                 tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                                 tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                                 tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                                 WHERE tblCaseData.CaseID = {CaseID} 
+                                 AND tblDocumentFormSubType.FormSubTypeAbbr = 'Plan') THEN 
+        '</tbody>' + 
+    '</table>' END AS FieldData, '1/2/1900' AS CreatedDate 
+    ORDER BY CreatedDate DESC~|
+    </div>
+</div>
+    </section>
+    <!-- Numbering Scheme:  CheckBox123  (1 corresponds to Verified (1) or Corrected (2)) Second Digit 2 Corresponds to Section of Worksheet by Section ID#, Third Digit 3 corresponds to sequential number in that section -->
+    <!-- Begin Section 1 -->
+
+ 
+    <!-- End Section 1 -->
+    <!-- Begin Section 2 -->
+    <section id="PlanSection2">
+        <div class="" >
+            <span class="btn btn-info" id="section_2_title">Show Base Calculator</span> 
+        </div>
+        <div id="section_2_collapse" class="collapse" data-collapse-area>
+            <div style="">
+                <section id="PayScheduleCalulation" class = "container" style="">
+                    <table class="table table-bordered table-striped table-sm">
+                        <caption>Pay Schedule Figures</caption>
+                        <thead>
+                            <tr style="background-color: #bee5eb;">
+                                <td>Pay Schedule Type</td>
+                                <td># of Payments Per Month</td>
+                                <td>Periods in 12 Months</td>
+                                <td>Periods in 36 Months</td>
+                                <td>Periods in 60 Months</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Monthly (MO)</td>
+                                <td>1</td>
+                                <td>12</td>
+                                <td>36</td>
+                                <td>60</td>
+                            </tr>
+                            <tr>
+                                <td>Semi-Monthly (SM)</td>
+                                <td>2</td>
+                                <td>24</td>
+                                <td>72</td>
+                                <td>120</td>
+                            </tr>
+                            <tr>
+                                <td>Bi-Weekly (BW)</td>
+                                <td>2.166</td>
+                                <td>26</td>
+                                <td>78</td>
+                                <td>130</td>
+                            </tr>
+                            <tr>
+                                <td>Weekly (WK)</td>
+                                <td>4.<span style="text-decoration: overline">33</span></td>
+                                <td>52</td>
+                                <td>156</td>
+                                <td>260</td>
+                            </tr>
+                            <tr>
+                                <td>Semi-Annually (SA)</td>
+                                <td>0.1<span style="text-decoration: overline">66</span></td>
+                                <td>2</td>
+                                <td>6</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>Quarterly (QU)</td>
+                                <td>0.<span style="text-decoration: overline">33</span></td>
+                                <td>4</td>
+                                <td>12</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td>Annually (YR)</td>
+                                <td>0.08<span style="text-decoration: overline">33</span></td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section id="Calculator" style="padding-left: 2%">
+                    <section id="planpayments">
+                      <table
+                        id="table_calculator_1000"
+                        class="table table-bordered table-striped"
+                      >
+                        <caption>
+                          Plan Payments
+                        </caption>
+                        <thead>
+                          <tr>
+                            <td colspan="6">
+                              <span style="text-align: center; font-weight: bold"
+                                >Use the Pay Schedule Figures table above to determine the #
+                                of Periods in the plan based on payment type and the # of
+                                Payments per Month for that pay schedule type.
+                              </span>
+                         
+                            </td>
+                          </tr>
+                          <tr style="background-color: #bee5eb">
+                            <td>Amount of Payment</td>
+                            <td># of Periods</td>
+                            <td>Schedule Type / # of Pmts Per Month</td>
+                            <td>Effective Date</td>
+                            <td>Subtotal</td>
+                            <td>Months</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>[TextBox99100.200]</td>
+                            <td>[TextBox^Numbers^99200.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99100"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+              
+                              [TextBox^Numbers^99300.200]
+                            </td>
+                            <td>[TextBox99600.150]</td>
+                            <td><span id="subtotal99100"></span></td>
+                            <td><span id="months99100"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99101.200]</td>
+                            <td>[TextBox^Numbers^99201.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99101"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99301.200]
+                            </td>
+                            <td>[TextBox99601.150]</td>
+                            <td><span id="subtotal99101"></span></td>
+                            <td><span id="months99101"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99102.200]</td>
+                            <td>[TextBox^Numbers^99202.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99102"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99302.200]
+                            </td>
+                            <td>[TextBox99602.150]</td>
+                            <td><span id="subtotal99102"></span></td>
+                            <td><span id="months99102"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99103.200]</td>
+                            <td>[TextBox^Numbers^99203.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99103"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99303.200]
+                            </td>
+                            <td>[TextBox99603.150]</td>
+                            <td><span id="subtotal99103"></span></td>
+                            <td><span id="months99103"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99104.200]</td>
+                            <td>[TextBox^Numbers^99204.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99104"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99304.200]
+                            </td>
+                            <td>[TextBox99604.150]</td>
+                            <td><span id="subtotal99104"></span></td>
+                            <td><span id="months99104"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99105.200]</td>
+                            <td>[TextBox^Numbers^99205.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99105"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99305.200]
+                            </td>
+                            <td>[TextBox99605.150]</td>
+                            <td><span id="subtotal99105"></span></td>
+                            <td><span id="months99105"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99106.200]</td>
+                            <td>[TextBox^Numbers^99206.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99106"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99306.200]
+                            </td>
+                            <td>[TextBox99606.150]</td>
+                            <td><span id="subtotal99106"></span></td>
+                            <td><span id="months99106"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99107.200]</td>
+                            <td>[TextBox^Numbers^99207.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99107"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99307.200]
+                            </td>
+                            <td>[TextBox99607.150]</td>
+                            <td><span id="subtotal99107"></span></td>
+                            <td><span id="months99107"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99108.200]</td>
+                            <td>[TextBox^Numbers^99208.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99108"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99308.200]
+                            </td>
+                            <td>[TextBox99608.150]</td>
+                            <td><span id="subtotal99108"></span></td>
+                            <td><span id="months99108"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99109.200]</td>
+                            <td>[TextBox^Numbers^99209.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99109"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99309.200]
+                            </td>
+                            <td>[TextBox99609.150]</td>
+                            <td><span id="subtotal99109"></span></td>
+                            <td><span id="months99109"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99110.200]</td>
+                            <td>[TextBox^Numbers^99210.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99110"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99310.200]
+                            </td>
+                            <td>[TextBox99610.150]</td>
+                            <td><span id="subtotal99110"></span></td>
+                            <td><span id="months99110"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99111.200]</td>
+                            <td>[TextBox^Numbers^99211.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99111"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99311.200]
+                            </td>
+                            <td>[TextBox99611.150]</td>
+                            <td><span id="subtotal99111"></span></td>
+                            <td><span id="months99111"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99112.200]</td>
+                            <td>[TextBox^Numbers^99212.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99112"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99312.200]
+                            </td>
+                            <td>[TextBox99612.150]</td>
+                            <td><span id="subtotal99112"></span></td>
+                            <td><span id="months99112"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99113.200]</td>
+                            <td>[TextBox^Numbers^99213.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99113"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99313.200]
+                            </td>
+                            <td>[TextBox99613.150]</td>
+                            <td><span id="subtotal99113"></span></td>
+                            <td><span id="months99113"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99114.200]</td>
+                            <td>[TextBox^Numbers^99214.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99114"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99314.200]
+                            </td>
+                            <td>[TextBox99614.150]</td>
+                            <td><span id="subtotal99114"></span></td>
+                            <td><span id="months99114"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99115.200]</td>
+                            <td>[TextBox^Numbers^99215.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99115"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99315.200]
+                            </td>
+                            <td>[TextBox99615.150]</td>
+                            <td><span id="subtotal99115"></span></td>
+                            <td><span id="months99115"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99116.200]</td>
+                            <td>[TextBox^Numbers^99216.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99116"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99316.200]
+                            </td>
+                            <td>[TextBox99616.150]</td>
+                            <td><span id="subtotal99116"></span></td>
+                            <td><span id="months99116"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99117.200]</td>
+                            <td>[TextBox^Numbers^99217.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99117"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99317.200]
+                            </td>
+                            <td>[TextBox99617.150]</td>
+                            <td><span id="subtotal99117"></span></td>
+                            <td><span id="months99117"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99118.200]</td>
+                            <td>[TextBox^Numbers^99218.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99118"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99318.200]
+                            </td>
+                            <td>[TextBox99618.150]</td>
+                            <td><span id="subtotal99118"></span></td>
+                            <td><span id="months99118"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99119.200]</td>
+                            <td>[TextBox^Numbers^99219.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99119"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99319.200]
+                            </td>
+                            <td>[TextBox99619.150]</td>
+                            <td><span id="subtotal99119"></span></td>
+                            <td><span id="months99119"></span></td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99120.200]</td>
+                            <td>[TextBox^Numbers^99220.200]</td>
+                            <td>
+                              <select
+                                name="scheduleType"
+                                id="select99120"
+                                data-select-payment-type
+                              >
+                                <option value="0">Choose One</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Semi-Monthly (SM)</option>
+                                <option value="3">Bi-Weekly (BW)</option>
+                                <option value="4">Weekly (WK)</option>
+                                <option value="5">Semi-Annually (SA)</option>
+                                <option value="6">Quarterly (QU)</option>
+                                <option value="7">Annually (YR)</option>
+                              </select>
+                              [TextBox^Numbers^99320.200]
+                            </td>
+                            <td>[TextBox99620.150]</td>
+                            <td><span id="subtotal99120"></span></td>
+                            <td><span id="months99120"></span></td>
+                          </tr>
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <td colspan="3">
+                              <h5>Total: <span id="planPaymentsTotal">0.00</span></h5>
+                            </td>
+                            <td colspan="3">
+                              <div style="display: flex; justify-content: space-evenly">
+                                <span
+                                  class="btn btn-success btn-sm"
+                                  tabindex="100"
+                                  data-add-row-button
+                                  id="baseCalc_addrow_222.100"
+                                  ><img
+                                    border="0"
+                                    style="cursor: pointer"
+                                    src="tac_images/addButton.png"
+                                    width="15"
+                                    height="15"
+                                    title="Add Row to this Table"
+                                /></span>
+                                <span
+                                  class="btn btn-danger btn-sm"
+                                  tabindex="100"
+                                  data-delete-row-button
+                                  id="baseCalc_delrow_222.100"
+                                  ><img
+                                    border="0"
+                                    style="cursor: pointer"
+                                    src="tac_images/delButton.png"
+                                    width="15"
+                                    height="15"
+                                    title="Delete this row"
+                                /></span>
+                              </div>
+                            </td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </section>
+                    <!-- Begin Additional Payments Section -->
+                    <section id="additionalpayments">
+                        <span class="btn btn-info" id="baseCalcAddPayments">Additional Payments</span> 
+                      <table
+                        id="table_calculator_9000"
+                        class="table table-bordered table-striped collapse"
+                      >
+                        <thead>
+                          <tr style="background-color: #bee5eb">
+                            <td>Amount of Payment</td>
+                            <td>Description</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>[TextBox99900.200]</td>
+                            <td>[TextBox99500.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99901.200]</td>
+                            <td>[TextBox99501.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99902.200]</td>
+                            <td>[TextBox99502.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99903.200]</td>
+                            <td>[TextBox99503.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99904.200]</td>
+                            <td>[TextBox99504.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99905.200]</td>
+                            <td>[TextBox99505.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99906.200]</td>
+                            <td>[TextBox99506.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99907.200]</td>
+                            <td>[TextBox99507.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99908.200]</td>
+                            <td>[TextBox99508.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99909.200]</td>
+                            <td>[TextBox99509.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99910.200]</td>
+                            <td>[TextBox99510.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99911.200]</td>
+                            <td>[TextBox99511.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99912.200]</td>
+                            <td>[TextBox99512.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99913.200]</td>
+                            <td>[TextBox99513.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99914.200]</td>
+                            <td>[TextBox99514.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99915.200]</td>
+                            <td>[TextBox99515.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99916.200]</td>
+                            <td>[TextBox99516.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99917.200]</td>
+                            <td>[TextBox99517.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99918.200]</td>
+                            <td>[TextBox99518.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99919.200]</td>
+                            <td>[TextBox99519.200]</td>
+                          </tr>
+              
+                          <tr>
+                            <td>[TextBox99920.200]</td>
+                            <td>[TextBox99520.200]</td>
+                          </tr>
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <td>
+                              <h5>Total: <span id="additionalPaymentsTotal">0.00</span></h5>
+                            </td>
+                            <td>
+                              <div style="display: flex; justify-content: space-evenly">
+                                <span
+                                  class="btn btn-success btn-sm"
+                                  tabindex="100"
+                                  data-add-row-button
+                                  id="baseCalc_addrow_222.400"
+                                  ><img
+                                    border="0"
+                                    style="cursor: pointer"
+                                    src="tac_images/addButton.png"
+                                    width="15"
+                                    height="15"
+                                    title="Add Row to this Table"
+                                /></span>
+                                <span
+                                  class="btn btn-danger btn-sm"
+                                  tabindex="100"
+                                  data-delete-row-button
+                                  id="baseCalc_delrow_222.400"
+                                  ><img
+                                    border="0"
+                                    style="cursor: pointer"
+                                    src="tac_images/delButton.png"
+                                    width="15"
+                                    height="15"
+                                    title="Delete this row" /></span
+                                >\
+                              </div>
+                            </td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </section>
+                    <section id="forgiveamounts">
+                        <span class="btn btn-info" id="baseCalcForgivePayments">Forgive Amounts</span> 
+                      <table
+                        id="table_calculator_7000"
+                        class="table table-bordered table-striped collapse"
+                      >
+                        <thead>
+                          <tr style="background-color: #bee5eb">
+                            <td>Amount Forgiven</td>
+                            <td>Description</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>[TextBox99700.200]</td>
+                            <td>[TextBox99800.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99701.200]</td>
+                            <td>[TextBox99801.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99702.200]</td>
+                            <td>[TextBox99802.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99703.200]</td>
+                            <td>[TextBox99803.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99704.200]</td>
+                            <td>[TextBox99804.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99705.200]</td>
+                            <td>[TextBox99805.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99706.200]</td>
+                            <td>[TextBox99806.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99707.200]</td>
+                            <td>[TextBox99807.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99708.200]</td>
+                            <td>[TextBox99808.200]</td>
+                          </tr>
+                          <tr>
+                            <td>[TextBox99709.200]</td>
+                            <td>[TextBox99809.200]</td>
+                          </tr>
+              
+                          <tr>
+                            <td>[TextBox99710.200]</td>
+                            <td>[TextBox99810.200]</td>
+                          </tr>                                      
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <td>
+                              <h5>Total: <span id="forgiveAmountsTotal">0.00</span></h5>
+                            </td>
+                            <td>
+                              <div style="display: flex; justify-content: space-evenly">
+                                <span
+                                  class="btn btn-success btn-sm"
+                                  tabindex="100"
+                                  data-add-row-button
+                                  id="baseCalc_addrow_222.700"
+                                  ><img
+                                    border="0"
+                                    style="cursor: pointer"
+                                    src="tac_images/addButton.png"
+                                    width="15"
+                                    height="15"
+                                    title="Add Row to this Table"
+                                /></span>
+                                <br />
+                                <span
+                                  class="btn btn-danger btn-sm"
+                                  tabindex="100"
+                                  data-delete-row-button
+                                  id="baseCalc_delrow_222.700"
+                                  ><img
+                                    border="0"
+                                    style="cursor: pointer"
+                                    src="tac_images/delButton.png"
+                                    width="15"
+                                    height="15"
+                                    title="Delete this row"
+                                /></span>
+                              </div>
+                            </td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </section>
+                    <section id="baseTotal">
+                      <table id="table_calculator_900" class="table table-bordered">
+                        <caption>
+                          Base Total
+                        </caption>
+                        <thead>
+                          <tr>
+                            <td>
+                              <div style="display: flex; justify-content: space-evenly">
+                                <span class="btn btn-success" id="calculateButton"
+                                  >Calculate</span
+                                >
+                              </div>
+                            </td>
+                          </tr>
+                          <tr style="background-color: #bee5eb">
+                            <td>
+                              <h5>Base <span id="baseTotalSpan">0</span></h5>
+                            </td>
+                          </tr>
+                        </thead>
+                      </table>
+                    </section>
+                  </section>
+
+            </div>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead >
+                <tr style="background-color: #229633;">
+                    <th colspan="4" style="text-align:center;">Plan Section 2</th>
+                    
+                </tr>
+                <tr style="background-color: #909090;">
+                    <td>
+                        Item to Verify
+                    </td>
+                    <td>Verified</td>
+                    <td>Corrected</td>
+                    <td>Comments</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Verify Plan Applicable Commitment Period <img border="0" style="cursor:pointer" src="images/moreinfo.gif" width="15" height="15" title="Below Median debtor(s) must be on the plan a minimum of 36 months and make 36 payments. Above median debtor(s) must be on the plan a minimum of 60 months. Any debtor can pay in full 100% at any time prior to the ACP so long as the case is confirmed and the 180 bar date has passed."/></br>
+                    Months since Filing: {vwCRMainCase.DATEDIFF(MONTH, PetitionFiledDate, GETDATE())}&nbsp;Month(s) </br>
+                    Months Since Confirmation: |~SELECT CASE vwCRMainCase.ConfirmationDate WHEN '01/01/1900' THEN NULL ELSE CONVERT(VARCHAR, DATEDIFF(MONTH, ConfirmationDate, GETDATE())) + ' Month(s)' END AS FieldData FROM vwCRMainCase WHERE vwCRMainCase.CaseNumber = '{CaseNumber}'~|
+                    </br> Case ACP: {vwCRMainCase.ApplicableCommitmentPeriod} Months
+                    </td>
+                    <td>[CheckBox123]</td>
+                    <td>[CheckBox223]</td>
+                    <td>[TextBox121.200]</td>
+                </tr>
+                <tr>
+                    <td>Plan Type: |~SELECT Case when (Select UnsecuredPercent from vwCRMainCase where CaseID = {CaseID}) = 100 then '<b>100% plan - Base Not Needed, Mark Corrected</b>' else '<b>Not 100% Plan - Verify Base</b>' END~|
+                    </br> Verify the Base is Correct <img border="0" style="cursor:pointer" src="images/moreinfo.gif" width="15" height="15" title="The 'Base' is an in-office term. It is the calculation of the reuqired plan payments over either 36 months or 60 moth applicable commitment period. Any additional funds committed (examle: tax refunds, bonuses) must also be included in the base. When verifying the base, review pay scedules to ensure they are consistent with plans. Review payment history and verify correct per plan and nothing appears out of the ordinary. Verify payments to bank download"/></br>
+                        <span>Base in Case Modify: {vwCRMainCase.PlanBase$}</span> </br>
+                        Auditor Base Calculation from Calculator: <b><span id="baseCalcResult">0</span></b></br>
+                        IRS Refunds Pledged?:<b> |~SELECT CASE WHEN (Select Flag from vwCRCaseFlags where CaseID = {CaseID} and FlagCodesID = 7) LIKE '%Y%' then  Flag else 'NO' END as FieldData from vwCRCaseFlags where CaseID = {CaseID} and FlagCodesID = 7~|</b> </br>
+                        Forum Last Updated: <b> |~Select top 1 ModifiedDate as FieldData from tblForum where ForumHeadingID = 10 and CaseID = {CaseID} and ModifiedDate <> '1/1/1900' order by ForumID desc~|</b></br></br>
+                        |~Select top 1 detail as FieldData from tblForum where ForumHeadingID = 10 and CaseID = {CaseID} order by ForumID desc~|</td>
+                
+                    <td>[CheckBox124]</td>
+                    <td>[CheckBox224]</td>
+                    <td>[TextBox122.200]</td>
+                </tr>
+            </tbody>
+            </table>    
+    </section>
+    <!-- End Section 2 -->
+    <!-- Begin Section 3 -->
+    <section id="PlanSection3">
+        <div class="" >
+            <span class="btn btn-info" id="section_3_title">Show/Hide Pay Schedules</span> 
+        </div>
+        <div id="section_3_collapse" class="collapse" data-collapse-area>
+            |~SELECT CASE WHEN EXISTS (Select TOP 1 PaymentAmount from tblCaseSteps inner join tblCasePayScheduleTypes on tblCasePayScheduleTypes.CasePaySchedCodeID = tblCaseSteps.CasePaySchedCodeID where tblCaseSteps.CaseID = {CaseID} and PaymentAmount > 0 order by ScheduleNumber, StartDate) THEN 
+            '<table class="table table-condensed table-bordered table-striped" style="background-color:#909090; width:100%;"> 
+            <thead> 
+            <tr style="background-color: #4096f8;">
+            <th colspan="8" style="text-align:center;">Pay Schedules</th>                    
+            </tr>
+            <tr> 
+            <th>Start Date</th> 
+            <th># of Periods</th> 
+            <th>Amount</th> 
+            <th>How Often</th>
+            <th>Who is Paying</th>
+            <th>Order Date</th>
+            <th>Action / Note</th>
+            <th>Schedule Number</th>
+            </tr> 
+            </thead>' END as FieldData 
+            
+            UNION ALL 
+            
+            SELECT CASE WHEN EXISTS (Select TOP 1 PaymentAmount from tblCaseSteps inner join tblCasePayScheduleTypes on tblCasePayScheduleTypes.CasePaySchedCodeID = tblCaseSteps.CasePaySchedCodeID where tblCaseSteps.CaseID = {CaseID} and PaymentAmount > 0 order by ScheduleNumber, StartDate) THEN 
+            '<tbody>' + 
+            '<tr>' + 
+            '<td>' + convert(varchar(10),StartDate,101) + '</td>' + 
+            '<td>' + Convert(varchar, NumberOfPeriods) + '</td>' + 
+            '<td>$' + convert(varchar, cast(PaymentAmount as money), 1)  + '</td>' + 
+            '<td>' + PaySchedDescription + '</td>' + 
+            '<td>' + LongName + '</td>' + 
+            '<td>' + Convert(varchar,OrderDate, 101) + '</td>' + 
+            '<td>' + tblScheduleAction.Description + Convert(varchar(max),tblCaseSteps.Notes) + '</td>' + 
+            '<td>' + Convert(varchar,ScheduleNumber) + '</td>' + 
+            '</tr>' + 
+            '</tbody>' ELSE '<tbody><tr><td>Pay Schedule Not Found</td></tr></tbody>' END as FieldData 
+            from tblCaseSteps 
+            inner join tblCasePayScheduleTypes on tblCaseSteps.CasePaySchedCodeID = tblCasePayScheduleTypes.CasePaySchedCodeID  
+            inner join tblScheduleAction on tblCaseSteps.ScheduleActionID = tblScheduleAction.ScheduleActionID 
+            inner join vwCRCaseNames on tblCaseSteps.PayingCaseNameID = vwCRCaseNames.CaseNameID 
+            where tblCaseSteps.CaseID = {CaseID} and PaymentAmount > 0  
+            UNION ALL 
+            
+            SELECT CASE WHEN EXISTS (Select TOP 1 PaymentAmount from tblCaseSteps inner join tblCasePayScheduleTypes on tblCasePayScheduleTypes.CasePaySchedCodeID = tblCaseSteps.CasePaySchedCodeID where tblCaseSteps.CaseID = {CaseID} and PaymentAmount > 0 order by ScheduleNumber, StartDate) THEN 
+            '</tbody>' + 
+            '</table>' END AS FieldData~|
+            
+        </div>
+
+
+        <table class="table table-bordered table-striped">
+            <thead >
+                <tr style="background-color: #229633;">
+                    <th colspan="4" style="text-align:center;">Plan Section 3</th>
+                    
+                </tr>
+                <tr style="background-color: #909090;">
+                    <td>
+                        Item to Verify
+                    </td>
+                    <td>Verified</td>
+                    <td>Corrected</td>
+                    <td>Comments</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Verify payments are consistent in pay schedules with plan(s)</td>
+                    <td>[CheckBox131]</td>
+                    <td>[CheckBox231]</td>
+                    <td>[TextBox131.250]</td>
+                </tr>
+                <tr>
+                    <td>Review payment history and verify correct per plan and nothing out of the ordinary</td>
+                    <td>[CheckBox137]</td>
+                    <td>[CheckBox237]</td>
+                    <td>[TextBox133.250]</td>
+
+                </tr>
+
+                <tr>
+                    <td>Verify Payments to Bank Download</td>
+                    <td>[CheckBox138]</td>
+                    <td>[CheckBox238]</td>
+                    <td>[TextBox134.250]</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>  
+    <!-- End Section 3 -->
+    <!-- Begin Section 4 -->
+    <section id="PlanSection4">
+        <div class="" >
+            <span class="btn btn-info" id="section_4_title">Show/Hide Petition, Schedules, and Statements Documents</span> 
+        </div>
+        <div id="section_4_collapse" class="collapse" data-collapse-area>
+            |~SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                               FROM tblDocumentDetail INNER JOIN 
+                               tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                               tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                               tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                               WHERE tblCaseData.CaseID = {CaseID} 
+                               AND tblDocumentDetail.FormTypeCode IN (2048,1987,1979,1945,1944,1912,1909,1908,1907,1706,1695,1444,1421,1415,1219,1142,1131,1129,1128,1093,1071,1053,1049,1040,1012,859,853,392,391,356,172,171,170,169,166,165,110,105,88,39,16,15)) THEN 
+        '<table class="table table-condensed table-bordered table-striped" style="background-color:#909090; width:100%;"> 
+            <thead> 
+                <tr style="background-color: #4096f8;">
+                    <th colspan="4" style="text-align:center;">Petition, Schedules, and Statements</th>                    
+                </tr>
+                <tr> 
+                    <th scope="col" style="width:25px;text-align: center;">PDF</th> 
+                    <th scope="col" style="width:30px;text-align: center;">Doc #</th> 
+                    <th scope="col" style="width:90px;">Date Downloaded</th> 
+                    <th scope="col" style="width:auto;">Document Inofrmation</th> 
+                </tr> 
+            </thead>' END as FieldData, '9/9/9999' AS CreatedDate 
+    
+        UNION ALL 
+    
+        SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                                 FROM tblDocumentDetail INNER JOIN 
+                                 tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                                 tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                                 tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                                 WHERE tblCaseData.CaseID = {CaseID} 
+                                 AND tblDocumentDetail.FormTypeCode IN (2048,1987,1979,1945,1944,1912,1909,1908,1907,1706,1695,1444,1421,1415,1219,1142,1131,1129,1128,1093,1071,1053,1049,1040,1012,859,853,392,391,356,172,171,170,169,166,165,110,105,88,39,16,15)) THEN 
+        '<tbody>' + 
+            '<tr>' + 
+                '<td style="width:25px;text-align: center;">' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+                '<td style="width:30px;text-align: center;">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+                '<td style="width:90px;">' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+                '<td style="width:auto;">' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(ISNULL(DocketText,''), 0,CHARINDEX('filed by', ISNULL(DocketText,''))))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"','') + '</span></td>' + 
+            '</tr>' + 
+        '</tbody>' END as FieldData, CreatedDate 
+        FROM tblDocumentDetail INNER JOIN 
+        tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+        tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+        tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+        tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+        tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+        tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+        WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+        AND tblDocumentDetail.FormTypeCode IN (2048,1987,1979,1945,1944,1912,1909,1908,1907,1706,1695,1444,1421,1415,1219,1142,1131,1129,1128,1093,1071,1053,1049,1040,1012,859,853,392,391,356,172,171,170,169,166,165,110,105,88,39,16,15)
+        and tblCourtDocument.CourtDocumentNumber <> ''
+    
+        UNION ALL 
+    
+        SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                                 FROM tblDocumentDetail INNER JOIN 
+                                 tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                                 tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                                 tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                                 WHERE tblCaseData.CaseID = {CaseID} 
+                                 AND tblDocumentDetail.FormTypeCode IN (2048,1987,1979,1945,1944,1912,1909,1908,1907,1706,1695,1444,1421,1415,1219,1142,1131,1129,1128,1093,1071,1053,1049,1040,1012,859,853,392,391,356,172,171,170,169,166,165,110,105,88,39,16,15)) THEN 
+        '</tbody>' + 
+    '</table>' END AS FieldData, '1/2/1900' AS CreatedDate 
+    ORDER BY CreatedDate DESC~|
+        </div>
+        <div class="" >
+            <span class="btn btn-primary" id="section_42_title">Show/Hide Attorney Fees</span> 
+        </div>
+        <div id="section_42_collapse" class="collapse" data-collapse-area>
+|~SELECT CASE WHEN EXISTS (Select LongName, CreditorTypeDescription, PayeeLevel, ClaimedAmount, PaidOutside , principalpaid , MonthlyPayment from vwcrmainpayee where caseid = {CaseID} and NameTypeID = 1 and NameID <> 408) THEN 
+'<table class="table table-condensed table-bordered table-striped" style="background-color:#909090; width:100%;"> 
+<thead> 
+<tr style="background-color: #4096f8;">
+<th colspan="11" style="text-align:center;">Attorney Fees</th>                    
+</tr>
+<tr> 
+<th>Name</th>
+<th>Description</th>
+<th>Level</th>
+<th>Fee In Plan</th>
+<th>Fee Paid Outside</th>
+<th>Fee Paid To Date</th>
+<th>Monthly Payment</th>
+<th>Fee Remaining</th>
+<th>Verified</th> 
+<th>Corrected</th> 
+<th>Reason</th> 
+</tr> 
+</thead>' END as FieldData 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (Select LongName, CreditorTypeDescription, PayeeLevel, ClaimedAmount, PaidOutside , principalpaid , MonthlyPayment from vwcrmainpayee where caseid = {CaseID} and NameTypeID = 1 and NameID <> 408) THEN  
+'<tbody>' + 
+'<tr>' + 
+'<td>' + LongName  + '</td>' + 
+'<td>' + CreditorTypeDescription  + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, PayeeLevel) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, ClaimedAmount) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, PaidOutside) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, principalpaid) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, MonthlyPayment) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, PrincipalOwed) + '</td>' + 
+'<td>[CheckBox' + CONVERT(VARCHAR, PayeeID) + '] </td>' + 
+'<td>[CheckBox' + CONVERT(VARCHAR, PayeeID + 20000) + '] </td>' + 
+'<td>[TextBox' + CONVERT(VARCHAR, PayeeID) + '.150] </td>' + 
+'</tr>' + 
+'</tbody>' END as FieldData 
+from vwcrmainpayee WHERE CaseID = {CaseID} and NameTypeID = 1 and NameID <> 408 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (Select LongName, CreditorTypeDescription, PayeeLevel, ClaimedAmount, PaidOutside , principalpaid , MonthlyPayment from vwcrmainpayee where caseid = {CaseID} and NameTypeID = 1 and NameID <> 408) THEN  
+'</tbody>' + 
+'</table>' END AS FieldData~|
+<!-- Additional Attorney Fees -->
+|~SELECT CASE WHEN EXISTS (Select LongName, CreditorTypeDescription, PayeeLevel, ClaimedAmount, PaidOutside , principalpaid , MonthlyPayment from vwcrmainpayee where caseid = {CaseID} and CreditorTypeID = 37 and NameID <> 408) THEN 
+'<table class="table table-condensed table-bordered table-striped" style="background-color:#909090; width:100%;"> 
+<thead> 
+<tr style="background-color: #4096f8;">
+<th colspan="11" style="text-align:center;">Additional Attorney Fees</th>                    
+</tr>
+<tr> 
+<th>Name</th>
+<th>Description</th>
+<th>Level</th>
+<th>Fee In Plan</th>
+<th>Fee Paid Outside</th>
+<th>Fee Paid To Date</th>
+<th>Monthly Payment</th>
+<th>Fee Remaining</th>
+<th>Verified</th> 
+<th>Corrected</th> 
+<th>Reason</th> 
+</tr> 
+</thead>' END as FieldData 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (Select LongName, CreditorTypeDescription, PayeeLevel, ClaimedAmount, PaidOutside , principalpaid , MonthlyPayment from vwcrmainpayee where caseid = {CaseID} and CreditorTypeID = 37 and NameID <> 408) THEN  
+'<tbody>' + 
+'<tr>' + 
+'<td>' + LongName  + '</td>' + 
+'<td>' + CreditorTypeDescription  + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, PayeeLevel) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, ClaimedAmount) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, PaidOutside) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, principalpaid) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, MonthlyPayment) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, PrincipalOwed) + '</td>' + 
+'<td>[CheckBox' + CONVERT(VARCHAR, PayeeID) + '] </td>' + 
+'<td>[CheckBox' + CONVERT(VARCHAR, PayeeID + 20000) + '] </td>' + 
+'<td>[TextBox' + CONVERT(VARCHAR, PayeeID) + '.150] </td>' + 
+'</tr>' + 
+'</tbody>' END as FieldData 
+from vwcrmainpayee WHERE CaseID = {CaseID} and CreditorTypeID = 37 and NameID <> 408 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (Select LongName, CreditorTypeDescription, PayeeLevel, ClaimedAmount, PaidOutside , principalpaid , MonthlyPayment from vwcrmainpayee where caseid = {CaseID} and CreditorTypeID = 37  and NameID <> 408) THEN  
+'</tbody>' + 
+'</table>' END AS FieldData~|
+        </div>
+
+
+        <table class="table table-bordered table-striped">
+            <thead >
+                <tr style="background-color: #229633;">
+                    <th colspan="4" style="text-align:center;">Plan Section 4</th>
+                    
+                </tr>
+                <tr style="background-color: #909090;">
+                    <td>
+                        Item to Verify
+                    </td>
+                    <td>Verified</td>
+                    <td>Corrected</td>
+                    <td>Comments</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Verify attorney fees are accurate in the original payee schedule and were paid or are being paid</td>
+                    <td>[CheckBox141]</td>
+                    <td>[CheckBox241]</td>
+                    <td>[TextBox141.250]</td>
+                </tr>
+                <tr>
+                    <td>4E - Verify IV.E 'at least' figure </br>
+                    4E: <b>|~Select CONVERT(VARCHAR, FORMAT(Amount, 'C')) as FieldData from vwCRCaseAmounts where AmountCodesID = 2 and CaseID = {CaseID}~|</b></br>
+                    Equity: <b>|~Select CONVERT(VARCHAR, FORMAT(Amount, 'C')) as FieldData from vwCRCaseAmounts where AmountCodesID = 3 and CaseID = {CaseID}~|</b> </br>
+                    Amount to Priority: <b>|~Select ISNULL((Select CONVERT(VARCHAR, FORMAT(Sum(PrincipalPaid), 'C')) from vwcrmainpayee where caseid = {CaseID} and ClaimedAmount <> 0 AND NOT CreditorTypeID IN (1,5,37) and CreditorClass = 'P' and PayeeLevel <> 1), 'No Priority Claims')~|</b></td>
+                    </td>
+                    <td>[CheckBox1410]</td>
+                    <td>[CheckBox2410]</td>
+                    <td>[TextBox1410.250]</td>
+                </tr>
+                <tr>
+                    <td>Compare base balance to amount owed to unsecureds and reduce or increase % to unsuecred creditors if needed 
+                        <br>Unsecured Claim Total: <b>|~Select CONVERT(VARCHAR, FORMAT(Sum(ClaimedAmount), 'C')) as FieldData from vwcrmainpayee where caseid = {CaseID} and UseUnsPercentFromCase = 1 and CreditorClass = 'U'~|</b>
+                        <br> Unsecured Percent: <b>|~Select FORMAT((UnsecuredPercent/100),'P') as FieldData from vwcrmaincase where caseid = {CaseID}~|</b>
+                        <br> Auditor Calculated Unsecured Percent: [TextBox101.100]
+                        <br>  |~Select TOP 1'<a class="btn btn-warning" target="_blank" href="'+dbo.tblDocumentSetup.DocumentMapPath+REPLACE(REPLACE(dbo.tblDocumentDetail.ImageLocation, '\', '/'), ' ', '%20') +'">Plan Calc at Confirmation: <img src="images\pdficon.gif"></a>'
+  as FieldData
+        FROM dbo.tblDocumentDetail
+        INNER JOIN dbo.tblDocumentKeys ON dbo.tblDocumentDetail.DocumentID = dbo.tblDocumentKeys.DocumentID
+        INNER JOIN dbo.tblDocumentFormType ON dbo.tblDocumentDetail.FormTypeCode = dbo.tblDocumentFormType.FormTypeCode
+        INNER JOIN dbo.tblDocumentSetup ON dbo.tblDocumentFormType.TruCode = dbo.tblDocumentSetup.TruCode
+        INNER JOIN dbo.tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+  INNER JOIN dbo.tblCaseData ON dbo.tblDocumentKeys.DocumentKey = dbo.tblCaseData.CaseID
+        WHERE tblCaseData.CaseID = {CaseID}
+        AND tblDocumentFormType.FormTypeCode IN (188)
+  and dbo.tblDocumentKeys.KeyTable = 1000
+  order by tblDocumentDetail.CreatedDate DESC~|
+                        <br> Amount to Unsecureds Calc: <br><b>|~Select CONVERT(VARCHAR, FORMAT(Sum(ClaimedAmount), 'C')) as FieldData from vwcrmainpayee where caseid = {CaseID} and UseUnsPercentFromCase = 1 and CreditorClass = 'U'~| X |~Select FORMAT((UnsecuredPercent/100),'P') as FieldData from vwcrmaincase where caseid = {CaseID}~| = |~Select FORMAT((select Sum(ClaimedAmount) from vwcrmainpayee where caseid = {CaseID} and UseUnsPercentFromCase = 1 and CreditorClass = 'U')*(select UnsecuredPercent/100 from vwcrmaincase where caseid = {CaseID}), 'C') as FieldData~|</b>
+                        <br>|~Select '<a href="' + tblReportSetup.ReportServerHTTPAddress + 'PleaseWait.aspx?progskip=~&prog=getPSProg&&qs=rid=TAC_Report_Breakdown_of_Unsecureds|nw=1|rep=1|CaseNumber={CaseNumber}|CaseID={CaseID}|psprog=CaseReportsPrint.aspx|AppServerName=http://dataserver/13software_app/|winsuffix=1|windesc=window_1|sucid=|:UserCodeID:|" target="_blank" class="btn btn-info" style="color: #FFFFFF;" tabindex="-1">Breakdown of Unsecureds</a>' as FieldData From tblReportSetup~|</br>
+                </td>
+                    <td>[CheckBox1411]</td>
+                    <td>[CheckBox2411]</td>
+                    <td>[TextBox1411.250]</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- End Section 4 -->
+    <!-- Begin Section 5 -->
+    <section id="PlanSection5">
+        <table class="table table-bordered table-striped">
+            <thead >
+                <tr style="background-color: #229633;">
+                    <th colspan="5" style="text-align:center;">Plan Section 5</th>
+                    
+                </tr>
+                <tr style="background-color: #909090;">
+                    <td>
+                        Item to Verify
+                    </td>
+                    <td>Verified</td>
+                    <td>Corrected</td>
+                    <td>Comments</td>
+                    <td>N/A</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Verify claims are entered correctly as 'paid direct' in the no check field of payee record</td>
+                    <td>[CheckBox151]</td>
+                    <td>[CheckBox251]</td>
+                    <td>[TextBox151.250]</td>
+                    <td>[CheckBox351]</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- End Section 5 -->
+    <!-- Begin Section 6 -->
+    <section id="PlanSection6">
+        <table class="table table-bordered table-striped">
+            <thead >
+                <tr style="background-color: #229633;">
+                    <th colspan="5" style="text-align:center;">Plan Section 6</th>
+                    
+                </tr>
+                <tr style="background-color: #909090;">
+                    <td>
+                        Item to Verify
+                    </td>
+                    <td>Verified</td>
+                    <td>Corrected</td>
+                    <td>Comments</td>
+                    <td>N/A</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Verify claims are entered correctly as 'surrendered' in the no check field of the payee record</td>
+                    <td>[CheckBox161]</td>
+                    <td>[CheckBox261]</td>
+                    <td>[TextBox162.250]</td>
+                    <td>[CheckBox361]</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- End Section 6 -->
+    <!-- Begin Section 9 -->
+    <section id="PlanSection9">
+        <table class="table table-bordered table-striped">
+            <thead >
+                <tr style="background-color: #229633;">
+                    <th colspan="5" style="text-align:center;">Plan Section 9</th>
+                    
+                </tr>
+                <tr style="background-color: #909090;">
+                    <td>
+                        Item to Verify </td>
+                    <td>Verified</td>
+                    <td>Corrected</td>
+                    <td>Comments</td>
+                    <td>N/A</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Verify total amount to be paid to priority and/or unsecured claims. <img border="0" style="cursor:pointer" src="images/moreinfo.gif" width="15" height="15" title="If interest rate provided, ensure no additional interest is due by clicking interest recalc in payee tab. Verify what should be paid thorugh current month you are auditin gwas paid. If short, add to interest due in payee claim. "/> </br>
+                        <b>Equity: $ |~Select Amount as FieldData from vwCRCaseAmounts where AmountCodesID = 3 and CaseID = {CaseID}~|</b>
+                     </td>
+                    <td>[CheckBox191]</td>
+                    <td>[CheckBox291]</td>
+                    <td>[TextBox191.250]</td>
+                    <td>[CheckBox391]</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- End Section 9 -->
+    <!-- Begin Section 10 -->
+    <section id="PlanSection10">
+        <table class="table table-bordered table-striped">
+            <thead >
+                <tr style="background-color: #229633;">
+                    <th colspan="5" style="text-align:center;">Plan Section X</th>
+                    
+                </tr>
+                <tr style="background-color: #909090;">
+                    <td>
+                        Item to Verify
+                    </td>
+                    <td>Verified</td>
+                    <td>Corrected</td>
+                    <td>Comments</td>
+                    <td>N/A</td>
+                </tr>
+            </thead>
+      
+            <tbody>
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16601,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16601,0), '[', '('), ']', ')') + '</td><td>[CheckBox801]</td><td>[CheckBox901]</td><td>[TextBox801.250]</td></tr>' else '<tr><td>Review Plan Manually for Section X and Verify Each Provision</td><td>[CheckBox800]</td><td>[CheckBox900]</td><td>[TextBox800.250]</td><td>[CheckBox999]</td></tr>' END as FieldData~|
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16611,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16611,0), '[', '('), ']', ')') + '</td><td>[CheckBox802]</td><td>[CheckBox902]</td><td>[TextBox802.250]</td></tr>' else '' END as FieldData~|
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16621,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16621,0), '[', '('), ']', ')') + '</td><td>[CheckBox803]</td><td>[CheckBox903]</td><td>[TextBox803.250]</td></tr>' else '' END as FieldData~|
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16631,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16631,0), '[', '('), ']', ')') + '</td><td>[CheckBox804]</td><td>[CheckBox904]</td><td>[TextBox804.250]</td></tr>' else '' END as FieldData~| 
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16640,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16641,0), '[', '('), ']', ')') + '</td><td>[CheckBox805]</td><td>[CheckBox905]</td><td>[TextBox805.250]</td></tr>' else '' END as FieldData~| 
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16651,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16651,0), '[', '('), ']', ')') + '</td><td>[CheckBox806]</td><td>[CheckBox906]</td><td>[TextBox806.250]</td></tr>' else '' END as FieldData~| 
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16661,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16661,0), '[', '('), ']', ')') + '</td><td>[CheckBox807]</td><td>[CheckBox907]</td><td>[TextBox807.250]</td></tr>' else '' END as FieldData~| 
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16671,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16671,0), '[', '('), ']', ')') + '</td><td>[CheckBox808]</td><td>[CheckBox908]</td><td>[TextBox808.250]</td></tr>' else '' END as FieldData~| 
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16681,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16681,0), '[', '('), ']', ')') + '</td><td>[CheckBox809]</td><td>[CheckBox909]</td><td>[TextBox809.250]</td></tr>' else '' END as FieldData~| 
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16691,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16691,0), '[', '('), ']', ')') + '</td><td>[CheckBox8010]</td><td>[CheckBox9010]</td><td>[TextBox8010.250]</td></tr>' else '' END as FieldData~|
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',10916,0)) <> '' then '<tr><td>Section X Comments:'+ dbo.udfGetWorksheetData({CaseID},186,'TextBox',10916,0) + '</td><td>[CheckBox8011]</td><td>[CheckBox9011]</td><td>[TextBox8011.250]</td></tr>' else '' END as FieldData~|
+            </tbody>
+        </table>
+
+</div>

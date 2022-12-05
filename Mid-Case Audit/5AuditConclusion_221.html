@@ -1,0 +1,83 @@
+<div class="container">
+    <section class="auditConclusion">
+       <Section id="auditConclusion" style="text-align: center;">
+          <p style="font-size: medium; font-weight:bold;text-align:center">Audit Conclusion</p>
+       </Section>
+
+       <table class="table table-bordered table-striped">
+        <thead>
+            <tr style="background-color: #229633;">
+                <td>Audit Notes:</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>[CommentBox2215.500]</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td> |~Select '<a href="' + tblReportSetup.ReportServerHTTPAddress + 'PleaseWait.aspx?progskip=~&prog=getPSProg&&qs=uid=' + '|:UserCodeID:|' + '|id=618|trucode=' + tblReportSetup.TruCode + '|WinSuffix=1|windesc=WorksheetForm|AppServerName=' + tblTrusteeDefaults.ApplicationHTTPAddress + '|psprog=PrintForm.aspx|sucid=' + '|:UserCodeID:|' + '|cn=' + '{CaseNumber}' + '|' + '" target="_blank" class="btn btn-info" style="color: #FFFFFF;" tabindex="-1">Create Forum Note</a>' as FieldData From tblReportSetup, tblTrusteeDefaults Where tblReportSetup.TruCode = tblTrusteeDefaults.TrusteeCode~|</td>
+            </tr>
+        </tfoot>
+       </table>
+
+       <table class="table table-bordered table-striped">
+        <thead >
+            <tr style="background-color: #229633;">
+                <th colspan="4" style="text-align:center;">Items Need Addressing by CA:</th>
+                
+            </tr>
+            <tr style="background-color: #909090;">
+                <td>Item</td>
+                <td>Comments</td>
+                <td>Corrected by CA?</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Plan Issue?</td>
+                <td>[TextBox2211.300]</td>
+                <td>[CheckBox2211]</td>
+            </tr>
+
+            <tr>
+                <td>Claim Issue(s)?</td>
+                <td>[TextBox2212.300]</td>
+                <td>[CheckBox2212]</td>
+            </tr>
+            <tr>
+                <td>Feasibility Issue? </td>
+                <td>[TextBox2213.300]</td>
+                <td>[CheckBox2213]</td>
+            </tr>
+            <tr>
+                <td>Tax Issue (Returns Missing, Refunds Missing, etc.)?</td>
+                <td>[TextBox2214.300]</td>
+                <td>[CheckBox2214]</td>
+            </tr>
+
+            <tr>
+                <td>Actions needed by Case Administrator:     |~Select '<a target="_blank" class="btn btn-info" href="mailto:' + UserEmailAddress + '@chapter13tacoma.org?subject=' + DisplayCaseNumber + ' ' + Deb1LastName + ' Mid-Case Audit">Email ' + FirstName + '</a>' as FieldData from vwCRMainCase join tblUserTable on vwcrmaincase.CaseAdministrator = convert(int, tblusertable.usercodeid) where CaseID = {CaseID}~|
+            </td>
+                <td colspan="2">[CommentBox2218.500]</td>
+            </tr>
+            <tr>
+                <td>Actions Performed by Case Administrator: <i>To be completed by CA</i></td>
+                <td colspan="2">[CommentBox2219.500]</td>
+            </tr>
+            <tr>
+                <td>Audit Status?</td>
+                <td>Hold Open: [CheckBox2215] (Tickle will be sent to CA the following day) <br>
+                    <span id="auditDateTimeStamp">|~Select ISNULL((Select 'Marked Hold Open by ' + UserIDLastUpdated + ' on ' + Convert(Varchar, DateLastUpdated) as fielddata from tblCaseWorksheetData where FieldID = 'CheckBox_221_2215' and CaseID = {CaseID} and CaseWorksheetTemplateID = 221), '') as FieldData~|</span>
+                </td>
+                <td>Completed: [CheckBox3216]<br>
+                <span id="completedDateTimeStamp">|~Select ISNULL((Select 'Marked Completed by ' + UserIDLastUpdated + ' on ' + Convert(Varchar, DateLastUpdated) as fielddata from tblCaseWorksheetData where FieldID = 'CheckBox_221_3216' and CaseID = {CaseID} and CaseWorksheetTemplateID = 221), '') as FieldData~|</span>
+                </td>
+            </tr>
+
+
+        </tbody>    
+    </table>
+    </section>
+</div>

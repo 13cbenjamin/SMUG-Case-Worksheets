@@ -1,0 +1,128 @@
+<!-- Old Attorney Fee's Table for Claims Review 219 template no longer in use -->
+
+|~SELECT TOP 1 CASE WHEN EXISTS (SELECT TOP 1 vwCRMainPayee.PayeeID 
+                                 FROM vwCRMainPayee 
+                                 WHERE vwCRMainPayee.CaseNumber = '{CaseNumber}' 
+                                 AND vwCRMainPayee.CreditorTypeID IN (1,5)) THEN 
+'<table id="header_184_3" class="table table-condensed table-bordered border-dark rounded table-sm" style="background-color:#FFFFFF;">' + 
+    '<thead> 
+        <tr style="background-color: #4096f8;">
+            <th colspan="12" style="text-align:center;">Original Attorney Fees</th>                    
+            </tr>
+        <tr style="background-color:#006699;color:#FFFFFF;">  
+            <th scope="col" style="text-align:center;">Name</th> 
+            <th scope="col" style="text-align:center;">Description</th> 
+            <th scope="col" style="text-align:center;">Lvl</th> 
+            <th scope="col" style="text-align:center;">Fee In Plan</th> 
+            <th scope="col" style="text-align:center;">Paid Outside</th> 
+            <th scope="col" style="text-align:center;">Fee Paid to Date</th> 
+            <th scope="col" style="text-align:center;">Initial Amount</th>
+            <th scope="col" style="text-align:center;">Monthly Payment</th>  
+            <th scope="col" style="text-align:center;">Fee Remaining</th> 
+            <th scope="col" style="text-align:center;">Verified</th> 
+            <th scope="col" style="text-align:center;">Corrected</th> 
+            <th scope="col" style="text-align:center;">Reason</th> 
+        </tr> 
+    </thead>' END as FieldData, '' as PayeeLevel 
+FROM vwCRMainPayee WHERE vwCRMainPayee.CaseNumber = '{CaseNumber}' AND vwCRMainPayee.CreditorTypeID IN (1,5) 
+
+UNION ALL 
+
+SELECT 
+    '<tbody>' + 
+        '<tr>' + 
+            '<td style="text-align:left;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;"><strong>' + LongName + '</strong>' + '</td>' + 
+            '<td style="text-align:left;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + '<strong>' + CreditorTypeDescription + '</strong>' + '</td>' + 
+            '<td style="text-align:center;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + CONVERT(VARCHAR, PayeeLevel) + '</td>' +    
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE ClaimedAmount WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(ClaimedAmount AS money), 10) END, '&nbsp') + '</td>' +    
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE PaidOutside WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(PaidOutside AS money), 10) END, '&nbsp') + '</td>' +    
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE PrincipalPaid WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(PrincipalPaid AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE PrincipalDue WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(PrincipalDue AS money), 10) END, '&nbsp') + '</td>' +
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE MonthlyPayment WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(MonthlyPayment AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE PrincipalOwed WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(PrincipalOwed AS money), 10) END, '&nbsp') + '</td>' +
+            '<td>[CheckBox' + CONVERT(VARCHAR, PayeeID) + '] </td>' + 
+            '<td>[CheckBox' + CONVERT(VARCHAR, PayeeID + 20000) + '] </td>' + 
+            '<td>[TextBox' + CONVERT(VARCHAR, PayeeID) + '.150] </td>' + 
+        '</tr>' + 
+    '</tbody>' 
+        
+as FieldData, PayeeLevel 
+FROM vwCRMainPayee  INNER JOIN 
+tblCreditorClass ON vwCRMainPayee.CreditorClass = tblCreditorClass.CreditorClass INNER JOIN 
+tblCaseData ON vwCRMainPayee.CaseID = tblCaseData.CaseID 
+WHERE vwCRMainPayee.CaseNumber = '{CaseNumber}' 
+AND vwCRMainPayee.CreditorTypeID IN (1,5) 
+
+UNION ALL 
+
+SELECT    
+    '<tfoot>' + 
+        '<tr style="background-color:#006699;color:#FFFFFF;"> ' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>TOTALS</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(ClaimedAmount) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(PaidOutside) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(PrincipalPaid) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(PrincipalDue) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(MonthlyPayment) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(PrincipalOwed) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+        '</tr>' +   
+  '</tfoot></table>' as FieldData, '999' as PayeeLevel 
+FROM vwCRMainPayee  INNER JOIN 
+tblCreditorClass ON vwCRMainPayee.CreditorClass = tblCreditorClass.CreditorClass INNER JOIN 
+tblCaseData ON vwCRMainPayee.CaseID = tblCaseData.CaseID 
+WHERE vwCRMainPayee.CaseNumber = '{CaseNumber}' 
+AND vwCRMainPayee.CreditorTypeID IN (1,5) 
+ORDER BY PayeeLevel~|
+
+<!-- Additional Attorney Fees -->
+|~SELECT CASE WHEN EXISTS (Select LongName, CreditorTypeDescription, PayeeLevel, ClaimedAmount, PaidOutside , principalpaid , MonthlyPayment from vwcrmainpayee where caseid = {CaseID} and CreditorTypeID = 37 and NameID <> 408) THEN 
+'<table class="table table-condensed table-bordered border-dark rounded table-striped" style="background-color:#909090; width:100%;"> 
+<thead> 
+<tr style="background-color: #4096f8;">
+<th colspan="11" style="text-align:center;">Additional Attorney Fees</th>                    
+</tr>
+<tr> 
+<th>Name</th>
+<th>Description</th>
+<th>Level</th>
+<th>Fee In Plan</th>
+<th>Fee Paid Outside</th>
+<th>Fee Paid To Date</th>
+<th>Monthly Payment</th>
+<th>Fee Remaining</th>
+<th>Verified</th> 
+<th>Corrected</th> 
+<th>Reason</th> 
+</tr> 
+</thead>' END as FieldData 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (Select LongName, CreditorTypeDescription, PayeeLevel, ClaimedAmount, PaidOutside , principalpaid , MonthlyPayment from vwcrmainpayee where caseid = {CaseID} and CreditorTypeID = 37 and NameID <> 408) THEN  
+'<tbody>' + 
+'<tr>' + 
+'<td>' + LongName  + '</td>' + 
+'<td>' + CreditorTypeDescription  + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, PayeeLevel) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, ClaimedAmount) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, PaidOutside) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, principalpaid) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, MonthlyPayment) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, PrincipalOwed) + '</td>' + 
+ '<td>[CheckBox' + CONVERT(VARCHAR, PayeeID) + '] </td>' + 
+ '<td>[CheckBox' + CONVERT(VARCHAR, PayeeID + 20000) + '] </td>' + 
+ '<td>[TextBox' + CONVERT(VARCHAR, PayeeID) + '.150] </td>' + 
+'</tr>' + 
+'</tbody>' END as FieldData 
+from vwcrmainpayee WHERE CaseID = {CaseID} and CreditorTypeID = 37 and NameID <> 408 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (Select LongName, CreditorTypeDescription, PayeeLevel, ClaimedAmount, PaidOutside , principalpaid , MonthlyPayment from vwcrmainpayee where caseid = {CaseID} and CreditorTypeID = 37  and NameID <> 408) THEN  
+'</tbody>' + 
+'</table>' END AS FieldData~|

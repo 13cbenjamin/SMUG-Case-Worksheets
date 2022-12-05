@@ -1,0 +1,384 @@
+<div class="">
+    <Section id="header" style="text-align: center;">
+       <p style="font-size: medium; font-weight:bold;text-align:center">Claim Review</p>
+    </Section>
+
+    <section id="instructions" class="container" style="text-align: center; -color: whitesmoke;">
+        When clicking verified for each claim, you are confirming that you have reviewed the <b>Address, Filed Flag, Description, Level, Claim Amount, Prin Due, Interest Rates</b>. Each claim should be evaluated individually as a whole. Yan click on the Claim ID to open the Proof of Claim document attached to the claim. <br> If you have corrected the claim then you must indicate the reason for the correction in the reason field for that claim. 
+    </section>
+    
+    <section id="Claims">
+        |~SELECT TOP 1 CASE WHEN EXISTS (SELECT TOP 1 vwCRMainPayee.PayeeID 
+                                 FROM vwCRMainPayee 
+                                 WHERE vwCRMainPayee.CaseNumber = '{CaseNumber}' 
+                                 AND ( vwCRMainPayee.CreditorClass = 'S' OR vwCRMainPayee.CreditorClass = 'P' ) 
+                                 AND FinalReportCategory <> 1 
+                                 AND CreditorTypeDescription <> 'DEBTOR REFUND' 
+                                 AND CreditorTypeDescription <> 'ATTORNEY' 
+                                 AND CreditorTypeDescription <> 'ORIGINAL ATTORNEY' 
+                                 AND CreditorTypeDescription <> 'FILING FEE' ) THEN 
+'<table class="table table-condensed table-bordered border-dark rounded table-sm" style="background-color:#FFFFFF;">' + 
+    '<thead> 
+        <tr style="background-color: #4096f8;">
+            <th colspan="19" style="text-align:center;">Secured & Priority Claims</th>                    
+        </tr>
+        <tr style="background-color:#006699;color:#FFFFFF;"> 
+            <th scope="col" style="text-align:center;">Creditor</th> 
+            <th scope="col" style="text-align:center;">Claim<br/>ID</th> 
+            <th scope="col" style="text-align:center;">Claim<br/>Filed</th> 
+            <th scope="col" style="text-align:center;">Court<br/>Claim</th> 
+            <th scope="col" style="text-align:center;">Description</th> 
+            <th scope="col" style="text-align:center;">Lvl</th> 
+            <th scope="col" style="text-align:center;">Claim Amt</th> 
+            <th scope="col" style="text-align:center;">Asserted<br/>Amt</th> 
+            <th scope="col" style="text-align:center;">Coll / Val</th> 
+            <th scope="col" style="text-align:center;">Mo Pymt</th> 
+            <th scope="col" style="text-align:center;">Int Rate</th> 
+            <th scope="col" style="text-align:center;">Prin Paid</th> 
+            <th scope="col" style="text-align:center;">Prin Owed</th> 
+            <th scope="col" style="text-align:center;">Prin Due</th> 
+            <th scope="col" style="text-align:center;">Int Paid</th> 
+            <th scope="col" style="text-align:center;">Int Due</th> 
+            <th scope="col" style="text-align:center;">Verified</th> 
+            <th scope="col" style="text-align:center;">Corrected</th> 
+            <th scope="col" style="text-align:center;">Reason</th> 
+
+        </tr> 
+    </thead>' END as FieldData, '' as PayeeLevel 
+FROM vwCRMainPayee WHERE vwCRMainPayee.CaseNumber = '{CaseNumber}' 
+AND ( vwCRMainPayee.CreditorClass = 'S' OR vwCRMainPayee.CreditorClass = 'P' ) 
+AND FinalReportCategory <> 1 
+AND CreditorTypeDescription <> 'DEBTOR REFUND' 
+AND CreditorTypeDescription <> 'ATTORNEY' 
+AND CreditorTypeDescription <> 'ORIGINAL ATTORNEY' 
+AND CreditorTypeDescription <> 'FILING FEE' 
+
+UNION ALL 
+
+SELECT 
+    '<tbody>' + 
+        '<tr>' + 
+            '<td style="text-align:left;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;"><strong>' + LongName + '</strong>' + 
+            ISNULL(CASE vwCRMainPayee.AddressLine1 WHEN '' THEN NULL ELSE '<br/>' + vwCRMainPayee.AddressLine1 END, '') + 
+            ISNULL(CASE vwCRMainPayee.AddressLine2 WHEN '' THEN NULL ELSE '<br/>' + vwCRMainPayee.AddressLine2 END, '') + 
+            ISNULL(CASE vwCRMainPayee.AddressLine3 WHEN '' THEN NULL ELSE '<br/>' + vwCRMainPayee.AddressLine3 END, '') + 
+            ISNULL(CASE vwCRMainPayee.City WHEN '' THEN NULL ELSE '<br/>' + vwCRMainPayee.City END, '') + 
+            ISNULL(CASE vwCRMainPayee.State WHEN '' THEN NULL ELSE ' ' + vwCRMainPayee.State END, '') + 
+            ISNULL(CASE WHEN vwCRMainPayee.AlternateZip <> '' THEN ', ' + vwCRMainPayee.AlternateZip 
+                        WHEN vwCRMainPayee.ZipCode <> '000000000' THEN ', ' + LEFT(vwCRMainPayee.ZipCode,5) + 
+                        (CASE WHEN RIGHT(vwCRMainPayee.ZipCode,4) <> '0000' THEN '-' + RIGHT(vwCRMainPayee.ZipCode,4) ELSE '' END) 
+                    END,'') + '</td>' + 
+                    
+            '<td style="text-align:center;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + CASE WHEN EXISTS ( SELECT TOP 1 tblDocumentDetail.DocumentID 
+                                                                                                                                                                FROM tblDocumentDetail INNER JOIN 
+                                                                                                                                                                tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+                                                                                                                                                                tblPayee ON tblDocumentKeys.DocumentKey = tblPayee.PayeeID 
+                                                                                                                                                                WHERE PayeeID = vwCRMainPayee.PayeeID) 
+                                                                                                                                                                THEN '<a style="cursor:pointer;" onclick="WCopenWindow(''PleaseWaitStatic.aspx?prog=inqCaseDocs.aspx?&qs=payeeid=' + CONVERT(VARCHAR(MAX),vwCRMainPayee.PayeeID) + '|progskip=|xWin=|payeename=' + REPLACE(REPLACE(vwCRMainPayee.LongName, '[', '&#91;'), ']', '&#93;') + ''',''DocumentTree_''' + '+window.WCszUC+window.WCszWS' + ',''scrollbars,resizable'',''Case'');"><img border="0" width="13" height="13" src="images/document.gif"></a>' 
+                                                                                                                                                                ELSE '' 
+                                                                                                                                                                END + CONVERT(VARCHAR, vwCRMainPayee.ClaimID) + '</td>' + 
+            '<td style="text-align:center;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + CASE ClaimFiled WHEN 1 THEN '<font face="Unicode"><b>&#10004;</b></font>' ELSE '&nbsp;'END + '</td>' + 
+            '<td style="text-align:center;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + CONVERT(VARCHAR, vwCRMainPayee.ClaimNumber) + '</td>' + 
+            '<td style="text-align:left;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + '<strong>' + CreditorTypeDescription + '</strong>' + ISNULL(CASE vwCRMainPayee.Comment WHEN '' THEN NULL ELSE '<br/><i>Comment: </i>' + vwCRMainPayee.Comment END, '&nbsp') + ISNULL(CASE vwCRMainPayee.AccountNumber WHEN '' THEN NULL ELSE '<br/>' + '<i>Acct#: </i>' + vwCRMainPayee.AccountNumber END, '&nbsp') + ISNULL(CASE ContinuingDesc WHEN '' THEN NULL ELSE '<br/><strong>' + ContinuingDesc + '</strong>' END, '&nbsp') + ISNULL(CASE NoCheckDesc WHEN '' THEN NULL ELSE '<br/><strong>' + NoCheckDesc + '</strong>' END, '&nbsp') + ISNULL(CASE ReserveDesc WHEN '' THEN NULL ELSE '<br/><font color=#CC00CC><strong>' + ReserveDesc END, '</strong></font>&nbsp') + ISNULL(CASE WHEN AdequateProtectionDesc = '' THEN NULL WHEN CONVERT(VARCHAR, tblCaseData.ConfirmationDate, 101) <> '01/01/1900' THEN NULL ELSE '<br/>' + REPLACE(REPLACE(AdequateProtectionDesc, '[', '&#91;'), ']', '&#93;') END, '&nbsp') + '</td>' + 
+            '<td style="text-align:center;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + CONVERT(VARCHAR, PayeeLevel) + '</td>' +
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE ClaimedAmount WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(ClaimedAmount AS money), 10) END, '&nbsp') + '</td>' +    
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE AssertedClaimAmount WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(AssertedClaimAmount AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE CollateralValue WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(CollateralValue AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE MonthlyPayment WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(MonthlyPayment AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE InterestRate WHEN 0 THEN NULL ELSE CONVERT(VARCHAR, CAST(InterestRate AS money), 10) + '%' END, '&nbsp') + '</td>' +
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE PrincipalPaid WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(PrincipalPaid AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE PrincipalOwed WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(PrincipalOwed AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE PrincipalDue WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(PrincipalDue AS money), 10) END, '&nbsp') + '</td>' +
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE InterestPaid WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(InterestPaid AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE InterestDue WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(InterestDue AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td>[CheckBox' + CONVERT(VARCHAR, PayeeID ) + '] </td>' + 
+            '<td>[CheckBox' + CONVERT(VARCHAR, PayeeID + 20000) + '] </td>' + 
+            '<td>[TextBox' + CONVERT(VARCHAR, PayeeID ) + '.150] </td>' + 
+
+
+        '</tr>' + 
+    '</tbody>' 
+        
+as FieldData, PayeeLevel 
+FROM vwCRMainPayee  INNER JOIN 
+tblCreditorClass ON vwCRMainPayee.CreditorClass = tblCreditorClass.CreditorClass INNER JOIN 
+tblCaseData ON vwCRMainPayee.CaseID = tblCaseData.CaseID 
+WHERE vwCRMainPayee.CaseNumber = '{CaseNumber}' 
+AND ( vwCRMainPayee.CreditorClass = 'S' OR vwCRMainPayee.CreditorClass = 'P' ) 
+AND FinalReportCategory <> 1 
+AND CreditorTypeDescription <> 'DEBTOR REFUND' 
+AND CreditorTypeDescription <> 'ATTORNEY' 
+AND CreditorTypeDescription <> 'ORIGINAL ATTORNEY' 
+AND CreditorTypeDescription <> 'FILING FEE' 
+
+UNION ALL 
+
+SELECT    
+    '<tfoot>' + 
+        '        <tr style="background-color:#006699;color:#FFFFFF;"> ' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>TOTALS</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(ClaimedAmount) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(AssertedClaimAmount) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(CollateralValue) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(MonthlyPayment) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(PrincipalPaid) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(PrincipalOwed) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(PrincipalDue) AS money), 10) + '</strong></td>' +    
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(InterestPaid) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(InterestDue) AS money), 10) + '</strong></td>' +   
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+        '</tr>' +   
+  '</tfoot></table>' as FieldData, '999' as PayeeLevel 
+FROM vwCRMainPayee  INNER JOIN 
+tblCreditorClass ON vwCRMainPayee.CreditorClass = tblCreditorClass.CreditorClass INNER JOIN 
+tblCaseData ON vwCRMainPayee.CaseID = tblCaseData.CaseID 
+WHERE vwCRMainPayee.CaseNumber = '{CaseNumber}' 
+AND ( vwCRMainPayee.CreditorClass = 'S' OR vwCRMainPayee.CreditorClass = 'P' ) 
+AND FinalReportCategory <> 1 
+AND CreditorTypeDescription <> 'DEBTOR REFUND' 
+AND CreditorTypeDescription <> 'ATTORNEY' 
+AND CreditorTypeDescription <> 'ORIGINAL ATTORNEY' 
+AND CreditorTypeDescription <> 'FILING FEE' 
+
+ORDER BY PayeeLevel~|
+
+|~SELECT TOP 1 CASE WHEN EXISTS (SELECT TOP 1 vwCRMainPayee.PayeeID 
+                                 FROM vwCRMainPayee 
+                                 WHERE vwCRMainPayee.CaseNumber = '{CaseNumber}' 
+                                 AND vwCRMainPayee.CreditorClass = 'U'
+                                 AND vwCRMainPayee.ClaimID > 1000) THEN 
+'<table class="table table-condensed table-bordered border-dark rounded table-sm" style="background-color:#FFFFFF;">' + 
+    '<thead> 
+        <tr style="background-color: #4096f8;">
+            <th colspan="16" style="text-align:center;">Split Claims</th>                    
+            </tr>
+        <tr style="background-color:#006699;color:#FFFFFF;"> 
+            <th scope="col" style="text-align:center;">Creditor</th> 
+            <th scope="col" style="text-align:center;">Claim<br/>ID</th> 
+            <th scope="col" style="text-align:center;">Claim<br/>Filed</th> 
+            <th scope="col" style="text-align:center;">Court<br/>Claim</th> 
+            <th scope="col" style="text-align:center;">Description</th> 
+            <th scope="col" style="text-align:center;">Lvl</th> 
+            <th scope="col" style="text-align:center;">Claim Amt</th> 
+            <th scope="col" style="text-align:center;">Asserted<br/>Amt</th> 
+            <th scope="col" style="text-align:center;">Coll / Val</th> 
+            <th scope="col" style="text-align:center;">Mo Pymt</th> 
+            <th scope="col" style="text-align:center;">Int Rate</th> 
+            <th scope="col" style="text-align:center;">Prin Paid</th> 
+            <th scope="col" style="text-align:center;">Prin Owed</th> 
+            <th scope="col" style="text-align:center;">Prin Due</th> 
+            <th scope="col" style="text-align:center;">Int Paid</th> 
+            <th scope="col" style="text-align:center;">Int Due</th> 
+            <th scope="col" style="text-align:center;">Verified</th> 
+            <th scope="col" style="text-align:center;">Corrected</th> 
+            <th scope="col" style="text-align:center;">Reason</th> 
+        </tr> 
+    </thead>' END as FieldData, '' as PayeeLevel 
+FROM vwCRMainPayee WHERE vwCRMainPayee.CaseNumber = '{CaseNumber}' 
+AND vwCRMainPayee.CreditorClass = 'U' 
+AND vwCRMainPayee.ClaimID > 1000 
+
+UNION ALL 
+
+SELECT 
+    '<tbody>' + 
+        '<tr>' + 
+            '<td style="text-align:left;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;"><strong>' + LongName + '</strong>' + 
+            ISNULL(CASE vwCRMainPayee.AddressLine1 WHEN '' THEN NULL ELSE '<br/>' + vwCRMainPayee.AddressLine1 END, '') + 
+            ISNULL(CASE vwCRMainPayee.AddressLine2 WHEN '' THEN NULL ELSE '<br/>' + vwCRMainPayee.AddressLine2 END, '') + 
+            ISNULL(CASE vwCRMainPayee.AddressLine3 WHEN '' THEN NULL ELSE '<br/>' + vwCRMainPayee.AddressLine3 END, '') + 
+            ISNULL(CASE vwCRMainPayee.City WHEN '' THEN NULL ELSE '<br/>' + vwCRMainPayee.City END, '') + 
+            ISNULL(CASE vwCRMainPayee.State WHEN '' THEN NULL ELSE ' ' + vwCRMainPayee.State END, '') + 
+            ISNULL(CASE WHEN vwCRMainPayee.AlternateZip <> '' THEN ', ' + vwCRMainPayee.AlternateZip 
+                        WHEN vwCRMainPayee.ZipCode <> '000000000' THEN ', ' + LEFT(vwCRMainPayee.ZipCode,5) + 
+                        (CASE WHEN RIGHT(vwCRMainPayee.ZipCode,4) <> '0000' THEN '-' + RIGHT(vwCRMainPayee.ZipCode,4) ELSE '' END) 
+                    END,'') + '</td>' + 
+                    
+            '<td style="text-align:center;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + CASE WHEN EXISTS ( SELECT TOP 1 tblDocumentDetail.DocumentID 
+                                                                                                                                                                FROM tblDocumentDetail INNER JOIN 
+                                                                                                                                                                tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN
+                                                                                                                                                                tblPayee ON tblDocumentKeys.DocumentKey = tblPayee.PayeeID AND tblDocumentKeys.KeyTable = 1047 
+                                                                                                                                                                WHERE PayeeID = vwCRMainPayee.PayeeID)
+                                                                                                                                                                THEN '<a style="cursor:pointer;" onclick="WCopenWindow(''PleaseWaitStatic.aspx?prog=inqCaseDocs.aspx?&qs=payeeid=' + CONVERT(VARCHAR(MAX),vwCRMainPayee.PayeeID) + '|progskip=|xWin=|payeename=' + REPLACE(REPLACE(vwCRMainPayee.LongName, '[', '&#91;'), ']', '&#93;') + ''',''DocumentTree_''' + '+window.WCszUC+window.WCszWS' + ',''scrollbars,resizable'',''Case'');"><img border="0" width="13" height="13" src="images/document.gif"></a>' 
+                                                                                                                                                                ELSE ''
+                                                                                                                                                                END + CONVERT(VARCHAR, vwCRMainPayee.ClaimID) + '</td>' + 
+            '<td style="text-align:center;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + CASE ClaimFiled WHEN 1 THEN '<font face="Unicode"><b>&#10004;</b></font>' ELSE '&nbsp;'END + '</td>' + 
+            '<td style="text-align:center;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + CONVERT(VARCHAR, vwCRMainPayee.ClaimNumber) + '</td>' + 
+            '<td style="text-align:left;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + '<strong>' + CreditorTypeDescription + '</strong>' + ISNULL(CASE vwCRMainPayee.Comment WHEN '' THEN NULL ELSE '<br/><i>Comment: </i>' + vwCRMainPayee.Comment END, '&nbsp') + ISNULL(CASE vwCRMainPayee.AccountNumber WHEN '' THEN NULL ELSE '<br/>' + '<i>Acct#: </i>' + vwCRMainPayee.AccountNumber END, '&nbsp') + ISNULL(CASE ContinuingDesc WHEN '' THEN NULL ELSE '<br/><strong>' + ContinuingDesc + '</strong>' END, '&nbsp') + ISNULL(CASE NoCheckDesc WHEN '' THEN NULL ELSE '<br/><strong>' + NoCheckDesc + '</strong>' END, '&nbsp') + ISNULL(CASE ReserveDesc WHEN '' THEN NULL ELSE '<br/><font color=#CC00CC><strong>' + ReserveDesc END, '</strong></font>&nbsp') + ISNULL(CASE WHEN AdequateProtectionDesc = '' THEN NULL WHEN CONVERT(VARCHAR, tblCaseData.ConfirmationDate, 101) <> '01/01/1900' THEN NULL ELSE '<br/>' + REPLACE(REPLACE(AdequateProtectionDesc, '[', '&#91;'), ']', '&#93;') END, '&nbsp') + '</td>' + 
+            '<td style="text-align:center;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + CONVERT(VARCHAR, PayeeLevel) + '</td>' +
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE ClaimedAmount WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(ClaimedAmount AS money), 10) END, '&nbsp') + '</td>' +    
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE AssertedClaimAmount WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(AssertedClaimAmount AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE CollateralValue WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(CollateralValue AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE MonthlyPayment WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(MonthlyPayment AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE InterestRate WHEN 0 THEN NULL ELSE CONVERT(VARCHAR, CAST(InterestRate AS money), 10) + '%' END, '&nbsp') + '</td>' +
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE PrincipalPaid WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(PrincipalPaid AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE PrincipalOwed WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(PrincipalOwed AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE PrincipalDue WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(PrincipalDue AS money), 10) END, '&nbsp') + '</td>' +
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE InterestPaid WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(InterestPaid AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td style="text-align:right;vertical-align:top;background-color:' + HighlightedBackgroundColorInPayees + ';color:#000000;">' + ISNULL(CASE InterestDue WHEN 0 THEN NULL ELSE '$' + CONVERT(VARCHAR, CAST(InterestDue AS money), 10) END, '&nbsp') + '</td>' + 
+            '<td>[CheckBox' + CONVERT(VARCHAR, PayeeID ) + '] </td>' + 
+            '<td>[CheckBox' + CONVERT(VARCHAR, PayeeID + 20000) + '] </td>' + 
+            '<td>[TextBox' + CONVERT(VARCHAR, PayeeID ) + '.150] </td>' + 
+
+
+            '</tr>' + 
+    '</tbody>' 
+        
+as FieldData, PayeeLevel 
+FROM vwCRMainPayee  INNER JOIN 
+tblCreditorClass ON vwCRMainPayee.CreditorClass = tblCreditorClass.CreditorClass INNER JOIN 
+tblCaseData ON vwCRMainPayee.CaseID = tblCaseData.CaseID 
+WHERE vwCRMainPayee.CaseNumber = '{CaseNumber}' 
+AND vwCRMainPayee.CreditorClass = 'U' 
+AND vwCRMainPayee.ClaimID > 1000  
+
+UNION ALL 
+
+SELECT    
+    '<tfoot>' + 
+        '        <tr style="background-color:#006699;color:#FFFFFF;"> ' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>TOTALS</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(ClaimedAmount) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(AssertedClaimAmount) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(CollateralValue) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(MonthlyPayment) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(PrincipalPaid) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(PrincipalOwed) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(PrincipalDue) AS money), 10) + '</strong></td>' +    
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(InterestPaid) AS money), 10) + '</strong></td>' +  
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"><strong>' + '$' + CONVERT(VARCHAR, CAST(SUM(InterestDue) AS money), 10) + '</strong></td>' +   
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+            '<td style="text-align:right;background-color:006699;color:#FFFFFF;"></td>' + 
+        '</tr>' +   
+  '</tfoot></table>' as FieldData, '999' as PayeeLevel 
+FROM vwCRMainPayee  INNER JOIN 
+tblCreditorClass ON vwCRMainPayee.CreditorClass = tblCreditorClass.CreditorClass INNER JOIN 
+tblCaseData ON vwCRMainPayee.CaseID = tblCaseData.CaseID 
+WHERE vwCRMainPayee.CaseNumber = '{CaseNumber}' 
+AND vwCRMainPayee.CreditorClass = 'U' 
+AND vwCRMainPayee.ClaimID > 1000 
+ORDER BY PayeeLevel 
+~|
+
+
+    </section> 
+</div>
+
+<div class="container">
+
+    <section>
+        <!-- Claim Review Questions -->
+        <table class="table table-bordered table-striped">
+            <thead >
+                <tr style="background-color: #229633;">
+                    <th colspan="5" style="text-align:center;">Claim Review Questions</th>
+                    
+                </tr>
+                <tr style="background-color: #909090;">
+                    <td>
+                        Item to Verify
+                    </td>
+                    <td>Verified</td>
+                    <td>Corrected</td>
+                    <td>Comments</td>
+                    <td>N/A</td>
+                </tr>
+            </thead>
+            <tbody>
+        <tr>
+            <td>Verify Child Support Claim Filed Correct and is Paid Current </br>
+            <span style="color:blue;"> DSO CASE: |~SELECT CASE WHEN (Select Flag from vwCRCaseFlags where CaseID = {CaseID} and FlagCodesID = 1024) LIKE '%Y%' then '<b>YES</b>' else '<b>NO</b>' end~|</span></td>
+            <td>[CheckBox142]</td>
+            <td>[CheckBox242]</td>
+            <td>[TextBox142.250]</td>
+            <td>[CheckBox342]</td>
+
+        </tr>
+        <tr>
+            <td>Review and Verify all secured, provided for creditors, are being paid as provided</td>
+            <td>[CheckBox143]</td>
+            <td>[CheckBox243]</td>
+            <td>[TextBox143.250]</td>
+            <td>[CheckBox343]</td>
+
+        </tr>
+        <tr>
+            <td>Review interest rate for vehicle or other secured claims. Lower interest rate of plan or claim to be used</td>
+            <td>[CheckBox145]</td>
+            <td>[CheckBox245]</td>
+            <td>[TextBox145.250]</td>
+            <td>[CheckBox345]</td>
+
+        </tr>
+        <tr>
+            <td>Review Interest Recalc and update interest due if underpaid. <img border="0" style="cursor:pointer" src="images/moreinfo.gif" width="15" height="15" title="If we have overpaid interest, email Ann to reallocate overage of interest paid to principal paid"/></td>
+            <td>[CheckBox146]</td>
+            <td>[CheckBox246]</td>
+            <td>[TextBox146.250]</td>
+            <td>[CheckBox346]</td>
+
+        </tr>
+        <tr>
+            <td>Mortgage Claims: Verify the arrears claim is filed correctly</td>
+            <td>[CheckBox147]</td>
+            <td>[CheckBox247]</td>
+            <td>[TextBox147.250]</td>
+            <td>[CheckBox347]</td>
+
+        </tr>
+        <tr>
+            <td>Do we have a 'Hold Money' claim? <img border="0" style="cursor:pointer" src="images/moreinfo.gif" width="15" height="15" title="Review for bad addresses for creditor and if we were unable to locate, those held funds must be sent to court as unclaimed funds. Remove reserve, and send message to Ann to pre-write money to BK Court. Update Claim Comment to: unclaimed funds to court"/></td>
+            <td>[CheckBox149]</td>
+            <td>[CheckBox249]</td>
+            <td>[TextBox149.250]</td>
+            <td>[CheckBox349]</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-bordered table-striped">
+    <thead >
+        <tr style="background-color: #229633;">
+            <th colspan="5" style="text-align:center;">Feasibility Review</th>
+            
+        </tr>
+        <tr style="background-color: #909090;">
+            <td>
+                Item to Verify
+            </td>
+            <td>Verified</td>
+            <td>Out of Compliance</td>
+            <td>Comments</td>
+            <td>N/A</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Auditor: Perform a Feasibility review of the case and verify if the plan is still feasible. If plan is not feasible, indicate in the items needing addressing at the end for CA to address this issue</td>
+            <td>[CheckBox150]</td>
+            <td>[CheckBox250]</td>
+            <td>[TextBox150.250]</td>
+            <td>[CheckBox350]</td>
+
+            
+        </tr>
+    </tbody>
+</table>
+</section>
+
+</div>
