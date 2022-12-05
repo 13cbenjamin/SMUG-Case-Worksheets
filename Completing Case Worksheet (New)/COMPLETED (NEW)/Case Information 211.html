@@ -1,0 +1,109 @@
+<div class="container" style="padding-top: 2em">
+    <section id="table">
+        <table class="table table-striped table-bordered">
+            <thead style="background-color: #121259;">
+                <tr>
+                    <td colspan="4" style="font-size: medium;text-align: center; color: whitesmoke;">Case Information</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Case Number:</td>
+                    <td>{vwcrMainCase.DisplayCaseNumber}</td>
+                    <td>Date / User</td>
+                    <td><b>|:ShortDate:| | |:UserName:|</b></td>
+                </tr>
+                <tr>
+                    <td>Debtor 1:</td>
+                    <td>{vwCRMainCase.Deb1LongName}</td>
+                    <td>Debtor 2: </td>
+                    <td>{vwCRMainCase.Deb2LongName}</td>
+                </tr>
+                <tr>
+                    <td>Attorney: </td>
+                    <td>{vwCRMainCase.AttyLongName}</td>
+                    <td>Division: </td>
+                    <td>{vwCRMainCase.DivisionDescription}</td>
+                </tr>
+                <tr>
+                    <td>Months Since Filing: </td>
+                    <td>{vwCRMainCase.DATEDIFF(MONTH, PetitionFiledDate, GETDATE())}&nbsp;Month(s)</td>
+                    <td>Months Since Confirmation</td>
+                    <td>|~SELECT CASE vwCRMainCase.ConfirmationDate WHEN '01/01/1900' THEN NULL ELSE CONVERT(VARCHAR, DATEDIFF(MONTH, ConfirmationDate, GETDATE())) + ' Month(s)' END AS FieldData FROM vwCRMainCase WHERE vwCRMainCase.CaseNumber = '{CaseNumber}'~|</td>
+                </tr>
+                <tr>
+                    <td>ACP:</td>
+                    <td>{vwCRMainCase.ApplicableCommitmentPeriod} Months</td>
+                    <td>Months Remaining:</td>
+                    <td>{vwCRMainCase.MonthsRemainingInPlan}</td>
+                </tr>
+                <tr>
+                    <td>Total Paid In:</td>
+                    <td>{vwCRMainCase.'$' + CONVERT(VARCHAR(12), TotalPaidIn, 1)}</td>
+                    <td>Total Disbursed:</td>
+                    <td>{vwCRMainCase.'$' + CONVERT(VARCHAR(12), TotalDisbursed, 1)}</td>
+                </tr>
+                <tr>
+                    <td>Pending Litigation: </td>
+                    <td>|~SELECT CASE WHEN (Select Flag from vwCRCaseFlags where CaseID = {CaseID} and FlagCodesID = 1013) LIKE '%Y%' then 'YES' else 'NO' end~|</td>
+                    <td>1-36, 37 On: </td>
+                    <td>|~SELECT CASE WHEN (Select Flag from vwCRCaseFlags where CaseID = {CaseID} and FlagCodesID = 1026) LIKE '%Y%' then 'YES' else 'NO' end~|</td>
+                </tr>
+                <tr>
+                    <td>Plan Type: </td>
+                    <td>|~SELECT Case when (Select UnsecuredPercent from vwCRMainCase where CaseID = {CaseID}) = 100 then '<b>100% plan</b>' else '<b>Not 100% Plan</b>' END~|</td>
+                    <td>Unsecured Percent</td>
+                    <td>{vwCRMainCase.UnsecuredPercent}%</td>
+                </tr>
+                <tr>
+                    <td>Current Close Code</td>
+                    <td>{vwCRMainCase.CloseCodeDescription}</td>
+                    <td>Closing Order Date</td>
+                    <td>{vwCRMainCase.ClosedDate@}</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="margin-left: auto; margin-right: auto; width:100%;"><div style="background-color:#FFFFFF; padding:1em;"> 
+                        <p style="margin-bottom:0.2em; font-size: medium;"><b>RUN A FORM FROM THE CASE</b></p> 
+                            <select id="mylist" onchange="WCopenWindow('PleaseWaitStatic.aspx?prog=setForm.aspx?prog=FormsList|cn=' + '|:CaseNumber:|' + '|id=' + this.value,'UserForms',',scrollbars,resizable','')";> 
+                                <option value="">Select a Form</option> 
+                                <option value ="339">BAPCPA Doc's Close to Completion</option>
+                                <option value ="340">BAPCPA Doc's Completed</option>
+                                <option value ="475">Certificate of Mailing</option>
+                                <option value ="338">Deficiency Notice</option>
+                                <option value ="274">DSO Final Notice State Agency Discharged Case</option>
+                                <option value ="273">DSO Final Notice to Claim Holder Discharged Case</option>
+                                <option value ="234">DSO Letter Initial Claim Holder</option>
+                                <option value ="231">DSO Letter Initial State Agency Case</option>
+                                <option value ="220">Letter - Certificate of Completion</option>
+                                <option value ="417">Letter - Congratulations - Case Paid in Full</option>
+                                <option value ="385">Letter - Continued 341 Meeting of Creditors</option>
+                                <option value ="186">Letter - Continued Dismissal</option>
+                                <option value ="543">Letter - Debtor - Completed Case - Ongoing Mortgage</option>
+                                <option value ="545">Letter - Debtor - Completed Case - Surviving Claim</option>
+                                <option value ="346">Letter - Debtor - Delinquency - Direct Pay</option>
+                                <option value ="347">Letter - Debtor - Delinquency - Employed But Not Receiving Payments</option>
+                                <option value ="522">Letter - Debtor - Insufficient Plan Payment</option>
+                                <option value ="194">Letter - Debtor - No Personal Checks</option>
+                                <option value ="445">Letter - Debtor - NSF</option>
+                                <option value ="409">Letter - Debtor - Payment Received at Incorrect Address</option>
+                                <option value ="386">Letter - Debtor - Required Documents for a Debtor in Business</option>
+                                <option value ="235">Letter - Dismissal Conversion</option>
+                                <option value ="468">Letter - Employer - Payment Received at Incorrect Address</option>
+                                <option value ="241">Letter to Creditor Manual Old 27</option>
+                                <option value ="533">Notice of Final Cure Payment</option>
+                                <option value ="531">Order Confirming Non-standard Plan  </option>
+                                <option value ="348">Recommendation for Order Confirming Chapter 13 Plan</option>
+                                <option value ="431">Request Terminate Directive - Direct Pay</option>
+                                <option value ="429">Request Terminate Directive - Employer</option>
+                                <option value ="508">Wage Directive - Direct Pay</option>
+                                <option value ="510">Wage Directive - Direct Pay With Unemployment Letter</option>
+                                <option value ="512">Wage Directive - Employer Payroll Deduction</option>
+                                <option value ="31">Print Inquiry</option>
+                                <option value ="28">Print Inquiry - All - No Notes</option>
+                            </select> 
+                        </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</div>

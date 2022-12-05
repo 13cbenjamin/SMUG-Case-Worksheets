@@ -1,0 +1,813 @@
+<div style="background-color:#6FFFE9; width: 100%; padding: 0 0 10 0;">
+<div id="header_142_1" style="background-color:#3A506B; height: 28px; width: 100%;">
+<ul style="margin: 10; padding: 0; list-style-type: none; color:#FFFFFF;">
+    <li style="display: inline; float: left; font-size: 150%; font-weight: bold;"><a id="imageDivLink_142" href="javascript:toggle5('contentDivImg_142', 'imageDivLink_142');"><img style="padding: 2 0 0 0;" src="images/tac_minus.png"></a></li>
+    <li style="display: inline; float: left; font-size: 150%; font-weight: bold; padding: 0 0 0 10;">Case Review</li>
+</ul> 
+</div> 
+<div id="contentDivImg_142" style="display: block; padding: 0 10 0 15;"> 
+
+<div style="float:left; padding: 10 15 0 10;">
+<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:auto;">  
+    <tbody> 
+        <tr> 
+            <td colspan="2"><strong>Plan Terms</strong></td> 
+            <td>Satisfied</td> 
+            <td>&nbsp;&nbsp;&nbsp;N/A&nbsp;&nbsp;&nbsp;</td> 
+            <td>Old Value</td> 
+            <td>New Value</td> 
+            <td>Comments</td> 
+        </tr> 
+        <tr> 
+            <td>Base Amount:</td> 
+            <td align="right">{vwCRMainCase.'$' + CONVERT(VARCHAR(12), PlanBase, 1)}</td> 
+            <td align="center">[CheckBox1]</td> 
+            <td align="center">[CheckBox2]</td> 
+            <td style="width:120px;" align="left">[TextBox^Money^1.120]</td> 
+            <td style="width:120px;" align="left">[TextBox^Money^2.120]</td> 
+            <td style="width:440px;">[TextBox3.440]</td> 
+        </tr> 
+        <tr> 
+            <td>Unsecured Percent:</td> 
+            <td align="right">{vwCRMainCase.CONVERT(DECIMAL(10,2),UnsecuredPercent)}%</td> 
+            <td align="center">[CheckBox3]</td> 
+            <td align="center">[CheckBox4]</td> 
+            <td align="left">[TextBox4.120]</td> 
+            <td align="left">[TextBox5.120]</td> 
+            <td style="width:440px;">[TextBox6.440]</td> 
+        </tr> 
+        <tr> 
+            <td colspan="2"></td> 
+            <td>Satisfied</td> 
+            <td>&nbsp;&nbsp;&nbsp;N/A&nbsp;&nbsp;&nbsp;</td> 
+            <td colspan="3">Comments</td> 
+        </tr> 
+        <tr> 
+            <td>ACP:</td> 
+            <td align="right"><span style="color:#000000;font-size:12;"><strong>{vwCRMainCase.ApplicableCommitmentPeriod} Months</strong></span></td> 
+            <td align="center">[CheckBox5]</td> 
+            <td align="center">[CheckBox6]</td> 
+            <td colspan="3">[TextBox7.700]</td> 
+        </tr> 
+        <tr> 
+            <td>Equity:</td> 
+            <td align="right" style="width:100px;"><span style="color:#000000;font-size:12;"><strong>[~udfGetCaseAmount({CaseID}, 3)$~]</strong></span></td> 
+            <td align="center">[CheckBox7]</td> 
+            <td align="center">[CheckBox8]</td> 
+            <td colspan="3">[TextBox8.700]</td> 
+        </tr> 
+        <tr> 
+            <td>IV.E.:</td> 
+            <td align="right"><span style="color:#000000;font-size:12;"><strong>[~udfGetCaseAmount({CaseID}, 2)$~]</strong></span></td> 
+            <td align="center">[CheckBox9]</td> 
+            <td align="center">[CheckBox10]</td> 
+            <td colspan="3">[TextBox9.700]</td> 
+        </tr> 
+        <tr> 
+            <td>Unsecured Pool:</td> 
+            <td align="right"><span style="color:#000000;font-size:12;"><strong>{vwCRMainCase.'$' + CONVERT(VARCHAR(12), UnsecuredPool, 1)}</strong></span></td> 
+            <td align="center">[CheckBox11]</td> 
+            <td align="center">[CheckBox12]</td> 
+            <td colspan="3">[TextBox10.700]</td> 
+        </tr> 
+        <tr> 
+            <td>Lanning Relief</td> 
+            <td align="right"><span style="color:#000000;font-size:12;"><strong><span style="color:#000000;font-size:12;">&nbsp;|~SELECT ISNULL(dbo.udfGetCaseFlag({CaseID}, 1027),'N') as FieldData~|&nbsp;</span></strong></td> 
+            <td align="center">[CheckBox13]</td> 
+            <td align="center">[CheckBox14]</td> 
+            <td colspan="3">[TextBox11.700]</td> 
+        </tr> 
+        <tr> 
+            <td colspan="2">Payment History Verified?</td> 
+            <td align="center">[CheckBox15]</td> 
+            <td align="center">[CheckBox16]</td> 
+            <td colspan="3">[TextBox12.700]</td> 
+        </tr> 
+        <tr> 
+            <td colspan="2">Pending Motions?</td> 
+            <td align="center">[CheckBox17]</td> 
+            <td align="center">[CheckBox18]</td> 
+            <td colspan="3">[TextBox13.700]</td> 
+        </tr> 
+        <tr> 
+            <td colspan="2">Reviewed Schedule B & C for PI Claim?</td> 
+            <td align="center">[CheckBox19]</td> 
+            <td align="center">[CheckBox20]</td> 
+            <td colspan="3">[TextBox14.700]</td> 
+        </tr> 
+        <tr> 
+            <td colspan="2">Issued Rescinding Order?</td> 
+            <td align="center">[CheckBox21]</td> 
+            <td align="center">[CheckBox22]</td> 
+            <td colspan="3">[TextBox15.700]</td> 
+        </tr> 
+        <tr> 
+            <td>Debtor Defaults:</td> 
+            <td align="right">|~SELECT CASE WHEN COUNT(tblDebtorDefaults.DebtorDefaultID) = 0 THEN '<span style="color:#000000;font-size:12;"><strong>N/A</strong></span>' ELSE '<span style="color:#000000;font-size:12;"><strong>See Below</strong></span>' END AS FieldData FROM tblDebtorDefaults INNER JOIN tblCaseData ON tblDebtorDefaults.CaseID = tblCaseData.CaseID WHERE tblCaseData.CaseID = {CaseID} AND tblDebtorDefaults.DateOfDefault > tblCaseData.ConfirmationDate AND tblCaseData.ConfirmationDate > '1/1/1900'~|</td> 
+            <td align="center">[CheckBox23]</td> 
+            <td align="center">[CheckBox24]</td> 
+            <td colspan="3">[TextBox16.700]</td> 
+        </tr> 
+        <tr> 
+            <td>Plan Modifications:</td> 
+            <td align="right">|~SELECT CASE WHEN COUNT(tblPlanModifications.PlanModificationID) = 0 THEN '<span style="color:#000000;font-size:12;"><strong>N/A</strong></span>' ELSE '<span style="color:#000000;font-size:12;"><strong>See Below</strong></span>' END AS FieldData FROM tblPlanModifications INNER JOIN tblCaseData ON tblPlanModifications.CaseID = tblCaseData.CaseID WHERE tblCaseData.CaseID = {CaseID} AND tblPlanModifications.DateOfModification > tblCaseData.ConfirmationDate AND tblCaseData.ConfirmationDate > '1/1/1900' AND tblPlanModifications.ThisIsAMotion = 0~|</td> 
+            <td align="center">[CheckBox25]</td> 
+            <td align="center">[CheckBox26]</td> 
+            <td colspan="3">[TextBox17.700]</td> 
+        </tr> 
+        <tr> 
+            <td colspan="2"><strong>Debtor Refund</strong></td> 
+            <td align="center">Yes</td> 
+            <td align="center">&nbsp;&nbsp;&nbsp;N/A&nbsp;&nbsp;&nbsp;</td> 
+            <td colspan="3">Comments</td> 
+        </tr> 
+        <tr> 
+            <td>Balance on Hand:</td> 
+            <td align="right">{vwCRMainCase.'$' + CONVERT(VARCHAR(12), BalanceOnHand, 1)}</td> 
+            <td colspan="2"></td> 
+            <td colspan="3">[TextBox18.700]</td> 
+        </tr> 
+        <tr> 
+            <td>Hold Temporary:</td> 
+            <td align="right">{vwCRMainCase.'$' + CONVERT(VARCHAR(12), HoldTemporary, 1)}</td> 
+            <td colspan="2"></td> 
+            <td colspan="3">[TextBox19.700]</td> 
+        </tr> 
+        <tr> 
+            <td>Hold Permanent:</td> 
+            <td align="right">{vwCRMainCase.'$' + CONVERT(VARCHAR(12), HoldPermanent, 1)}</td> 
+            <td colspan="2"></td> 
+            <td colspan="3">[TextBox20.700]</td> 
+        </tr> 
+        <tr> 
+            <td colspan="2">Balance on Hand Verified (Receipts)?</td> 
+            <td align="center">[CheckBox27]</td> 
+            <td align="center">[CheckBox28]</td> 
+            <td colspan="3">[TextBox21.700]</td> 
+        </tr> 
+        <tr> 
+            <td colspan="2">Refund Due to Debtor Attorney (Per Plan)?</td> 
+            <td align="center">[CheckBox29]</td> 
+            <td align="center">[CheckBox30]</td> 
+            <td colspan="3">[TextBox22.700]</td> 
+        </tr> 
+        <tr> 
+            <td colspan="2">Close Code Updated?</td> 
+            <td align="center">[CheckBox31]</td> 
+            <td align="center">[CheckBox32]</td> 
+            <td colspan="3">[TextBox23.700]</td> 
+        </tr> 
+        <tr> 
+            <td colspan="2"><strong>Notice of Final Cure</strong></td> 
+            <td align="center">Yes</td> 
+            <td align="center">&nbsp;&nbsp;&nbsp;N/A&nbsp;&nbsp;&nbsp;</td> 
+            <td colspan="3">Comments</td> 
+        </tr> 
+        <tr> 
+            <td colspan="2">Notice of Final Cure(s) Mailed:</td> 
+            <td align="center">[CheckBox33]</td> 
+            <td align="center">[CheckBox34]</td> 
+            <td colspan="3">[TextBox24.700]</td> 
+        </tr> 
+        <tr> 
+            <td colspan="2">Response(s) Received:</td> 
+            <td align="center">[CheckBox35]</td> 
+            <td align="center">[CheckBox36]</td> 
+            <td colspan="3">[TextBox25.700]</td> 
+        </tr> 
+        <tr> 
+            <td colspan="2">Letter Sent to Debtor to Remit Direct Payment:</td> 
+            <td align="center">[CheckBox37]</td> 
+            <td align="center">[CheckBox38]</td> 
+            <td colspan="3">[TextBox26.700]</td> 
+        </tr> 
+        <tr> 
+            <td colspan=7><span style="color:#000000;font-size:12;"><strong>Comments:</strong></span></br>[CommentBox1.1084]</td> 
+        </tr> 
+    </tbody> 
+</table> 
+<br/>
+<span style="color:#000000;font-size:12;"><strong>Debtor Defaults</strong></span> 
+|~
+SELECT 
+'<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:1025px;"> 
+    <tbody> 
+        <tr> 
+            <td style="width:125px;">Date of Default</td> 
+            <td style="width:900px;">Comment</td> 
+        </tr>' as FieldData, '1/1/1900' AS DateOfDefault 
+UNION ALL 
+
+SELECT 
+ISNULL(t.FieldData, '<tr> 
+                        <td>&nbsp;</td> 
+                        <td>&nbsp;</td>
+                    </tr>' 
+      ) AS FieldData, ISNULL(t.DateOfDefault, '1/2/1900') AS DateOfDefault  
+FROM (SELECT 1 AS adummy) a 
+LEFT JOIN ( 
+    SELECT 
+        '<tr valign="top">' + 
+            '<td style="width:125px;">' + CONVERT(VARCHAR, tblDebtorDefaults.DateOfDefault, 101) + '</td>' + 
+            '<td style="width:900px;">' + CONVERT(VARCHAR(MAX), tblDebtorDefaults.Comment) + '</td>' + 
+        '</tr><tbody>' as FieldData, DateOfDefault 
+    FROM tblDebtorDefaults 
+    WHERE tblDebtorDefaults.CaseID = {CaseID} ) t ON 1=1 
+
+UNION ALL 
+
+SELECT '</table>' AS FieldData, '9/9/9999' AS DateOfDefault 
+ORDER BY DateOfDefault  
+~|
+<br/>
+<span style="color:#000000;font-size:12;"><strong>Plan Modifications</strong></span> 
+|~
+SELECT 
+'<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:1025px;"> 
+    <tbody> 
+        <tr> 
+            <td style="width:125px;">Date of Modification</td> 
+            <td style="width:775px;">Comment</td> 
+            <td style="width:125px;">Date of Resolution</td> 
+        </tr>' as FieldData, '1/1/1900' AS DateOfModification 
+UNION ALL 
+
+SELECT 
+ISNULL(t.FieldData, '<tr> 
+                        <td>&nbsp;</td> 
+                        <td>&nbsp;</td> 
+                        <td>&nbsp;</td> 
+                    </tr>' 
+      ) AS FieldData, ISNULL(t.DateOfModification, '1/2/1900') AS DateOfModification  
+FROM (SELECT 1 AS adummy) a 
+LEFT JOIN ( 
+SELECT 
+'<tr valign="top">' + 
+        '<td style="width:125px;">' + CONVERT(VARCHAR, tblPlanModifications.DateOfModification, 101) + '</td>' + 
+        '<td style="width:775px;">' + REPLACE(REPLACE(CONVERT(VARCHAR(MAX), tblPlanModifications.Comment), '[', '&#91;'), ']', '&#93;') + '</td>' + 
+        '<td style="width:125px;">{tblPlanModifications.DateOfResolution@}</td>' + 
+    '</tr></tbody>' as FieldData, DateOfModification 
+    FROM tblPlanModifications 
+    WHERE tblPlanModifications.CaseID = {CaseID} ) t ON 1=1 
+
+UNION ALL 
+
+SELECT '</table>' AS FieldData, '9/9/9999' AS DateOfModification 
+ORDER BY DateOfModification  
+~|
+<br/>
+<span style="color:#000000;font-size:12;"><strong>Outstanding Checks</strong></span> 
+|~
+SELECT 
+'<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:1025px;"> 
+    <tbody> 
+        <tr> 
+            <td style="width:125px;">Date</td> 
+            <td align="center" style="width:50px;">Payee</td> 
+            <td style="width:250px;">Payee Name</td> 
+            <td align="center" style="width:100px;">Check / Source</td>   
+            <td style="width:400px;">Description</td> 
+            <td align="right" style="width:100px;">Disbursements</td> 
+        </tr>' as FieldData, '12/31/2099' AS CheckDate, 999999 as DisbursementID  
+UNION ALL 
+
+SELECT 
+ISNULL(t.FieldData, '<tr> 
+                        <td>&nbsp;</td> 
+                        <td>&nbsp;</td> 
+                        <td>&nbsp;</td> 
+                        <td>&nbsp;</td> 
+                        <td>&nbsp;</td> 
+                        <td>&nbsp;</td> 
+                    </tr>' 
+      ) AS FieldData, ISNULL(t.CheckDate, '12/30/2099') AS CheckDate, ISNULL(t.DisbursementID, 999998) AS DisbursementID  
+FROM (SELECT 1 AS adummy) a 
+LEFT JOIN ( 
+    SELECT 
+    '<tr valign="top">' + 
+        '<td style="width:125px;">' + '<span style="color:#000000;font-size:12;"><strong>' +  CASE WHEN tblCheck.CheckDate = '1900-01-01 00:00:00.000' THEN '' ELSE CONVERT(VARCHAR,tblCheck.CheckDate,101) END + '</strong></span></td>' + 
+        '<td align="center" style="width:50px;">' + CONVERT(VARCHAR, vwCRDisbursementHistory.ClaimID) + '</td>' + 
+        '<td style="width:250px;">' +  vwCRDisbursementHistory.LongName + '</td>' + 
+        '<td align="center" style="width:100px;border: 1px solid #999999;" ' + CASE WHEN tblCheck.CheckStatusID = 1 THEN 'bgcolor=FFFF84' ELSE 'bgcolor=E7E7E7' END  + '>' +  CASE WHEN tblCheck.CheckNumber = 0 THEN 'Pending' ELSE CONVERT(VARCHAR,tblCheck.CheckNumber) END + '</td>' + 
+        '<td style="width:425px;">' +  vwCRDisbursementHistory.PostingCodeDescription + '</td>' + 
+        '<td align="right" style="width:100px;">'+ '$' + CONVERT(VARCHAR, CAST(vwCRDisbursementHistory.DisbursementAmount AS money), 10) + '</td>' + 
+    '</tr></tbody>' as FieldData, tblCheck.CheckDate, vwCRDisbursementHistory.DisbursementID 
+    FROM tblCheck INNER JOIN 
+    vwCRDisbursementHistory ON tblCheck.CheckID = vwCRDisbursementHistory.CheckID  
+    WHERE vwCRDisbursementHistory.CaseID = {CaseID} 
+    AND tblCheck.CheckStatusID = 1 ) t ON 1=1 
+
+UNION ALL 
+
+SELECT '</table>' AS FieldData, '1/1/1899' AS CheckDate, 0 AS DisbursementID 
+ORDER BY CheckDate DESC, DisbursementID DESC 
+~| 
+</div> 
+<div style="float:left; padding: 10 0 0 0;"> 
+|~
+SELECT ISNULL(('<span style="color:#000000;font-size:12;"><strong><a href="' + (SELECT TOP 1 CaseCourtLink as FieldData from tblCourtDocument, tblCaseData 
+                                                                                WHERE tblCaseData.CaseID = '{CaseID}' 
+                                                                                AND tblCourtDocument.CaseNumber = tblCaseData.CaseNumber ) + '"target="_blank"> ECF Docket</a></strong></span>'),'') AS FieldData~|
+<br/><br/>
+|~
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Closing') THEN 
+'<span style="color:#000000;font-size:12;"><strong>Closing Documents</strong></span>' + 
+'<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:550px;"> 
+    <tbody> 
+        <tr> 
+            <td align="center" style="width:25px;">PDF</td> 
+            <td align="center" style="width:50px;">Court Doc.</td> 
+            <td style="width:75px;">Date Received</td> 
+            <td colspan="2" style="width:400px;">Document Type</td> 
+        </tr>' END as FieldData, '9/9/9999' AS CreatedDate 
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Closing') THEN 
+        '<tr valign="top">' + 
+            '<td align="center" style="width:25px;">' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+            '<td align="center" style="width:50px;">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+            '<td style="width:75px;">' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+            '<td>' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + ISNULL(REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(DocketText, 0,CHARINDEX('filed by', DocketText)))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"',''), '') + '</span></td>' + 
+        '</tr> 
+    </tbody>' END as FieldData, CreatedDate 
+FROM tblDocumentDetail INNER JOIN 
+tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+AND tblDocumentFormSubType.FormSubTypeAbbr = 'Closing' 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Closing') THEN 
+'</table><br/>' END AS FieldData, '1/2/1900' AS CreatedDate 
+ORDER BY CreatedDate DESC  
+~|
+|~
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                         FROM tblDocumentDetail INNER JOIN 
+                         tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                         tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                         tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                         WHERE tblCaseData.CaseID = {CaseID} 
+                         AND (tblDocumentFormType.FormTypeAbbr = '4100N-NFCP' 
+                               OR tblDocumentFormType.FormTypeAbbr = 'NoticeFinalCureResponse')) THEN 
+'<span style="color:#000000;font-size:12;"><strong>Notice of Final Cure</strong></span>' + 
+'<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:550px;"> 
+    <tbody> 
+        <tr> 
+            <td align="center" style="width:25px;">PDF</td> 
+            <td align="center" style="width:50px;">Court Doc.</td> 
+            <td style="width:75px;">Date Received</td> 
+            <td colspan="2" style="width:400px;">Document Type</td> 
+        </tr>' END as FieldData, '9/9/9999' AS CreatedDate 
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                         FROM tblDocumentDetail INNER JOIN 
+                         tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                         tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                         tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                         WHERE tblCaseData.CaseID = {CaseID} 
+                         AND (tblDocumentFormType.FormTypeAbbr = '4100N-NFCP'
+                               OR tblDocumentFormType.FormTypeAbbr = 'NoticeFinalCureResponse')) THEN 
+        '<tr valign="top">' + 
+            '<td align="center" style="width:25px;">' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+            '<td align="center" style="width:50px;">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+            '<td style="width:75px;">' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+            '<td>' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + ISNULL(REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(DocketText, 0,CHARINDEX('filed by', DocketText)))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"',''), '') + '</span></td>' + 
+        '</tr> 
+    </tbody>' END as FieldData, CreatedDate 
+FROM tblDocumentDetail INNER JOIN 
+tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+AND (tblDocumentFormType.FormTypeAbbr = '4100N-NFCP'
+     OR tblDocumentFormType.FormTypeAbbr = 'NoticeFinalCureResponse') 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND (tblDocumentFormType.FormTypeAbbr = '4100N-NFCP'
+                              OR tblDocumentFormType.FormTypeAbbr = 'NoticeFinalCureResponse')) THEN 
+'</table><br/>' END AS FieldData, '1/2/1900' AS CreatedDate 
+ORDER BY CreatedDate DESC  
+~|
+|~
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Dismissal') THEN 
+'<span style="color:#000000;font-size:12;"><strong>Dismissal Documents</strong></span>' + 
+'<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:550px;"> 
+    <tbody> 
+        <tr> 
+            <td align="center" style="width:25px;">PDF</td> 
+            <td align="center" style="width:50px;">Court Doc.</td> 
+            <td style="width:75px;">Date Received</td> 
+            <td colspan="2" style="width:400px;">Document Type</td> 
+        </tr>' END as FieldData, '9/9/9999' AS CreatedDate 
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Dismissal') THEN 
+        '<tr valign="top">' + 
+            '<td align="center" style="width:25px;">' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+            '<td align="center" style="width:50px;">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+            '<td style="width:75px;">' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+            '<td>' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + ISNULL(REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(DocketText, 0,CHARINDEX('filed by', DocketText)))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"',''), '') + '</span></td>' + 
+        '</tr> 
+    </tbody>' END as FieldData, CreatedDate 
+FROM tblDocumentDetail INNER JOIN 
+tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+AND tblDocumentFormSubType.FormSubTypeAbbr = 'Dismissal' 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Dismissal') THEN 
+'</table><br/>' END AS FieldData, '1/2/1900' AS CreatedDate 
+ORDER BY CreatedDate DESC  
+~||~
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Dismissal') THEN 
+'<span style="color:#000000;font-size:12;"><strong>Closing Documents</strong></span>' + 
+'<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:550px;"> 
+    <tbody> 
+        <tr> 
+            <td align="center" style="width:25px;">PDF</td> 
+            <td align="center" style="width:50px;">Court Doc.</td> 
+            <td style="width:75px;">Date Received</td> 
+            <td colspan="2" style="width:400px;">Document Type</td> 
+        </tr>' END as FieldData, '9/9/9999' AS CreatedDate 
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Dismissal') THEN 
+        '<tr valign="top">' + 
+            '<td align="center" style="width:25px;">' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+            '<td align="center" style="width:50px;">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+            '<td style="width:75px;">' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+            '<td>' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + ISNULL(REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(DocketText, 0,CHARINDEX('filed by', DocketText)))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"',''), '') + '</span></td>' + 
+        '</tr> 
+    </tbody>' END as FieldData, CreatedDate 
+FROM tblDocumentDetail INNER JOIN 
+tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+AND tblDocumentFormSubType.FormSubTypeAbbr = 'Dismissal' 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Dismissal') THEN 
+'</table><br/>' END AS FieldData, '1/2/1900' AS CreatedDate 
+ORDER BY CreatedDate DESC  
+~|
+|~
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Conversion') THEN 
+'<span style="color:#000000;font-size:12;"><strong>Dismissal Documents</strong></span>' + 
+'<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:550px;"> 
+    <tbody> 
+        <tr> 
+            <td align="center" style="width:25px;">PDF</td> 
+            <td align="center" style="width:50px;">Court Doc.</td> 
+            <td style="width:75px;">Date Received</td> 
+            <td colspan="2" style="width:400px;">Document Type</td> 
+        </tr>' END as FieldData, '9/9/9999' AS CreatedDate 
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Conversion') THEN 
+        '<tr valign="top">' + 
+            '<td align="center" style="width:25px;">' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+            '<td align="center" style="width:50px;">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+            '<td style="width:75px;">' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+            '<td>' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + ISNULL(REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(DocketText, 0,CHARINDEX('filed by', DocketText)))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"',''), '') + '</span></td>' + 
+        '</tr> 
+    </tbody>' END as FieldData, CreatedDate 
+FROM tblDocumentDetail INNER JOIN 
+tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+AND tblDocumentFormSubType.FormSubTypeAbbr = 'Conversion' 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Conversion') THEN 
+'</table><br/>' END AS FieldData, '1/2/1900' AS CreatedDate 
+ORDER BY CreatedDate DESC  
+~||~
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Conversion') THEN 
+'<span style="color:#000000;font-size:12;"><strong>Conversion Documents</strong></span>' + 
+'<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:550px;"> 
+    <tbody> 
+        <tr> 
+            <td align="center" style="width:25px;">PDF</td> 
+            <td align="center" style="width:50px;">Court Doc.</td> 
+            <td style="width:75px;">Date Received</td> 
+            <td colspan="2" style="width:400px;">Document Type</td> 
+        </tr>' END as FieldData, '9/9/9999' AS CreatedDate 
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Conversion') THEN 
+        '<tr valign="top">' + 
+            '<td align="center" style="width:25px;">' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+            '<td align="center" style="width:50px;">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+            '<td style="width:75px;">' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+            '<td>' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + ISNULL(REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(DocketText, 0,CHARINDEX('filed by', DocketText)))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"',''), '') + '</span></td>' + 
+        '</tr> 
+    </tbody>' END as FieldData, CreatedDate 
+FROM tblDocumentDetail INNER JOIN 
+tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+AND tblDocumentFormSubType.FormSubTypeAbbr = 'Conversion' 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Conversion') THEN 
+'</table><br/>' END AS FieldData, '1/2/1900' AS CreatedDate 
+ORDER BY CreatedDate DESC  
+~|
+|~
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Petitions and Schedules') THEN 
+'<span style="color:#000000;font-size:12;"><strong>Petition Schedules and Statements</strong></span>' + 
+'<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:550px;"> 
+    <tbody> 
+        <tr> 
+            <td align="center" style="width:25px;">PDF</td> 
+            <td align="center" style="width:50px;">Court Doc.</td> 
+            <td style="width:75px;">Date Received</td> 
+            <td colspan="2" style="width:400px;">Document Type</td> 
+        </tr>' END as FieldData, '9/9/9999' AS CreatedDate 
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Petitions and Schedules') THEN 
+        '<tr valign="top">' + 
+            '<td align="center" style="width:25px;">' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+            '<td align="center" style="width:50px;">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+            '<td style="width:75px;">' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+            '<td>' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + ISNULL(REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(DocketText, 0,CHARINDEX('filed by', DocketText)))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"',''), '') + '</span></td>' + 
+        '</tr> 
+    </tbody>' END as FieldData, CreatedDate 
+FROM tblDocumentDetail INNER JOIN 
+tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+AND tblDocumentFormSubType.FormSubTypeAbbr = 'Petitions and Schedules' 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Petitions and Schedules') THEN 
+'</table><br/>' END AS FieldData, '1/2/1900' AS CreatedDate 
+ORDER BY CreatedDate DESC  
+~|
+|~
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Plan') THEN 
+'<span style="color:#000000;font-size:12;"><strong>Plan</strong></span>' + 
+'<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:550px;"> 
+    <tbody> 
+        <tr> 
+            <td align="center" style="width:25px;">PDF</td> 
+            <td align="center" style="width:50px;">Court Doc.</td> 
+            <td style="width:75px;">Date Received</td> 
+            <td colspan="2" style="width:400px;">Document Type</td> 
+        </tr>' END as FieldData, '9/9/9999' AS CreatedDate 
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Plan') THEN 
+        '<tr valign="top">' + 
+            '<td align="center" style="width:25px;">' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+            '<td align="center" style="width:50px;">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+            '<td style="width:75px;">' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+            '<td>' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + ISNULL(REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(DocketText, 0,CHARINDEX('filed by', DocketText)))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"',''), '') + '</span></td>' + 
+        '</tr> 
+    </tbody>' END as FieldData, CreatedDate 
+FROM tblDocumentDetail INNER JOIN 
+tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+AND tblDocumentFormSubType.FormSubTypeAbbr = 'Plan' 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Plan') THEN 
+'</table><br/>' END AS FieldData, '1/2/1900' AS CreatedDate 
+ORDER BY CreatedDate DESC  
+~|
+|~
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Wage Directives') THEN 
+'<span style="color:#000000;font-size:12;"><strong>Wage Directives</strong></span>' + 
+'<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:550px;"> 
+    <tbody> 
+        <tr> 
+            <td align="center" style="width:25px;">PDF</td> 
+            <td align="center" style="width:50px;">Court Doc.</td> 
+            <td style="width:75px;">Date Received</td> 
+            <td colspan="2" style="width:400px;">Document Type</td> 
+        </tr>' END as FieldData, '9/9/9999' AS CreatedDate 
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Wage Directives') THEN 
+        '<tr valign="top">' + 
+            '<td align="center" style="width:25px;">' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+            '<td align="center" style="width:50px;">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+            '<td style="width:75px;">' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+            '<td>' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + ISNULL(REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(DocketText, 0,CHARINDEX('filed by', DocketText)))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"',''), '') + '</span></td>' + 
+        '</tr> 
+    </tbody>' END as FieldData, CreatedDate 
+FROM tblDocumentDetail INNER JOIN 
+tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+AND tblDocumentFormSubType.FormSubTypeAbbr = 'Wage Directives' 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                            FROM tblDocumentDetail INNER JOIN 
+                            tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                            tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                            tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                            WHERE tblCaseData.CaseID = {CaseID} 
+                            AND tblDocumentFormSubType.FormSubTypeAbbr = 'Wage Directives') THEN 
+'</table><br/>' END AS FieldData, '1/2/1900' AS CreatedDate 
+ORDER BY CreatedDate DESC  
+~|
+<br/> 
+</div>
+<p style="clear: both;"></p> 
+</div> 
+</div>

@@ -1,0 +1,216 @@
+<div style="background-color:#6FFFE9; width: 100%; padding: 0 0 10 0;">
+    <div id="header_141_1" style="background-color:#3A506B; height: 28px; width: 100%;">
+    <ul style="margin: 10; padding: 0; list-style-type: none; color:#FFFFFF;">
+        <li style="display: inline; float: left; font-size: 150%; font-weight: bold;"><a id="imageDivLink_141" href="javascript:toggle5('contentDivImg_141', 'imageDivLink_141');"><img style="padding: 2 0 0 0;" src="images/tac_minus.png"></a></li>
+        <li style="display: inline; float: left; font-size: 150%; font-weight: bold; padding: 0 0 0 10;">Tax Data</li>
+    </ul> 
+    </div>
+    <div id="contentDivImg_141" style="display: block; padding: 0 10 0 10;">
+    <div style="float:left; padding: 15px;"> 
+    <span style="color:#000000;font-size:12;"><strong>Debtor Tax Information</strong></span> 
+    |~
+    SELECT 
+    '<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:1025px;"> 
+        <tbody> 
+            <tr valign="top"> 
+                <td>Tax Year</td> 
+                <td>Date Received</td> 
+                <td>Not Required</td> 
+                <td>AGI</td> 
+                <td>Refunds</td> 
+                <td>Liabilities</td> 
+                <td>Business Income</td> 
+                <td style="width:500px;">Notes</td> 
+            </tr>' as FieldData, '0000' AS TaxYear 
+    
+    UNION ALL 
+    
+    SELECT 
+    ISNULL(t.FieldData, '<tr> 
+            <td>&nbsp;</td> 
+            <td>&nbsp;</td> 
+            <td>&nbsp;</td> 
+            <td>&nbsp;</td> 
+            <td>&nbsp;</td> 
+            <td>&nbsp;</td> 
+            <td>&nbsp;</td> 
+            <td>&nbsp;</td> 
+        </tr>' 
+          ) AS FieldData, ISNULL(t.TaxYear, '0001') AS TaxYear 
+    FROM (SELECT 1 AS adummy) a 
+    LEFT JOIN ( 
+    SELECT 
+        '<tr valign="top">' + 
+            '<td>' + CONVERT(VARCHAR, tblTaxData.TaxYear) + '</td>' + 
+            '<td>' + CASE WHEN tblTaxData.DateReceived = '01/01/1900' THEN '' ELSE CONVERT(VARCHAR,tblTaxData.DateReceived,101) END + '</td>' + 
+            '<td align="center">' + CASE WHEN tblTaxData.NoReturnRequired = 1 THEN '<font face="Unicode"><b>&#10004;</b></font>' ELSE '&nbsp;' END + '</td>' + 
+            '<td align="right">' + '$' + CONVERT(VARCHAR, CAST(tblTaxData.AGI AS MONEY),10) + '</td>' + 
+            '<td align="right">' + '$' + CONVERT(VARCHAR, CAST(tblTaxData.Refunds AS MONEY),10) + '</td>' + 
+            '<td align="right">' + '$' + CONVERT(VARCHAR, CAST(tblTaxData.Liabilities AS MONEY),10) + '</td>' + 
+            '<td align="right">' + '$' + CONVERT(VARCHAR, CAST(tblTaxData.BusinessIncomeLine7 AS MONEY),10) + '</td>' + 
+            '<td style="width:500px;">' + CONVERT(VARCHAR(4000), tblTaxData.Notes) + '</td>' + 
+        '</tr></tbody>' as FieldData, TaxYear 
+    FROM tblTaxData INNER JOIN 
+    tblCaseData ON tblTaxData.CaseID = tblCaseData.CaseID 
+    WHERE tblCaseData.CaseNumber = '{CaseNumber}' 
+    ) t ON 1=1 
+    
+    UNION ALL 
+    
+    SELECT '</table>' AS FieldData, 'ZZZZ' AS TaxYear 
+    ORDER BY TaxYear 
+    ~|
+    <span style="color:#000000;font-size:12;"><strong>Missing Tax Returns:&nbsp;|~SELECT ISNULL(dbo.udf_TAC_TaxReturnMissingYears({CaseID}),'None') as FieldData~|&nbsp;&nbsp;&nbsp;&nbsp;Unsecured Percent:&nbsp;{vwCRMainCase.CONVERT(DECIMAL(10,2),UnsecuredPercent)}%</strong></span> 
+    <br/><br/>
+    <div>
+    <div style="float:left; padding: 0 10 0 0;">
+    <span style="color:#000000;font-size:12;"><strong>Tax Refunds</strong></span> 
+    |~
+    SELECT 
+    '<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:550px;"> 
+        <tbody> 
+            <tr> 
+                <td style="width:100px;">Date</td> 
+                <td style="width:100px;">Source</td> 
+                <td style="width:200px;">Description</td> 
+                <td style="width:100px;">Amount</td> 
+            </tr> 
+        </tbody>' as FieldData, '1/1/1900' AS ReceiptDate 
+    
+    UNION ALL 
+    
+    SELECT 
+    ISNULL(t.FieldData, '<tr> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td align="right">$0.00</td> 
+         </tr>' 
+          ) AS FieldData, ISNULL(t.ReceiptDate, '1/2/1900') AS ReceiptDate 
+    FROM (SELECT 1 AS adummy) a 
+    LEFT JOIN ( 
+    SELECT 
+        '<tr>' + 
+            '<td>' + CASE WHEN vwCRReceiptHistory.ReceiptDate = '01/01/1900' THEN '' ELSE CONVERT(VARCHAR,vwCRReceiptHistory.ReceiptDate,101) END + '</td>' + 
+            '<td>' + CONVERT(VARCHAR(4000), vwCRReceiptHistory.ReceiptSource) + '</td>' + 
+            '<td>' + CONVERT(VARCHAR(4000), vwCRReceiptHistory.PostingCodeDescription) + '</td>' + 
+            '<td align="right">' + '$' + CONVERT(VARCHAR, CAST(vwCRReceiptHistory.ReceiptAmount AS MONEY),10) + '</td>' + 
+        '</tr></tbody>' AS FieldData, ReceiptDate 
+    FROM vwCRReceiptHistory INNER JOIN 
+    tblCaseData ON vwCRReceiptHistory.CaseID = tblCaseData.CaseID 
+    WHERE tblCaseData.CaseNumber = '{CaseNumber}' 
+    AND (vwCRReceiptHistory.PostingCodeID = 13 
+         OR vwCRReceiptHistory.PostingCodeID = 97) 
+    ) t ON 1=1 
+    
+    UNION ALL 
+    
+    SELECT 
+        '</table>' AS FieldData, '9/9/9999' AS ReceiptDate  
+    ORDER BY ReceiptDate  
+    ~|
+    </div></div>
+    <p style="clear: both;"></p> 
+    <table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:1025px;"> 
+        <tbody> 
+            <tr> 
+                <td colspan=2></td> 
+                <td style="width:50px;" align="center">Satisfied</td> 
+                <td style="width:50px;" align="center">&nbsp;&nbsp;&nbsp;N/A&nbsp;&nbsp;&nbsp;</td> 
+                <td style="width:500px;">Comments</td> 
+            </tr> 
+            <tr> 
+                <td style="width:125px;">Annual 1040 Required: </td> 
+                <td style="width:300px;"><strong><span style="color:#000000;font-size:12;">|~SELECT ISNULL(dbo.udfGetCaseFlag({CaseID}, 1006),'N') as FieldData~|</span></strong></td> 
+                <td align="center" style="width:50px;">[CheckBox1]</td> 
+                <td align="center" style="width:50px;">[CheckBox2]</td> 
+                <td class="tRowClr2" style="width:500px;">[TextBox1.500]</td> 
+            </tr> 
+            <tr> 
+                <td style="width:125px;">IRS Pledged: </td> 
+                <td style="width:300px;"><strong><span style="color:#000000;font-size:12;">|~SELECT ISNULL(dbo.udfGetCaseFlag({CaseID}, 7),'N') as FieldData~|</span></strong></td> 
+                <td align="center" style="width:50px;">[CheckBox3]</td> 
+                <td align="center" style="width:50px;">[CheckBox4]</td> 
+                <td class="tRowClr2" style="width:500px;">[TextBox2.500]</td> 
+            </tr> 
+        </tbody>
+    </table> 
+    </div> 
+    <div style="float:left; padding: 15 0 0 0;"> 
+    <span style="color:#000000;font-size:12;"><strong>Tax Returns</strong></span> 
+    |~
+    SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                             FROM tblDocumentDetail INNER JOIN 
+                             tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                             tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                             tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                             WHERE tblCaseData.CaseID = {CaseID} 
+                             AND tblDocumentFormSubType.FormSubTypeAbbr = '13Documents.com Files' 
+                             AND tblDocumentFormType.FormTypeCode = 1702 ) THEN 
+    '<span style="color:#000000;font-size:12;"><strong>Tax Returns</strong></span>' + 
+    '<table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:550px;"> 
+        <tbody> 
+            <tr> 
+                <td align="center" style="width:25px;">PDF</td> 
+                <td align="center" style="width:50px;">Court Doc.</td> 
+                <td style="width:75px;">Date Received</td> 
+                <td colspan="2" style="width:400px;">Document Type</td> 
+            </tr>' END as FieldData, '9/9/9999' AS CreatedDate 
+    UNION ALL 
+    
+    SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                             FROM tblDocumentDetail INNER JOIN 
+                             tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                             tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                             tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                             WHERE tblCaseData.CaseID = {CaseID} 
+                             AND tblDocumentFormSubType.FormSubTypeAbbr = '13Documents.com Files' 
+                             AND tblDocumentFormType.FormTypeCode = 1702 ) THEN 
+            '<tr valign="top">' + 
+                '<td align="center" style="width:25px;">' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+                '<td align="center" style="width:50px;">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+                '<td style="width:75px;">' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+                '<td>' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + ISNULL(REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(DocketText, 0,CHARINDEX('filed by', DocketText)))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"',''), '') + '</span></td>' + 
+            '</tr> 
+        </tbody>' END as FieldData, CreatedDate 
+    FROM tblDocumentDetail INNER JOIN 
+    tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+    tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+    tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+    tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+    tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+    tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+    WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+    AND tblDocumentFormSubType.FormSubTypeAbbr = '13Documents.com Files' 
+    AND tblDocumentFormType.FormTypeCode = 1702  
+    
+    UNION ALL 
+    
+    SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                                FROM tblDocumentDetail INNER JOIN 
+                                tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                                tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                                tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                                WHERE tblCaseData.CaseID = {CaseID} 
+                                AND tblDocumentFormSubType.FormSubTypeAbbr = '13Documents.com Files' 
+                                AND tblDocumentFormType.FormTypeCode = 1702 ) THEN 
+    '</table><br/>' END AS FieldData, '1/2/1900' AS CreatedDate 
+    ORDER BY CreatedDate DESC  
+    ~|
+    </div>
+    <p style="clear: both;"></p> 
+    <div style="float:left; padding: 0 0 0 15;"> 
+    <table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:1025px;">  
+        <tbody>
+            <tr> 
+                <td style="font-size:12px"><strong>Comments</strong></td> 
+            </tr> 
+            <tr> 
+                <td colspan="2">[CommentBox1.900]</td> 
+            </tr> 
+        </tbody> 
+    </table>
+    </div>
+    <p style="clear: both;"></p> 
+    </div> 
+    </div>

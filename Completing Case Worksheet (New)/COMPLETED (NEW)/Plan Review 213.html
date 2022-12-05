@@ -1,0 +1,743 @@
+<hr>
+<div class="container">
+    <Section id="header" style="text-align: center;">
+       <p style="font-size: medium; font-weight:bold;text-align:center">Plan Review</p>
+    </Section>
+    
+    <section id="documents">
+        
+<div class="container" style="">
+    <!-- Copied from Plan Narrative Template 189 -->
+    <div class="" >
+        <span class="btn btn-info" id="section_1_title">Show/Hide Plan Documents</span> 
+    </div>
+    <div id="section_1_collapse" class="collapse" data-collapse-area> 
+    |~SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                               FROM tblDocumentDetail INNER JOIN 
+                               tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                               tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                               tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                               WHERE tblCaseData.CaseID = {CaseID} 
+                               AND tblDocumentFormSubType.FormSubTypeAbbr = 'Plan') THEN 
+        '<table class="table table-condensed table-bordered table-striped" style="background-color:#909090; width:100%;"> 
+            <thead> 
+                <tr style="background-color: #4096f8;">
+                    <th colspan="4" style="text-align:center;">Open a Plan</th>                    
+                </tr>
+                <tr> 
+                    <th scope="col" style="width:25px;text-align: center;">PDF</th> 
+                    <th scope="col" style="width:30px;text-align: center;">Doc #</th> 
+                    <th scope="col" style="width:90px;">Date Downloaded</th> 
+                    <th scope="col" style="width:auto;">Document Information</th> 
+                </tr> 
+            </thead>' END as FieldData, '9/9/9999' AS CreatedDate 
+    
+        UNION ALL 
+    
+        SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                                 FROM tblDocumentDetail INNER JOIN 
+                                 tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                                 tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                                 tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                                 WHERE tblCaseData.CaseID = {CaseID} 
+                                 AND tblDocumentFormSubType.FormSubTypeAbbr = 'Plan') THEN 
+        '<tbody>' + 
+            '<tr>' + 
+                '<td style="width:25px;text-align: center;">' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+                '<td style="width:30px;text-align: center;">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+                '<td style="width:90px;">' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+                '<td style="width:auto;">' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(ISNULL(DocketText,''), 0,CHARINDEX('filed by', ISNULL(DocketText,''))))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"','') + '</span></td>' + 
+            '</tr>' + 
+        '</tbody>' END as FieldData, CreatedDate 
+        FROM tblDocumentDetail INNER JOIN 
+        tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+        tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+        tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+        tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+        tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+        tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+        WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+        AND tblDocumentFormSubType.FormSubTypeAbbr = 'Plan' 
+        and tblCourtDocument.CourtDocumentNumber <> ''
+    
+        UNION ALL 
+    
+        SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                                 FROM tblDocumentDetail INNER JOIN 
+                                 tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                                 tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                                 tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                                 WHERE tblCaseData.CaseID = {CaseID} 
+                                 AND tblDocumentFormSubType.FormSubTypeAbbr = 'Plan') THEN 
+        '</tbody>' + 
+    '</table>' END AS FieldData, '1/2/1900' AS CreatedDate 
+    ORDER BY CreatedDate DESC~|
+    </div>
+</div>
+    </section>
+    <!-- Numbering Scheme:  CheckBox123  (1 corresponds to Satisfied (1) or N/A (2)) Second Digit 2 Corresponds to Section of Worksheet by Section ID#, Third Digit 3 corresponds to sequential number in that section -->
+    <!-- Begin Section 1 -->
+
+    <section id="PlanSection1">
+        <!-- Show Plan Section 1, Sub parts A, B, and C whether they are checked. Some info will come from Case Flags -->
+    <!-- Table with 2 columns and 3 rows with Header spanning 2 columns Plan Section 1 -->
+    <table class="table table-bordered table-striped">
+        <thead >
+            <tr style="background-color: #229633;">
+                <th colspan="4" style="text-align:center;">Plan Section 1</th>
+                
+            </tr>
+            <tr style="background-color: #909090;">
+                <td>
+
+                </td>
+                <td>Satisfied</td>
+                <td>N/A</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Does this plan contain any nonstand provisions? 
+                </td>
+                <td>[CheckBox100]</td>
+                <td>[CheckBox200]</td>
+            </tr>
+            <tr>
+                <td>
+                    Does this plan limit the amount of a secured claim based on a valuation of the collateral for the claim?
+                </td>
+  
+                <td>[CheckBox101]</td>
+                <td>[CheckBox201]</td>
+            </tr>
+            <tr>
+                <td>Does this plan avoid a security interest or lien?</td>
+                <td>[CheckBox102]</td>
+                <td>[CheckBox202]</td>
+            </tr>
+        </tbody>
+    </section>
+    <!-- End Section 1 -->
+    <!-- Begin Section 2 -->
+    <section id="PlanSection2">
+        <table class="table table-bordered table-striped">
+            <thead >
+                <tr style="background-color: #229633;">
+                    <th colspan="4" style="text-align:center;">Plan Section 2</th>
+                    
+                </tr>
+                <tr style="background-color: #909090;">
+                    <td>
+                        Base Calc Note from Forum
+                    </td>
+                    <td>Satisfied</td>
+                    <td>N/A</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Verify Plan ran a minimum of 36 or 60 months <img border="0" style="cursor:pointer" src="images/moreinfo.gif" width="15" height="15" title="Below Median debtor(s) must be on the plan a minimum of 36 months and make 36 payments. Above median debtor(s) must be on the plan a minimum of 60 months. Any debtor can pay in full 100% at any time prior to the ACP so long as the case is confirmed and the 180 bar date has passed."/></br>
+                    Months since Filing: {vwCRMainCase.DATEDIFF(MONTH, PetitionFiledDate, GETDATE())}&nbsp;Month(s) </br>
+                    Months Since Confirmation: |~SELECT CASE vwCRMainCase.ConfirmationDate WHEN '01/01/1900' THEN NULL ELSE CONVERT(VARCHAR, DATEDIFF(MONTH, ConfirmationDate, GETDATE())) + ' Month(s)' END AS FieldData FROM vwCRMainCase WHERE vwCRMainCase.CaseNumber = '{CaseNumber}'~|
+                    </br> ACP: {vwCRMainCase.ApplicableCommitmentPeriod} Months
+                </td>
+                    <td>[CheckBox123]</td>
+                    <td>[CheckBox223]</td>
+                </tr>
+                <tr>
+                    <td>Plan Type: |~SELECT Case when (Select UnsecuredPercent from vwCRMainCase where CaseID = {CaseID}) = 100 then '<b>100% plan - Base Not Needed, Mark N/A</b>' else '<b>Not 100% Plan - Verify Base</b>' END~|</br>
+                        Verify the Base Was Correct <img border="0" style="cursor:pointer" src="images/moreinfo.gif" width="15" height="15" title="The 'Base' is an in-office term. It is the calculation of the reuqired plan payments over either 36 months or 60 moth applicable commitment period. Any additional funds committed (examle: tax refunds, bonuses) must also be included in the base. When verifying the base, review pay scedules to ensure they are consistent with plans. Review payment history and verify correct per plan and nothing appears out of the ordinary. Verify payments to bank download"/></br>
+                        <span style="color: blue;">Base in Case Modify: {vwCRMainCase.PlanBase$}</span> </br>
+                        IRS Refunds Pledged?: |~SELECT CASE WHEN (Select Flag from vwCRCaseFlags where CaseID = {CaseID} and FlagCodesID = 7) LIKE '%Y%' then  Flag else 'NO' END as FieldData from vwCRCaseFlags where CaseID = {CaseID} and FlagCodesID = 7~| </br>
+                        Forum Last Updated: |~Select top 1 ModifiedDate as FieldData from tblForum where ForumHeadingID = 10 and CaseID = {CaseID} and ModifiedDate <> '1/1/1900' order by ForumID desc~|</br></br>
+                        |~Select top 1 detail as FieldData from tblForum where ForumHeadingID = 10 and CaseID = {CaseID} order by ForumID desc~|</td>
+                
+                    <td>[CheckBox124]</td>
+                    <td>[CheckBox224]</td>
+                </tr>
+            </tbody>
+            </table>    
+    </section>
+    <!-- End Section 2 -->
+    <!-- Begin Section 3 -->
+    <section id="PlanSection3">
+
+        <div class="" >
+            <span class="btn btn-info" id="section_3_title">Show/Hide Pay Schedules</span> 
+        </div>
+        <div id="section_3_collapse" class="collapse" data-collapse-area>
+            |~SELECT CASE WHEN EXISTS (Select TOP 1 PaymentAmount from tblCaseSteps inner join tblCasePayScheduleTypes on tblCasePayScheduleTypes.CasePaySchedCodeID = tblCaseSteps.CasePaySchedCodeID where tblCaseSteps.CaseID = {CaseID} and PaymentAmount > 0 order by ScheduleNumber, StartDate) THEN 
+            '<table class="table table-condensed table-bordered table-striped" style="background-color:#909090; width:100%;"> 
+            <thead> 
+            <tr style="background-color: #4096f8;">
+            <th colspan="8" style="text-align:center;">Pay Schedules</th>                    
+            </tr>
+            <tr> 
+            <th>Start Date</th> 
+            <th># of Periods</th> 
+            <th>Amount</th> 
+            <th>How Often</th>
+            <th>Who is Paying</th>
+            <th>Order Date</th>
+            <th>Action / Note</th>
+            <th>Schedule Number</th>
+            </tr> 
+            </thead>' END as FieldData 
+            
+            UNION ALL 
+            
+            SELECT CASE WHEN EXISTS (Select TOP 1 PaymentAmount from tblCaseSteps inner join tblCasePayScheduleTypes on tblCasePayScheduleTypes.CasePaySchedCodeID = tblCaseSteps.CasePaySchedCodeID where tblCaseSteps.CaseID = {CaseID} and PaymentAmount > 0 order by ScheduleNumber, StartDate) THEN 
+            '<tbody>' + 
+            '<tr>' + 
+            '<td>' + convert(varchar(10),StartDate,101) + '</td>' + 
+            '<td>' + Convert(varchar, NumberOfPeriods) + '</td>' + 
+            '<td>$' + convert(varchar, cast(PaymentAmount as money), 1)  + '</td>' + 
+            '<td>' + PaySchedDescription + '</td>' + 
+            '<td>' + LongName + '</td>' + 
+            '<td>' + Convert(varchar,OrderDate, 101) + '</td>' + 
+            '<td>' + tblScheduleAction.Description + Convert(varchar(max),tblCaseSteps.Notes) + '</td>' + 
+            '<td>' + Convert(varchar,ScheduleNumber) + '</td>' + 
+            '</tr>' + 
+            '</tbody>' ELSE '<tbody><tr><td>Pay Schedule Not Found</td></tr></tbody>' END as FieldData 
+            from tblCaseSteps 
+            inner join tblCasePayScheduleTypes on tblCaseSteps.CasePaySchedCodeID = tblCasePayScheduleTypes.CasePaySchedCodeID  
+            inner join tblScheduleAction on tblCaseSteps.ScheduleActionID = tblScheduleAction.ScheduleActionID 
+            inner join vwCRCaseNames on tblCaseSteps.PayingCaseNameID = vwCRCaseNames.CaseNameID 
+            where tblCaseSteps.CaseID = {CaseID} and PaymentAmount > 0  
+            UNION ALL 
+            
+            SELECT CASE WHEN EXISTS (Select TOP 1 PaymentAmount from tblCaseSteps inner join tblCasePayScheduleTypes on tblCasePayScheduleTypes.CasePaySchedCodeID = tblCaseSteps.CasePaySchedCodeID where tblCaseSteps.CaseID = {CaseID} and PaymentAmount > 0 order by ScheduleNumber, StartDate) THEN 
+            '</tbody>' + 
+            '</table>' END AS FieldData~|
+            
+        </div>
+
+        <div class="" >
+            <span class="btn btn-info" id="section_3taxdata_title">Show/Hide Tax Return Documents</span> 
+        </div>
+        <div id="section_3taxdata_collapse" class="collapse" data-collapse-area>
+        |~SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                                 FROM tblDocumentDetail INNER JOIN 
+                                 tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                                 tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                                 tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                                 WHERE tblCaseData.CaseID = {CaseID} 
+                                 AND tblDocumentFormSubType.FormSubTypeAbbr = '13Documents.com Files' 
+                                 AND tblDocumentFormType.FormTypeCode = 1702 ) THEN  
+        '<table class="table table-condensed table-bordered table-striped" style="background-color:#909090; width:100%;"> 
+            <thead> 
+                <tr style="background-color: #4096f8;">
+                    <th colspan="4" style="text-align:center;">Open a Tax Return</th>                    
+                </tr>
+                <tr> 
+                    <td align="center" >PDF</td> 
+                    <td align="center" >Court Doc.</td> 
+                    <td>Date Received</td> 
+                    <td>Document Detail</td> 
+                </tr>' END as FieldData, '9/9/9999' AS CreatedDate 
+        UNION ALL 
+        
+        SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                                 FROM tblDocumentDetail INNER JOIN 
+                                 tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                                 tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                                 tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                                 WHERE tblCaseData.CaseID = {CaseID} 
+                                 AND tblDocumentFormSubType.FormSubTypeAbbr = '13Documents.com Files' 
+                                 AND tblDocumentFormType.FormTypeCode = 1702 ) THEN 
+                '<tr valign="top">' + 
+                    '<td align="center" >' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+                    '<td align="center">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+                    '<td >' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+                    '<td>' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + ISNULL(REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(DocketText, 0,CHARINDEX('filed by', DocketText)))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"',''), '') + '</span></td>' + 
+                '</tr> 
+            </tbody>' END as FieldData, CreatedDate 
+        FROM tblDocumentDetail INNER JOIN 
+        tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+        tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+        tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+        tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+        tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+        tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+        WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+        AND tblDocumentFormSubType.FormSubTypeAbbr = '13Documents.com Files' 
+        AND tblDocumentFormType.FormTypeCode = 1702  
+        
+        UNION ALL 
+        
+        SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                                    FROM tblDocumentDetail INNER JOIN 
+                                    tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                                    tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                                    tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                                    WHERE tblCaseData.CaseID = {CaseID} 
+                                    AND tblDocumentFormSubType.FormSubTypeAbbr = '13Documents.com Files' 
+                                    AND tblDocumentFormType.FormTypeCode = 1702 ) THEN 
+        '</table><br/>' END AS FieldData, '1/2/1900' AS CreatedDate 
+        ORDER BY CreatedDate DESC~|
+    
+        <div id="TaxData">
+            |~SELECT CASE WHEN EXISTS (SELECT TOP 1 TaxYear from tbltaxdata where caseid = {CaseID}) THEN 
+            '<table class="table table-condensed table-bordered table-striped" style="background-color:#909090; width:100%;"> 
+            <thead> 
+            <tr style="background-color: #4096f8;">
+            <th colspan="8" style="text-align:center;">Tax Return Information</th>                    
+            </tr>
+            <tr> 
+            <th>Tax Year</th> 
+            <th>Date Received</th> 
+            <th>Date Requested</th>
+            <th>AGI</th> 
+            <th>Refunds</th>
+            <th>Liabilities</th>
+            <th>Business Income</th>
+            <th>Notes</th>
+            </tr> 
+            </thead>' END as FieldData 
+            
+            UNION ALL 
+            
+            SELECT CASE WHEN EXISTS (SELECT TOP 1 TaxYear from tbltaxdata where caseid = {CaseID}) THEN 
+            '<tbody>' + 
+            '<tr>' + 
+            '<td>' + CONVERT(VARCHAR,TaxYear) + '</td>' + 
+            '<td>' + CASE WHEN tblTaxData.DateReceived = '01/01/1900' THEN '' ELSE CONVERT(VARCHAR,tblTaxData.DateReceived,101) END + '</td>' + 
+            '<td>' + CASE WHEN tblTaxData.DateRequested = '01/01/1900' THEN '' ELSE CONVERT(VARCHAR,tblTaxData.DateRequested,101) END  + '</td>' + 
+            '<td>' + CONVERT(VARCHAR, FORMAT(AGI, 'C')) + '</td>' + 
+            '<td>' + CONVERT(VARCHAR, FORMAT(Refunds, 'C')) + '</td>' + 
+            '<td>' + CONVERT(VARCHAR, FORMAT(Liabilities, 'C')) + '</td>' + 
+            '<td>' + CONVERT(VARCHAR, FORMAT(BusinessIncomeLine7, 'C'))+ '</td>' + 
+            '<td>' + CONVERT(VARCHAR(MAX),Notes) + '</td>' + 
+            '</tr>' + 
+            '</tbody>' ELSE '<tbody><tr><td>No Tax Data Found</td></tr></tbody>' END as FieldData 
+            from tblTaxData where CaseID = {CaseID} 
+    
+            UNION ALL 
+            
+            SELECT CASE WHEN EXISTS (SELECT TOP 1 TaxYear from tbltaxdata where caseid = {CaseID}) THEN 
+            '</tbody>' + 
+            '</table>' END AS FieldData~|
+            
+        </div>
+    </div>
+
+
+        <table class="table table-bordered table-striped">
+            <thead >
+                <tr style="background-color: #229633;">
+                    <th colspan="4" style="text-align:center;">Plan Section 3</th>
+                    
+                </tr>
+                <tr style="background-color: #909090;">
+                    <td>
+                        Payment Verification 
+                    </td>
+                    <td>Satisfied</td>
+                    <td>N/A</td>
+                    <td>Comments</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Verify payments are consistent in pay schedules with plan(s)</td>
+                    <td>[CheckBox131]</td>
+                    <td>[CheckBox231]</td>
+                    <td>[TextBox131.250]</td>
+                </tr>
+                <tr>
+                    <td>Verify tax refunds have been received and are accurate if committed</td>
+                    <td>[CheckBox136]</td>
+                    <td>[CheckBox236]</td>
+                    <td>[TextBox132.250]</td>
+                </tr>
+                <tr>
+                    <td>Review payment history and verify correct per plan and nothing out of the ordinary</td>
+                    <td>[CheckBox137]</td>
+                    <td>[CheckBox237]</td>
+                    <td>[TextBox133.250]</td>
+
+                </tr>
+
+                <tr>
+                    <td>Verify Payments to Bank Download</td>
+                    <td>[CheckBox138]</td>
+                    <td>[CheckBox238]</td>
+                    <td>[TextBox134.250]</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>  
+    <!-- End Section 3 -->
+    <!-- Begin Section 4 -->
+    <section id="PlanSection4">
+        <div class="" >
+            <span class="btn btn-info" id="section_4_title">Show/Hide Petition, Schedules, and Statements Documents</span> 
+        </div>
+        <div id="section_4_collapse" class="collapse" data-collapse-area>
+            |~SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                               FROM tblDocumentDetail INNER JOIN 
+                               tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                               tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                               tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                               WHERE tblCaseData.CaseID = {CaseID} 
+                               AND tblDocumentDetail.FormTypeCode IN (2048,1987,1979,1945,1944,1912,1909,1908,1907,1706,1695,1444,1421,1415,1219,1142,1131,1129,1128,1093,1071,1053,1049,1040,1012,859,853,392,391,356,172,171,170,169,166,165,110,105,88,39,16,15)) THEN 
+        '<table class="table table-condensed table-bordered table-striped" style="background-color:#909090; width:100%;"> 
+            <thead> 
+                <tr style="background-color: #4096f8;">
+                    <th colspan="4" style="text-align:center;">Petition, Schedules, and Statements</th>                    
+                </tr>
+                <tr> 
+                    <th scope="col" style="width:25px;text-align: center;">PDF</th> 
+                    <th scope="col" style="width:30px;text-align: center;">Doc #</th> 
+                    <th scope="col" style="width:90px;">Date Downloaded</th> 
+                    <th scope="col" style="width:auto;">Document Inofrmation</th> 
+                </tr> 
+            </thead>' END as FieldData, '9/9/9999' AS CreatedDate 
+    
+        UNION ALL 
+    
+        SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                                 FROM tblDocumentDetail INNER JOIN 
+                                 tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                                 tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                                 tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                                 WHERE tblCaseData.CaseID = {CaseID} 
+                                 AND tblDocumentDetail.FormTypeCode IN (2048,1987,1979,1945,1944,1912,1909,1908,1907,1706,1695,1444,1421,1415,1219,1142,1131,1129,1128,1093,1071,1053,1049,1040,1012,859,853,392,391,356,172,171,170,169,166,165,110,105,88,39,16,15)) THEN 
+        '<tbody>' + 
+            '<tr>' + 
+                '<td style="width:25px;text-align: center;">' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+                '<td style="width:30px;text-align: center;">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+                '<td style="width:90px;">' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+                '<td style="width:auto;">' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(ISNULL(DocketText,''), 0,CHARINDEX('filed by', ISNULL(DocketText,''))))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"','') + '</span></td>' + 
+            '</tr>' + 
+        '</tbody>' END as FieldData, CreatedDate 
+        FROM tblDocumentDetail INNER JOIN 
+        tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+        tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+        tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+        tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+        tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+        tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+        WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+        AND tblDocumentDetail.FormTypeCode IN (2048,1987,1979,1945,1944,1912,1909,1908,1907,1706,1695,1444,1421,1415,1219,1142,1131,1129,1128,1093,1071,1053,1049,1040,1012,859,853,392,391,356,172,171,170,169,166,165,110,105,88,39,16,15)
+        and tblCourtDocument.CourtDocumentNumber <> ''
+    
+        UNION ALL 
+    
+        SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                                 FROM tblDocumentDetail INNER JOIN 
+                                 tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                                 tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                                 tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                                 WHERE tblCaseData.CaseID = {CaseID} 
+                                 AND tblDocumentDetail.FormTypeCode IN (2048,1987,1979,1945,1944,1912,1909,1908,1907,1706,1695,1444,1421,1415,1219,1142,1131,1129,1128,1093,1071,1053,1049,1040,1012,859,853,392,391,356,172,171,170,169,166,165,110,105,88,39,16,15)) THEN 
+        '</tbody>' + 
+    '</table>' END AS FieldData, '1/2/1900' AS CreatedDate 
+    ORDER BY CreatedDate DESC~|
+        </div>
+        <div class="" >
+            <span class="btn btn-primary" id="section_42_title">Show/Hide Attorney Fees</span> 
+        </div>
+        <div id="section_42_collapse" class="collapse" data-collapse-area>
+|~SELECT CASE WHEN EXISTS (Select LongName, CreditorTypeDescription, PayeeLevel, ClaimedAmount, PaidOutside , principalpaid , MonthlyPayment from vwcrmainpayee where caseid = {CaseID} and NameTypeID = 1 and NameID <> 408) THEN 
+'<table class="table table-condensed table-bordered table-striped" style="background-color:#909090; width:100%;"> 
+<thead> 
+<tr style="background-color: #4096f8;">
+<th colspan="8" style="text-align:center;">Attorney Fees</th>                    
+</tr>
+<tr> 
+<th>Name</th>
+<th>Description</th>
+<th>Level</th>
+<th>Fee In Plan</th>
+<th>Fee Paid Outside</th>
+<th>Fee Paid To Date</th>
+<th>Monthly Payment</th>
+<th>Fee Remaining</th>
+</tr> 
+</thead>' END as FieldData 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (Select LongName, CreditorTypeDescription, PayeeLevel, ClaimedAmount, PaidOutside , principalpaid , MonthlyPayment from vwcrmainpayee where caseid = {CaseID} and NameTypeID = 1 and NameID <> 408) THEN  
+'<tbody>' + 
+'<tr>' + 
+'<td>' + LongName  + '</td>' + 
+'<td>' + CreditorTypeDescription  + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, PayeeLevel) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, ClaimedAmount) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, PaidOutside) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, principalpaid) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, MonthlyPayment) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, PrincipalOwed) + '</td>' + 
+'</tr>' + 
+'</tbody>' END as FieldData 
+from vwcrmainpayee WHERE CaseID = {CaseID} and NameTypeID = 1 and NameID <> 408 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (Select LongName, CreditorTypeDescription, PayeeLevel, ClaimedAmount, PaidOutside , principalpaid , MonthlyPayment from vwcrmainpayee where caseid = {CaseID} and NameTypeID = 1 and NameID <> 408) THEN  
+'</tbody>' + 
+'</table>' END AS FieldData~|
+<!-- Additional Attorney Fees -->
+|~SELECT CASE WHEN EXISTS (Select LongName, CreditorTypeDescription, PayeeLevel, ClaimedAmount, PaidOutside , principalpaid , MonthlyPayment from vwcrmainpayee where caseid = {CaseID} and CreditorTypeID = 37 and NameID <> 408) THEN 
+'<table class="table table-condensed table-bordered table-striped" style="background-color:#909090; width:100%;"> 
+<thead> 
+<tr style="background-color: #4096f8;">
+<th colspan="8" style="text-align:center;">Additional Attorney Fees</th>                    
+</tr>
+<tr> 
+<th>Name</th>
+<th>Description</th>
+<th>Level</th>
+<th>Fee In Plan</th>
+<th>Fee Paid Outside</th>
+<th>Fee Paid To Date</th>
+<th>Monthly Payment</th>
+<th>Fee Remaining</th>
+</tr> 
+</thead>' END as FieldData 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (Select LongName, CreditorTypeDescription, PayeeLevel, ClaimedAmount, PaidOutside , principalpaid , MonthlyPayment from vwcrmainpayee where caseid = {CaseID} and CreditorTypeID = 37 and NameID <> 408) THEN  
+'<tbody>' + 
+'<tr>' + 
+'<td>' + LongName  + '</td>' + 
+'<td>' + CreditorTypeDescription  + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, PayeeLevel) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, ClaimedAmount) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, PaidOutside) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, principalpaid) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, MonthlyPayment) + '</td>' + 
+'<td>' +  CONVERT(VARCHAR, PrincipalOwed) + '</td>' + 
+'</tr>' + 
+'</tbody>' END as FieldData 
+from vwcrmainpayee WHERE CaseID = {CaseID} and CreditorTypeID = 37 and NameID <> 408 
+
+UNION ALL 
+
+SELECT CASE WHEN EXISTS (Select LongName, CreditorTypeDescription, PayeeLevel, ClaimedAmount, PaidOutside , principalpaid , MonthlyPayment from vwcrmainpayee where caseid = {CaseID} and CreditorTypeID = 37  and NameID <> 408) THEN  
+'</tbody>' + 
+'</table>' END AS FieldData~|
+        </div>
+
+
+        <table class="table table-bordered table-striped">
+            <thead >
+                <tr style="background-color: #229633;">
+                    <th colspan="4" style="text-align:center;">Plan Section 4</th>
+                    
+                </tr>
+                <tr style="background-color: #909090;">
+                    <td>
+                        Attorney Fee Verification
+                    </td>
+                    <td>Satisfied</td>
+                    <td>N/A</td>
+                    <td>Comments</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Verify attorney fees are accurate in the original payee schedule and were paid</td>
+                    <td>[CheckBox141]</td>
+                    <td>[CheckBox241]</td>
+                    <td>[TextBox141.250]</td>
+                </tr>
+                <tr>
+                    <td>Verify Child Support Claim Filed Correct and is Paid Current </br>
+                    <span style="color:blue;"> DSO CASE: |~SELECT CASE WHEN (Select Flag from vwCRCaseFlags where CaseID = {CaseID} and FlagCodesID = 1024) LIKE '%Y%' then '<b>YES</b>' else '<b>NO</b>' end~|</span></td>
+                    <td>[CheckBox142]</td>
+                    <td>[CheckBox242]</td>
+                    <td>[TextBox142.250]</td>
+                </tr>
+                <tr>
+                    <td>Review and Verify all secured, provided for creditors, were paid as provided</td>
+                    <td>[CheckBox143]</td>
+                    <td>[CheckBox243]</td>
+                    <td>[TextBox143.250]</td>
+                </tr>
+                <tr>
+                    <td>Review filed claims and verify claims where entered correctly</td>
+                    <td>[CheckBox144]</td>
+                    <td>[CheckBox244]</td>
+                    <td>[TextBox144.250]</td>
+                </tr>
+                <tr>
+                    <td>Review interest rate for vehicle or other secured claims. Lower enterest rate of plan or claim to be used</td>
+                    <td>[CheckBox145]</td>
+                    <td>[CheckBox245]</td>
+                    <td>[TextBox145.250]</td>
+                </tr>
+                <tr>
+                    <td>Review Interest Recalc and update interest due if underpaid. <img border="0" style="cursor:pointer" src="images/moreinfo.gif" width="15" height="15" title="If we have overpaid interest, email Ann to reallocate overage of interest paid to principal paid"/></td>
+                    <td>[CheckBox146]</td>
+                    <td>[CheckBox246]</td>
+                    <td>[TextBox146.250]</td>
+                </tr>
+                <tr>
+                    <td>Mortgage Claims: Verify the arrears claim is filed correctly and we disbursed correctly in the post-petition claim</td>
+                    <td>[CheckBox147]</td>
+                    <td>[CheckBox247]</td>
+                    <td>[TextBox147.250]</td>
+                </tr>
+                <tr>
+                    <td>Notice of Final Cure Sent and Agreed with Our Records?</br>
+                    Sent:  |~SELECT CASE WHEN (Select EventDate from vwCRCaseDates where CaseID = {CaseID} and DatesCodeID = 32) = '' then '<b>Not Sent</b>' else  CAST(EventDate as varchar) END as FieldData from vwCRCaseDates where CaseID = {CaseID} and DatesCodeID = 32~| </td>
+                    <td>[CheckBox148]</td>
+                    <td>[CheckBox248]</td>
+                    <td>[TextBox148.250]</td>
+                </tr>
+                <tr>
+                    <td>Do we have a 'Hold Money' claim? <img border="0" style="cursor:pointer" src="images/moreinfo.gif" width="15" height="15" title="Review for bad addresses for creditor and if we were unable to locate, those held funds must be sent to court as unclaimed funds. Remove reserve, and send message to Ann to pre-write money to BK Court. Update Claim Comment to: unclaimed funds to court"/></td>
+                    <td>[CheckBox149]</td>
+                    <td>[CheckBox249]</td>
+                    <td>[TextBox149.250]</td>
+                </tr>
+                <tr>
+                    <td>4E - Verify Creditors Received 'at least' figure </br>
+                    4E: <b>|~Select CONVERT(VARCHAR, FORMAT(Amount, 'C')) as FieldData from vwCRCaseAmounts where AmountCodesID = 2 and CaseID = {CaseID}~|</b></br>
+                    Equity: <b>|~Select CONVERT(VARCHAR, FORMAT(Amount, 'C')) as FieldData from vwCRCaseAmounts where AmountCodesID = 3 and CaseID = {CaseID}~|</b> </br>
+                    Amount to Priority: <b>|~Select ISNULL((Select CONVERT(VARCHAR, FORMAT(Sum(PrincipalPaid), 'C')) from vwcrmainpayee where caseid = {CaseID} and ClaimedAmount <> 0 AND NOT CreditorTypeID IN (1,5,37) and CreditorClass = 'P' and PayeeLevel <> 1), 'No Priority Claims')~|</b></td>
+                    </td>
+                    <td>[CheckBox1410]</td>
+                    <td>[CheckBox2410]</td>
+                    <td>[TextBox1410.250]</td>
+                </tr>
+                <tr>
+                    <td>Compare base balance to amount owed to unsecureds and reduce or increase % to unsuecred creditors if needed 
+                        <br>Unsecured Claim Total: <b>|~Select CONVERT(VARCHAR, FORMAT(Sum(ClaimedAmount), 'C')) as FieldData from vwcrmainpayee where caseid = {CaseID} and UseUnsPercentFromCase = 1 and CreditorClass = 'U'~|</b>
+                        <br> Unsecured Percent: <b>|~Select FORMAT((UnsecuredPercent/100),'P') as FieldData from vwcrmaincase where caseid = {CaseID}~|</b>
+                        <br> Amount to Unsecureds Calc: <br><b>|~Select CONVERT(VARCHAR, FORMAT(Sum(ClaimedAmount), 'C')) as FieldData from vwcrmainpayee where caseid = {CaseID} and UseUnsPercentFromCase = 1 and CreditorClass = 'U'~| X |~Select FORMAT((UnsecuredPercent/100),'P') as FieldData from vwcrmaincase where caseid = {CaseID}~| = |~Select FORMAT((select Sum(ClaimedAmount) from vwcrmainpayee where caseid = {CaseID} and UseUnsPercentFromCase = 1 and CreditorClass = 'U')*(select UnsecuredPercent/100 from vwcrmaincase where caseid = {CaseID}), 'C') as FieldData~|</b>
+                        <br>|~Select '<a href="' + tblReportSetup.ReportServerHTTPAddress + 'PleaseWait.aspx?progskip=~&prog=getPSProg&&qs=rid=TAC_Report_Breakdown_of_Unsecureds|nw=1|rep=1|CaseNumber={CaseNumber}|CaseID={CaseID}|psprog=CaseReportsPrint.aspx|AppServerName=http://dataserver/13software_app/|winsuffix=1|windesc=window_1|sucid=|:UserCodeID:|" target="_blank" class="btn btn-info" style="color: #FFFFFF;" tabindex="-1">Breakdown of Unsecureds</a>' as FieldData From tblReportSetup~|</br>
+                </td>
+                    <td>[CheckBox1411]</td>
+                    <td>[CheckBox2411]</td>
+                    <td>[TextBox1411.250]</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- End Section 4 -->
+    <!-- Begin Section 5 -->
+    <section id="PlanSection5">
+        <table class="table table-bordered table-striped">
+            <thead >
+                <tr style="background-color: #229633;">
+                    <th colspan="4" style="text-align:center;">Plan Section 5</th>
+                    
+                </tr>
+                <tr style="background-color: #909090;">
+                    <td>
+                       Paid Direct Claims
+                    </td>
+                    <td>Satisfied</td>
+                    <td>N/A</td>
+                    <td>Comments</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Verify claims were entered correctly as 'paid direct' in the no check field of payee record</td>
+                    <td>[CheckBox151]</td>
+                    <td>[CheckBox251]</td>
+                    <td>[TextBox151.250]</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- End Section 5 -->
+    <!-- Begin Section 6 -->
+    <section id="PlanSection6">
+        <table class="table table-bordered table-striped">
+            <thead >
+                <tr style="background-color: #229633;">
+                    <th colspan="4" style="text-align:center;">Plan Section 6</th>
+                    
+                </tr>
+                <tr style="background-color: #909090;">
+                    <td>
+                       Surrendered Claims
+                    </td>
+                    <td>Satisfied</td>
+                    <td>N/A</td>
+                    <td>Comments</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Verify claims where entered correctly as 'surrendered' in the no check field of the payee record</td>
+                    <td>[CheckBox161]</td>
+                    <td>[CheckBox261]</td>
+                    <td>[TextBox162.250]</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- End Section 6 -->
+    <!-- Begin Section 9 -->
+    <section id="PlanSection9">
+        <table class="table table-bordered table-striped">
+            <thead >
+                <tr style="background-color: #229633;">
+                    <th colspan="4" style="text-align:center;">Plan Section 9</th>
+                    
+                </tr>
+                <tr style="background-color: #909090;">
+                    <td>
+                       Liquidation Analysis </td>
+                    <td>Satisfied</td>
+                    <td>N/A</td>
+                    <td>Comments</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Verify total amount paid to priority and/or unsecured claims. <img border="0" style="cursor:pointer" src="images/moreinfo.gif" width="15" height="15" title="If interest rate provided, ensure no additional interest is due by clicking interest recalc in payee tab. Verify what should be paid thorugh current month you are auditin gwas paid. If short, add to interest due in payee claim. "/> </br>
+                        <b>Equity: $ |~Select Amount as FieldData from vwCRCaseAmounts where AmountCodesID = 3 and CaseID = {CaseID}~|</b>
+                     </td>
+                    <td>[CheckBox191]</td>
+                    <td>[CheckBox291]</td>
+                    <td>[TextBox191.250]</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- End Section 9 -->
+    <!-- Begin Section 10 -->
+    <section id="PlanSection10">
+        <table class="table table-bordered table-striped">
+            <thead >
+                <tr style="background-color: #229633;">
+                    <th colspan="4" style="text-align:center;">Plan Section X</th>
+                    
+                </tr>
+                <tr style="background-color: #909090;">
+                    <td>
+                       Section X Provisions
+                    </td>
+                    <td>Satisfied</td>
+                    <td>N/A</td>
+                    <td>Comments</td>
+                </tr>
+            </thead>
+      
+            <tbody>
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16601,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16601,0), '[', '('), ']', ')') + '</td><td>[CheckBox801]</td><td>[CheckBox901]</td><td>[TextBox801.250]</td></tr>' else '<tr><td>Review Plan Manually for Section X and Verify Each Provision</td><td>[CheckBox800]</td><td>[CheckBox900]</td><td>[TextBox800.250]</td></tr>' END as FieldData~|
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16611,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16611,0), '[', '('), ']', ')') + '</td><td>[CheckBox802]</td><td>[CheckBox902]</td><td>[TextBox802.250]</td></tr>' else '' END as FieldData~|
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16621,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16621,0), '[', '('), ']', ')') + '</td><td>[CheckBox803]</td><td>[CheckBox903]</td><td>[TextBox803.250]</td></tr>' else '' END as FieldData~|
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16631,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16631,0), '[', '('), ']', ')') + '</td><td>[CheckBox804]</td><td>[CheckBox904]</td><td>[TextBox804.250]</td></tr>' else '' END as FieldData~| 
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16640,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16641,0), '[', '('), ']', ')') + '</td><td>[CheckBox805]</td><td>[CheckBox905]</td><td>[TextBox805.250]</td></tr>' else '' END as FieldData~| 
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16651,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16651,0), '[', '('), ']', ')') + '</td><td>[CheckBox806]</td><td>[CheckBox906]</td><td>[TextBox806.250]</td></tr>' else '' END as FieldData~| 
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16661,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16661,0), '[', '('), ']', ')') + '</td><td>[CheckBox807]</td><td>[CheckBox907]</td><td>[TextBox807.250]</td></tr>' else '' END as FieldData~| 
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16671,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16671,0), '[', '('), ']', ')') + '</td><td>[CheckBox808]</td><td>[CheckBox908]</td><td>[TextBox808.250]</td></tr>' else '' END as FieldData~| 
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16681,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16681,0), '[', '('), ']', ')') + '</td><td>[CheckBox809]</td><td>[CheckBox909]</td><td>[TextBox809.250]</td></tr>' else '' END as FieldData~| 
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',16691,0)) <> '' then '<tr><td>'+ REPLACE(REPLACE(dbo.udfGetWorksheetData({CaseID},186,'TextBox',16691,0), '[', '('), ']', ')') + '</td><td>[CheckBox8010]</td><td>[CheckBox9010]</td><td>[TextBox8010.250]</td></tr>' else '' END as FieldData~|
+            |~SELECT CASE WHEN (SELECT dbo.udfGetWorksheetData({CaseID},186,'TextBox',10916,0)) <> '' then '<tr><td>Section X Comments:'+ dbo.udfGetWorksheetData({CaseID},186,'TextBox',10916,0) + '</td><td>[CheckBox8011]</td><td>[CheckBox9011]</td><td>[TextBox8011.250]</td></tr>' else '' END as FieldData~|
+            </tbody>
+        </table>
+
+</div>

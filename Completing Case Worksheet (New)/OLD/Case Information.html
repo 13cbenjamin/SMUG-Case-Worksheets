@@ -1,0 +1,243 @@
+<div style="background-color:#6FFFE9; width: 100%; padding: 0 0 10 0;">
+    <div id="header_138_1" style="background-color:#3A506B; height: 28px; width: 100%;">
+    <ul style="margin: 10; padding: 0; list-style-type: none; color:#FFFFFF;">
+        <li style="display: inline; float: left; font-size: 150%; font-weight: bold;"><a id="imageDivLink_138" href="javascript:toggle5('contentDivImg_138', 'imageDivLink_138');"><img style="padding: 2 0 0 0;" src="images/tac_minus.png"></a></li>
+        <li style="display: inline; float: left; font-size: 150%; font-weight: bold; padding: 0 0 0 10;">Case Information</li>
+    </ul> 
+    </div>
+    <div id="contentDivImg_138" style="display: block; padding: 0 10 0 10;">
+    <p style="clear: both;"></p>
+    <table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:auto;">  
+        <tbody>
+            <tr> 
+                <td>Case Number:</td> 
+                <td>{vwCRMainCase.DisplayCaseNumber}</td> 
+                <td>Debtor 1:</td> 
+                <td>{vwCRMainCase.Deb1LongName}</td> 
+                <td>Petition Filed Date:</td> 
+                <td>{vwCRMainCase.PetitionFiledDate@}</td> 
+                <td><span style="color:#000000;font-size:12;"><strong>{vwCRMainCase.DATEDIFF(MONTH, PetitionFiledDate, GETDATE())}&nbsp;Month(s) since filing</strong></span></td>
+                <td>Proposed Length of Plan:</td> 
+                <td><strong><span style="color:#000000;font-size:12;">{vwCRMainCase.ProposedLengthOfPlan} Months</span></strong></td> 
+            </tr> 
+            <tr> 
+                <td>Judge:</td> 
+                <td>{vwCRMainCase.JudgeName}</td> 
+                <td>Debtor 2:</td> 
+                <td>{vwCRMainCase.Deb2LongName}</td> 
+                <td>First Payment Due:</td> 
+                <td>{vwCRMainCase.FirstPaymentDueDate@}</td> 
+                <td><span style="color:#000000;font-size:12;"><strong>|~SELECT CASE vwCRMainCase.FirstPaymentDueDate WHEN '01/01/1900' THEN NULL ELSE CONVERT(VARCHAR, DATEDIFF(MONTH, FirstPaymentDueDate, GETDATE())) + ' Month(s) since first payment due' END AS FieldData FROM vwCRMainCase WHERE vwCRMainCase.CaseNumber = '{CaseNumber}'~|</strong></span></td> 
+                <td>Months Remaining:</td>
+                <td><span style="color:#000000;font-size:12;"><strong>{vwCRMainCase.MonthsRemainingInPlan} Months</strong></span></td>
+            </tr> 
+            <tr> 
+                <td>Division:</td> 
+                <td>{vwCRMainCase.DivisionDescription}</td> 
+                <td>Attorney:</td> 
+                <td>{vwCRMainCase.AttyLongName}</td> 
+                <td>Confirmation Date:</td> 
+                <td><span style="color:#000000;font-size:12;"><strong>|~SELECT CASE WHEN CONVERT(VARCHAR, vwCRMainCase.ConfirmationDate, 101) = '01/01/1900' THEN 'Unconfirmed' ELSE CONVERT(VARCHAR, vwCRMainCase.ConfirmationDate , 101) END AS FieldData FROM vwCRMainCase WHERE vwCRMainCase.CaseNumber = '{CaseNumber}'~|</strong></span></td> 
+                <td><span style="color:#000000;font-size:12;"><strong>|~SELECT CASE vwCRMainCase.ConfirmationDate WHEN '01/01/1900' THEN NULL ELSE CONVERT(VARCHAR, DATEDIFF(MONTH, ConfirmationDate, GETDATE())) + ' Month(s) since confirmation' END AS FieldData FROM vwCRMainCase WHERE vwCRMainCase.CaseNumber = '{CaseNumber}'~|</strong></span></td> 
+                <td></td> 
+                <td></td>   
+            </tr> 
+            <tr> 
+                <td>Plan to Confirm:</td> 
+                <td><strong><span style="color:#000000;font-size:12;">|~SELECT ISNULL(dbo.udfGetCaseFlag({CaseID}, 1010),'') as FieldData~|&nbsp;</span></strong></td> 
+                <td>Case Admin:</td> 
+                <td><b><font size=2>|~SELECT FirstName AS FieldData FROM tblCaseData INNER JOIN tblUserTable ON tblCaseData.CaseAdministrator = tblUserTable.UserCodeID WHERE CaseNumber = '{CaseNumber}'~|</font></b></td> 
+                <td>Claims Bar Date:</td> 
+                <td><strong><span style="color:#000000;font-size:12;">|~SELECT ISNULL(CONVERT(VARCHAR,dbo.udf_TAC_GetClaimsBarDate({CaseID}),101),'') as FieldData~|</span></strong></td> 
+                <td></td> 
+                <td></td> 
+                <td></td> 
+            </tr> 
+            <tr> 
+                <td>Non-standard Plan:</td> 
+                <td><strong><span style="color:#000000;font-size:12;">|~SELECT ISNULL(dbo.udfGetCaseFlag({CaseID}, 1035),'N') as FieldData~|&nbsp;</span></strong></td> 
+                <td>Narrative:</td> 
+                <td><strong><span style="color:#000000;font-size:12;">|~SELECT ISNULL(dbo.udfGetCaseFlag({CaseID}, 1005),'') as FieldData~|</span></strong></td> 
+                <td>Governmental Bar Date:</td> 
+                <td><b><font size=2>[~udfDateAdd('d', 180, '|~SELECT CONVERT(VARCHAR,(CASE vwCRMainCase.ConversionDate WHEN '1/1/1900' THEN vwCRMainCase.PetitionFiledDate ELSE vwCRMainCase.ConversionDate END),101) AS FieldData FROM vwCRMainCase WHERE vwCRMainCase.CaseNumber = '{CaseNumber}'~|')@~]</font></b></td>   
+                <td></td> 
+                <td></td> 
+                <td></td> 
+            </tr> 
+            <tr> 
+                <td>&nbsp;</td> 
+                <td>&nbsp;</td> 
+                <td>&nbsp;</td> 
+                <td>&nbsp;</td> 
+                <td>|~SELECT CASE vwCRMainCase.ConversionDate WHEN '01/01/1900' THEN '' ELSE 'Conversion Date:' END AS FieldData FROM vwCRMainCase WHERE vwCRMainCase.CaseNumber = '{CaseNumber}'~|</td> 
+                <td><b><font size=2>|~SELECT CASE vwCRMainCase.ConversionDate WHEN '01/01/1900' THEN '' ELSE CONVERT(VARCHAR,vwCRMainCase.ConversionDate,101) END AS FieldData FROM vwCRMainCase WHERE vwCRMainCase.CaseNumber = '{CaseNumber}'~|</font></b></td> 
+                <td>&nbsp;</td> 
+                <td>&nbsp;</td> 
+                <td>&nbsp;</td> 
+            </tr>  
+        </tbody>
+    </table> 
+    <p style="clear: both;"></p> 
+    <table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:auto;">  
+        <tbody>
+            <tr> 
+                <td  align="center">Debtor</td> 
+                <td  align="center">Name</td> 
+                <td  align="center">Address 1</td> 
+                <td  align="center">Address 2</td> 
+                <td  align="center">Address 3</td> 
+                <td  align="center">City</td>        
+                <td  align="center">State</td>        
+                <td  align="center">Zip</td>        
+                <td  align="center">Reference Only</td> 
+            </tr> 
+            <tr> 
+                <td>Debtor 1:</td> 
+                <td>{vwCRMainCase.Deb1LongName}</td> 
+                <td>{vwCRMainCase.Deb1AddressLine1}</td> 
+                <td>{vwCRMainCase.Deb1AddressLine2}</td> 
+                <td>{vwCRMainCase.Deb1AddressLine3}</td> 
+                <td>{vwCRMainCase.Deb1City}</td> 
+                <td>{vwCRMainCase.Deb1State}</td> 
+                <td>{vwCRMainCase.CASE WHEN Deb1ZipCode <> '000000000' THEN LEFT(Deb1ZipCode,5) + '-' + RIGHT(Deb1ZipCode, 4) END}</td> 
+                <td align="center">|~SELECT CASE WHEN tblName.ReferenceOnly = 1 THEN '<font face="Unicode"><b>&#10004;</b></font>' ELSE '&nbsp;' END AS FieldData FROM tblName INNER JOIN tblCaseName ON tblName.NameID = tblCaseName.NameID INNER JOIN vwCRMainCase ON tblCaseName.CaseID = vwCRMainCase.CaseID WHERE vwCRMainCase.Deb1NameID = tblName.NameID AND vwCRMainCase.CaseNumber = '{CaseNumber}'~|</td>         
+            </tr> 
+            <tr> 
+                <td>Debtor 2:</td> 
+                <td>{vwCRMainCase.Deb2LongName}</td> 
+                <td>{vwCRMainCase.Deb2AddressLine1}</td> 
+                <td>{vwCRMainCase.Deb2AddressLine2}</td> 
+                <td>{vwCRMainCase.Deb2AddressLine3}</td> 
+                <td>{vwCRMainCase.Deb2City}</td> 
+                <td>{vwCRMainCase.Deb2State}</td> 
+                <td>{vwCRMainCase.CASE WHEN Deb2ZipCode <> '000000000' THEN LEFT(Deb2ZipCode,5) + '-' + RIGHT(Deb2ZipCode, 4) END}</td> 
+                <td align="center">|~SELECT CASE WHEN tblName.ReferenceOnly = 1 THEN '<font face="Unicode"><b>&#10004;</b></font>' ELSE '&nbsp;' END AS FieldData FROM tblName INNER JOIN tblCaseName ON tblName.NameID = tblCaseName.NameID INNER JOIN vwCRMainCase ON tblCaseName.CaseID = vwCRMainCase.CaseID WHERE vwCRMainCase.Deb2NameID = tblName.NameID AND vwCRMainCase.CaseNumber = '{CaseNumber}'~|</td>         
+            </tr> 
+        </tbody>
+    </table> 
+    <p style="clear: both;"></p> 
+    <p style="float:left; padding: 0 20 0 0;">
+    <table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:auto;"> 
+        <tbody>
+            <tr> 
+                <td>Plan Length:</td> 
+                <td>{vwCRMainCase.ProposedLengthOfPlan}&nbsp;<b>Months</b></td> 
+            </tr> 
+            <tr> 
+                <td>ACP:</td> 
+                <td>{vwCRMainCase.ApplicableCommitmentPeriod}&nbsp;<b>Months</b></td> 
+            </tr> 
+            <tr> 
+                <td>Months Remaining:</td> 
+                <td>{vwCRMainCase.MonthsRemainingInPlan}&nbsp;<b>Month(s)</b></td> 
+            </tr> 
+            <tr> 
+                <td nowrap="">Annual 1040 Required: </td> 
+                <td nowrap=""><strong><span style="color:#000000;font-size:12;">&nbsp;|~SELECT ISNULL(dbo.udfGetCaseFlag({CaseID}, 1006),'N') as FieldData~|</span></strong></td>
+            </tr>
+            <tr>
+                <td nowrap="">IRS Pledged: </td>
+                <td nowrap=""><strong><span style="color:#000000;font-size:12;">&nbsp;|~SELECT ISNULL(dbo.udfGetCaseFlag({CaseID}, 7),'N') as FieldData~|</span></strong></td>
+            </tr>                                
+            <tr>
+                <td nowrap="">Bonuses Pledged: </td>
+                <td nowrap=""><strong><span style="color:#000000;font-size:12;">&nbsp;|~SELECT ISNULL(dbo.udfGetCaseFlag({CaseID}, 1025),'N') as FieldData~|</span></strong></td>
+            </tr>
+            <tr>
+                <td>DSO Case: </td>
+                <td><strong><span style="color:#000000;font-size:12;">&nbsp;|~SELECT ISNULL(dbo.udfGetCaseFlag({CaseID}, 1024),'N') as FieldData~|&nbsp;</span></strong></td>
+            </tr>
+            <tr>
+                <td nowrap="">Business Case: </td>
+                <td nowrap=""><strong><span style="color:#000000;font-size:12;">&nbsp;|~SELECT ISNULL(dbo.udfGetCaseFlag({CaseID}, 1028),'N') as FieldData~|</span></strong></td>
+            </tr>                
+            <tr>
+                <td>Budget Review Req: </td>
+                <td><strong><span style="color:#000000;font-size:12;">&nbsp;|~SELECT ISNULL(dbo.udfGetCaseFlag({CaseID}, 1002),'N') as FieldData~|&nbsp;</span></strong></td>
+            </tr> 
+            <tr>
+                <td>Lanning Relief: </td>
+                <td><strong><span style="color:#000000;font-size:12;">&nbsp;|~SELECT ISNULL(dbo.udfGetCaseFlag({CaseID}, 1027),'N') as FieldData~|&nbsp;</span></strong></td>
+            </tr>
+            <tr>
+                <td>1-36, 37 On: </td>
+                <td><strong><span style="color:#000000;font-size:12;">&nbsp;|~SELECT ISNULL(dbo.udfGetCaseFlag({CaseID}, 1026),'N') as FieldData~|&nbsp;</span></strong></td>
+            </tr> 
+            <tr>
+                <td>Personal Injury Claim: </td>
+                <td><strong><span style="color:#000000;font-size:12;">&nbsp;|~SELECT ISNULL(dbo.udfGetCaseFlag({CaseID}, 1013),'N') as FieldData~|&nbsp;</span></strong></td>
+            </tr> 
+        </tbody>
+    </table></p>
+    <p style="float:left; padding: 0 20 0 0;">
+    <table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:auto;">  
+        <tbody>
+            <tr> 
+                <td>Balance on Hand:</td> 
+                <td align="right"><span style="color:#000000;font-size:12;">{vwCRMainCase.'$' + CONVERT(VARCHAR(12), BalanceOnHand, 1)}</span></td>
+            </tr>
+            <tr> 
+                <td>Total Paid In:</td> 
+                <td align="right"><span style="color:#000000;font-size:12;">{vwCRMainCase.'$' + CONVERT(VARCHAR(12), TotalPaidIn, 1)}</span></td>
+            </tr>
+            <tr> 
+                <td>Total Disbursed:</td> 
+                <td align="right"><span style="color:#000000;font-size:12;">{vwCRMainCase.'$' + CONVERT(VARCHAR(12), TotalDisbursed, 1)}</span></td>
+            </tr>
+            <tr> 
+                <td>Base Amount:</td> 
+                <td align="right"><span style="color:#000000;font-size:12;">{vwCRMainCase.'$' + CONVERT(VARCHAR(12), PlanBase, 1)}</span></td>
+            </tr>
+            <tr> 
+                <td>Base Balance:</td> 
+                <td align="right"><strong><span style="color:#000000;font-size:12;">[~udf_TAC_GetBaseBalance({CaseID})$~]</span></strong></td> 
+            </tr>
+            <tr> 
+                <td>Equity:</td> 
+                <td align="right"><strong><span style="color:#000000;font-size:12;">[~udfGetCaseAmount({CaseID}, 3)$~]</span></strong></td>
+            </tr>
+            <tr> 
+                <td>IV.E.2.b:</td> 
+                <td align="right"><strong><span style="color:#000000;font-size:12;">[~udfGetCaseAmount({CaseID}, 2)$~]</span></strong></td>
+            </tr>
+            <tr>
+                <td>Unsecured Pool:</td> 
+                <td align="right"><span style="color:#000000;font-size:12;">{vwCRMainCase.'$' + CONVERT(VARCHAR(12), UnsecuredPool, 1)}</span></td>
+            </tr>
+            <tr> 
+                <td>Unsecured Percent:</td> 
+                <td align="right"><strong><span style="color:#000000;font-size:12;">{vwCRMainCase.CONVERT(DECIMAL(10,2),UnsecuredPercent)}%</span></strong></td>
+            </tr>                
+            <tr> 
+                <td>Unsecured Interest:</td> 
+                <td align="right"><strong><span style="color:#000000;font-size:12;">{vwCRMainCase.CONVERT(DECIMAL(10,2),UnsecuredInterest)}%</span></strong></td>
+            </tr> 
+        </tbody> 
+    </table></p>
+    <p style="float:left; padding: 0 20 0 0;">
+    <table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:auto;">  
+        <tbody>
+            <tr>
+                <td>Comment 1: </td>
+                <td align="left"><strong><span style="color:#000000;font-size:12;">[~udfGetCaseFlag({CaseID}, 3)~]</span></strong></td>
+            </tr>
+            <tr>
+                <td>Comment 2: </td>
+                <td align="left"><strong><span style="color:#000000;font-size:12;">[~udfGetCaseFlag({CaseID}, 4)~]</span></strong></td>
+            </tr>  
+        </tbody>
+    </table><br/>
+    <table class="table table-condensed table-bordered" style="background-color:#FFFFFF;width:auto;">  
+        <tbody>
+            <tr>
+                |~SELECT '<td align="left"><strong><span style="color:#000000;font-size:20;color:' + tblSpecialMessage.MessageFontColor + ';">' + 
+                ISNULL(tblSpecialMessage.MessageToDisplay, '') + '</span></strong></td>' AS FieldData 
+                FROM tblCaseData LEFT JOIN 
+                tblSpecialMessage ON dbo.udfGetCaseFlag(tblCaseData.CaseID,1001) = tblSpecialMessage.SpecialMessageID 
+                WHERE tblCaseData.CaseID = {CaseID}~|
+            </tr> 
+        </tbody>
+    </table></p>
+    <p style="clear: both;"></p> 
+    </div>
+    </div>

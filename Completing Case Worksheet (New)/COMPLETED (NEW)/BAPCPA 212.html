@@ -1,0 +1,63 @@
+<hr>
+<div class="container">
+    <section id="table">
+        <table class="table table-striped table-bordered">
+            <thead style="background-color: #227196; text-align: center;">
+                <tr>
+                    <td colspan="6" style="font-size: medium;text-align: center; color: whitesmoke;">BAPCPA Review</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="color: whitesmoke;">Debtor 1</td>
+                    <td style="color: whitesmoke;">Debtor 2</td>
+                    <td style="color: whitesmoke;">Satisifed?</td>
+                    <td style="color: whitesmoke;">N/A</td>
+                </tr>
+            </thead>
+            <tbody style="text-align: center;">
+                <!-- Checkbox Plan, All Satisfied will be #100's and N/A will be #200's -->
+                <tr>
+                    <td>Entitled to Discharge:</td>
+                    <td>{vwCRMainCase.DebtorEntitledToDischargeDescription}</td>
+                    <td>{vwCRMainCase.DebtorEntitledToDischarge0Description}</td>
+                    <td>[CheckBox100]</td>
+                    <td>[CheckBox200]</td>
+                </tr>
+                <tr>
+                    <td>Credit Counsel Cert Date:</td>
+                    <td>{vwCRMainCase.CreditCounselCertificationDate@}</td>
+                    <td>{vwCRMainCase.CreditCounselCertificationDate0@}</td>
+                    <td>[CheckBox101]</td>
+                    <td>[CheckBox201]</td>
+                </tr>
+                <tr>
+                    <td>Debtor Education Date:</td>
+                    <td>{vwCRMainCase.DebtorEducationDate@}</td>
+                    <td>{vwCRMainCase.DebtorEducationDate0@}</td>
+                    <td>[CheckBox102]</td>
+                    <td>[CheckBox202]</td>
+                </tr>
+                <tr>
+                    <td>Debtor Education Mailed:</td>
+                    <td colspan="2"><b>|~SELECT CONVERT(VARCHAR, CAST(dbo.udfGetCaseDate({CaseID}, 30) AS DATE))~|</b></td>
+                    <td>[CheckBox105]</td>
+                    <td>[CheckBox205]</td>
+                </tr>
+                <tr>
+                    <td>DSO Certification Mailed:</td>
+                    <td colspan="2"><b>|~SELECT CONVERT(VARCHAR, CAST(dbo.udfGetCaseDate({CaseID}, 31) AS DATE))~|</b></td>
+                    <td>[CheckBox106]</td>
+                    <td>[CheckBox206]</td>
+                </tr>
+                <tr>
+                    <td>DSO Certificate Received:</td>
+                    <td><b>|~SELECT CONVERT(VARCHAR, CAST(dbo.udfGetCaseDate({CaseID}, 28) AS DATE))~|</b></td>
+                    <td><b>|~SELECT CONVERT(VARCHAR, CAST(dbo.udfGetCaseDate({CaseID}, 29) AS DATE))~|</b></td>
+                    <td>[CheckBox103]</td>
+                    <td>[CheckBox203]</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+<!-- END OF BAPCPA INFORMATION -->

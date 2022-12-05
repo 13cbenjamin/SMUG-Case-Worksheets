@@ -1,0 +1,32 @@
+<div style="background-color:#6FFFE9; width: 100%; padding: 0 0 10 0;"> 
+    <div id="header_139_1" style="background-color:#3A506B; height: 28px; width: 100%;"> 
+    <ul style="margin: 10; padding: 0; list-style-type: none; color:#FFFFFF;"> 
+        <li style="display: inline; float: left; font-size: 150%; font-weight: bold; padding: 0 0 0 10;">Completed Case Worksheet</li>
+    </ul> 
+    </div> 
+    <div style="padding: 0 10 0 10;"> 
+    <p style="clear: both;"></p> 
+    <table class="table table-condensed" style="width:auto;margin-bottom:0;"> 
+        <thead> 
+            <tr> 
+                <th colspan="2" style="border:none;"><h5><strong>|~SELECT vwCRMainCase.DisplayCaseNumber AS FieldData FROM vwCRMainCase WHERE vwCRMainCase.CaseNumber = '{CaseNumber}'~|</strong></h5></th> 
+            </tr> 
+            <tr> 
+                <th colspan="2" style="border:none;"><h5><strong>{vwCRMainCase.DisplayCaseNumber}</strong></h5></th> 
+            </tr>
+        </thead> 
+        <tbody> 
+            <tr> 
+                <td style="vertical-align:middle;border:none;">Current Date:</td> 
+                <td style="width:100px;border:none;"><strong>|:ShortDate:|</strong></td> 
+                <td style="border:none;"></td>
+            </tr> 
+            <tr> 
+                <td style="vertical-align:middle;border:none;">Current User:</td> 
+                <td colspan="2" style="border:none;"><strong>|:UserName:|</strong></td> 
+                <td style="border:none;"></td>
+            </tr> 
+        </tbody> 
+    </table>
+    </div> 
+    </div>

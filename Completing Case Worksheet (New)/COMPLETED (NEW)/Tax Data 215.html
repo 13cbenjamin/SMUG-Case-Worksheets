@@ -1,0 +1,148 @@
+<section class="taxData">
+    <Section id="TaxData" style="text-align: center;">
+       <p style="font-size: medium; font-weight:bold;text-align:center">Tax Data</p>
+    </Section>
+        <div class="" >
+        <span class="btn btn-info" id="section_taxdata_title">Show/Hide Tax Return Documents</span> 
+    </div>
+    <div id="section_taxdata_collapse" class="collapse" data-collapse-area>
+    |~SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                             FROM tblDocumentDetail INNER JOIN 
+                             tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                             tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                             tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                             WHERE tblCaseData.CaseID = {CaseID} 
+                             AND tblDocumentFormSubType.FormSubTypeAbbr = '13Documents.com Files' 
+                             AND tblDocumentFormType.FormTypeCode = 1702 ) THEN  
+    '<table class="table table-condensed table-bordered table-striped" style="background-color:#909090; width:100%;"> 
+        <thead> 
+            <tr style="background-color: #4096f8;">
+                <th colspan="4" style="text-align:center;">Open a Tax Return</th>                    
+            </tr>
+            <tr> 
+                <td align="center" >PDF</td> 
+                <td align="center" >Court Doc.</td> 
+                <td>Date Received</td> 
+                <td>Document Detail</td> 
+            </tr>' END as FieldData, '9/9/9999' AS CreatedDate 
+    UNION ALL 
+    
+    SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                             FROM tblDocumentDetail INNER JOIN 
+                             tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                             tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                             tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                             WHERE tblCaseData.CaseID = {CaseID} 
+                             AND tblDocumentFormSubType.FormSubTypeAbbr = '13Documents.com Files' 
+                             AND tblDocumentFormType.FormTypeCode = 1702 ) THEN 
+            '<tr valign="top">' + 
+                '<td align="center" >' + '<a target="_blank" href="http://dataserver/imagestorage/' + tblDocumentDetail.ImageLocation + '">' + '<img src="images\pdficon.gif"></a></td>' + 
+                '<td align="center">' + ISNULL(tblCourtDocument.CourtDocumentNumber,'') + '</td>' + 
+                '<td >' + CONVERT(VARCHAR, tblDocumentDetail.CreatedDate, 101) + '</td>' + 
+                '<td>' + tblDocumentFormType.FormTypeDescription + '<br/><span style="font-size:10;">' + ISNULL(REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(MAX), (SUBSTRING(DocketText, 0,CHARINDEX('filed by', DocketText)))), '[', '&#91;'), ']', '&#93;'), '''', ''),'"',''), '') + '</span></td>' + 
+            '</tr> 
+        </tbody>' END as FieldData, CreatedDate 
+    FROM tblDocumentDetail INNER JOIN 
+    tblDocumentKeys ON tblDocumentDetail.DocumentID = tblDocumentKeys.DocumentID INNER JOIN 
+    tblTrusteeDefaults ON tblDocumentDetail.TruCode = tblTrusteeDefaults.TruCode LEFT JOIN 
+    tblCourtDocument ON tblDocumentDetail.DocumentID = tblCourtDocument.DocumentID INNER JOIN 
+    tblDocumentSetup ON tblTrusteeDefaults.TruCode = tblDocumentSetup.TruCode INNER JOIN 
+    tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+    tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+    WHERE tblDocumentKeys.DocumentKey = {CaseID} 
+    AND tblDocumentFormSubType.FormSubTypeAbbr = '13Documents.com Files' 
+    AND tblDocumentFormType.FormTypeCode = 1702  
+    
+    UNION ALL 
+    
+    SELECT CASE WHEN EXISTS (SELECT TOP 1 tblDocumentDetail.DocumentID 
+                                FROM tblDocumentDetail INNER JOIN 
+                                tblCaseData ON tblDocumentDetail.Comment = tblCaseData.CaseNumber INNER JOIN 
+                                tblDocumentFormType ON tblDocumentDetail.FormTypeCode = tblDocumentFormType.FormTypeCode INNER JOIN 
+                                tblDocumentFormSubType ON tblDocumentFormType.FormSubTypeCode = tblDocumentFormSubType.FormSubTypeCode 
+                                WHERE tblCaseData.CaseID = {CaseID} 
+                                AND tblDocumentFormSubType.FormSubTypeAbbr = '13Documents.com Files' 
+                                AND tblDocumentFormType.FormTypeCode = 1702 ) THEN 
+    '</table><br/>' END AS FieldData, '1/2/1900' AS CreatedDate 
+    ORDER BY CreatedDate DESC~|
+
+    <div id="TaxData">
+        |~SELECT CASE WHEN EXISTS (SELECT TOP 1 TaxYear from tbltaxdata where caseid = {CaseID}) THEN 
+        '<table class="table table-condensed table-bordered table-striped" style="background-color:#909090; width:100%;"> 
+        <thead> 
+        <tr style="background-color: #4096f8;">
+        <th colspan="8" style="text-align:center;">Tax Return Information</th>                    
+        </tr>
+        <tr> 
+        <th>Tax Year</th> 
+        <th>Date Received</th> 
+        <th>Date Requested</th>
+        <th>AGI</th> 
+        <th>Refunds</th>
+        <th>Liabilities</th>
+        <th>Business Income</th>
+        <th>Notes</th>
+        </tr> 
+        </thead>' END as FieldData 
+        
+        UNION ALL 
+        
+        SELECT CASE WHEN EXISTS (SELECT TOP 1 TaxYear from tbltaxdata where caseid = {CaseID}) THEN 
+        '<tbody>' + 
+        '<tr>' + 
+        '<td>' + CONVERT(VARCHAR,TaxYear) + '</td>' + 
+        '<td>' + CASE WHEN tblTaxData.DateReceived = '01/01/1900' THEN '' ELSE CONVERT(VARCHAR,tblTaxData.DateReceived,101) END + '</td>' + 
+        '<td>' + CASE WHEN tblTaxData.DateRequested = '01/01/1900' THEN '' ELSE CONVERT(VARCHAR,tblTaxData.DateRequested,101) END  + '</td>' + 
+        '<td>' + CONVERT(VARCHAR, FORMAT(AGI, 'C')) + '</td>' + 
+        '<td>' + CONVERT(VARCHAR, FORMAT(Refunds, 'C')) + '</td>' + 
+        '<td>' + CONVERT(VARCHAR, FORMAT(Liabilities, 'C')) + '</td>' + 
+        '<td>' + CONVERT(VARCHAR, FORMAT(BusinessIncomeLine7, 'C'))+ '</td>' + 
+        '<td>' + CONVERT(VARCHAR(MAX),Notes) + '</td>' + 
+        '</tr>' + 
+        '</tbody>' ELSE '<tbody><tr><td>No Tax Data Found</td></tr></tbody>' END as FieldData 
+        from tblTaxData where CaseID = {CaseID} 
+
+        UNION ALL 
+        
+        SELECT CASE WHEN EXISTS (SELECT TOP 1 TaxYear from tbltaxdata where caseid = {CaseID}) THEN 
+        '</tbody>' + 
+        '</table>' END AS FieldData~|
+        
+    </div>
+</div>
+
+
+    <table class="table table-bordered table-striped">
+        <thead >
+            <tr style="background-color: #229633;">
+                <th colspan="4" style="text-align:center;">Tax Data</th>
+                
+            </tr>
+            <tr style="background-color: #909090;">
+                <td>Audit Question</td>
+                <td>Satisfied</td>
+                <td>N/A</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Annual 1040 Required?<br> Case Flag Annual 1040 Required:|~SELECT CASE WHEN (Select Flag from vwCRCaseFlags where CaseID = {CaseID} and FlagCodesID = 1006) LIKE '%Y%' then '<b>elect Flag from vwCRCaseFlags where CaseID = {CaseID} and FlagCodesID = 1006</b>' else '<b>NO</b>' end~|</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>IRS Pledged? <br> Case Flag IRS Pledged:|~SELECT CASE WHEN (Select Flag from vwCRCaseFlags where CaseID = {CaseID} and FlagCodesID = 7) LIKE '%Y%' then '<b>select Flag from vwCRCaseFlags where CaseID = {CaseID} and FlagCodesID = 7</b>' else '<b>NO</b>' end~|</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Missing Tax Returns: |~SELECT ISNULL(dbo.udf_TAC_TaxReturnMissingYears({CaseID}),'None') as FieldData~|</td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+
+</section>
