@@ -1,0 +1,1253 @@
+<div id="container_summary_186" class="container-fluid">
+    <p class="h5">Summary Section</p>
+</br>
+<div id="sectionlinks">
+<ul > 
+    <li >
+        <a class="btn btn-link"  href="javascript:document.getElementById('section_186_1').scrollIntoView();">Jump to Top</a>
+    </li> 
+    <li >
+        <a class="btn btn-link"  href="javascript:document.getElementById('section_186_2').scrollIntoView();">PART I - III</a>
+    </li> 
+    <li >
+        <a class="btn btn-link"  href="javascript:document.getElementById('section_186_5').scrollIntoView();">PART IV</a>
+    </li> 
+    <li >
+        <a class="btn btn-link"  href="javascript:document.getElementById('section_186_6').scrollIntoView();">PART V</a>
+    </li> 
+    <li >
+        <a class="btn btn-link"  href="javascript:document.getElementById('section_186_7').scrollIntoView();">PART VI</a>
+    </li> 
+    <li >
+        <a class="btn btn-link"  href="javascript:document.getElementById('section_186_8').scrollIntoView();">PART VII</a>
+    </li> 
+    <li >
+        <a class="btn btn-link"  href="javascript:document.getElementById('section_186_9').scrollIntoView();">PART IX - X</a>
+    </li> 
+    <li >
+        <a class="btn btn-link"  href="javascript:document.getElementById('section_186_10').scrollIntoView();">SUMMARY</a>
+    </li> 
+</ul> 
+<ul > 
+<li ><a onclick="WCgoToApp('CaseWorksheet.aspx?xwin=&amp;wstype=41')" title="Refresh" class="btn btn-primary"  tabindex="-1">Refresh</a></li>
+<li >|~Select '<a href="' + tblReportSetup.ReportServerHTTPAddress + 'PleaseWait.aspx?progskip=~&prog=getPSProg&&qs=uid=' + '|:UserCodeID:|' + '|id=571|trucode=' + tblReportSetup.TruCode + '|WinSuffix=1|windesc=WorksheetForm|AppServerName=' + tblTrusteeDefaults.ApplicationHTTPAddress + '|psprog=PrintForm.aspx|sucid=' + '|:UserCodeID:|' + '|cn=' + '{CaseNumber}' + '|' + '" target="_blank" class="btn btn-success" tabindex="-1">Create Forum Note</a>' as FieldData From tblReportSetup, tblTrusteeDefaults Where tblReportSetup.TruCode = tblTrusteeDefaults.TrusteeCode~|</li>
+<li ><a onclick="if(!(confirm('Are you sure you want to remove all the data from this worksheet?  This action cannot be undone.')))return false;WCgoToApp('CaseWorksheet.aspx?clear=1&amp;xwin=&amp;wstype=41')" title="Reset Worksheet" class="btn btn-danger" tabindex="-1">Reset Worksheet</a></li>
+</ul>
+</div>
+<div id="summarytables" >
+<br id="collapse_summary_186_21" summarysection  class="tac_money">
+<h6>|~SELECT vwCRMainCase.DisplayCaseNumber AS FieldData FROM vwCRMainCase WHERE vwCRMainCase.CaseNumber = '{CaseNumber}'~| Plan Narrative Summary</h6>
+<h7>Current Court Doc: <h7 id="td_TextBox_186_111"></h7> Previous Court Doc: <h7 id="td_TextBox_186_112"></h7></h7></br>
+<h7>Original  (<h7 id="td_CheckBox_186_111"></h7>) OR Amended (<h7 id="td_CheckBox_186_112"></h7>) Date Plan Filed:  <h7 id="td_TextBox_186_3"></h7></br>
+<h7>Nonstandard Provs & Plan's Mods:  A. (<h7 id="td_CheckBox_186_211"></h7>) | B. (<h7 id="td_CheckBox_186_212"></h7>) | C. (<h7 id="td_CheckBox_186_213"></h7>) </h7> </br>
+<h7>(</h7><h7 id="td_CheckBox_186_311"></h7><h7>) Below Median 36 Months</h7></br>
+<h7>(</h7><h7 id="td_CheckBox_186_312"></h7><h7>) Above Median 60 Months</h7></br>
+<h7>Plan Payments to Trustee</h7></br>
+<h7>Plan Payment Amount: </h7><h7 id="td_TextBox_186_40"></h7>
+<h7> Step Payments: </h7><h7 id="td_CheckBox_186_100"></h7>
+<div id="collapse_summary_186_40" summarysection >
+    <table id="table_summary_186_40" class="table table-bordered table-sm" >
+        <caption >Step Payments</caption>
+        <thead >
+        <tr>
+            <th scope="col" >Start Month</th>
+            <th scope="col" >End Month</th>
+            <th scope="col" >Amount</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td id="td_TextBox_186_4001" ></td>
+            <td class="tac_money" id="td_TextBox_186_4002" ></td>
+            <td class="tac_money" id="td_TextBox_186_4003" ></td>
+        </tr>
+        <tr>
+            <td id="td_TextBox_186_4011" ></td>
+            <td class="tac_money" id="td_TextBox_186_4012" ></td>
+            <td class="tac_money" id="td_TextBox_186_4013" ></td>
+        </tr>
+        <tr>
+            <td id="td_TextBox_186_4021" ></td>
+            <td class="tac_money" id="td_TextBox_186_4022" ></td>
+            <td class="tac_money" id="td_TextBox_186_4023" ></td>
+        </tr>
+        <tr>
+            <td id="td_TextBox_186_4031" ></td>
+            <td class="tac_money" id="td_TextBox_186_4032" ></td>
+            <td class="tac_money" id="td_TextBox_186_4033" ></td>
+        </tr>
+        <tr>
+            <td id="td_TextBox_186_4041" ></td>
+            <td class="tac_money" id="td_TextBox_186_4042" ></td>
+            <td class="tac_money" id="td_TextBox_186_4043" ></td>
+        </tr>   
+        <tr>
+            <td class="tac_money" id="td_TextBox_186_4055" ></td>
+        </tr>         
+    </tbody>
+    </table>    </div>   
+    <div id='td_CommentBox_186_402'><h7>Comments </h7><h7 id="td_TextBox_186_10402"></h7></div>
+
+</br>
+<h7>Does PP Match I-J Amount?</h7> <h7>(<h7 id="td_CheckBox_186_40"></h7>) YES | (<h7 id="td_CheckBox_186_41"></h7>) NO </br>
+<h7>Frequency </h7>
+<h7>(</h7> <h7 id="td_CheckBox_186_411"></h7> <h7>) Monthly </h7> | <h7>(</h7> <h7 id="td_CheckBox_186_412"></h7> <h7>) Twice Per Month</h7> | <h7>(</h7> <h7 id="td_CheckBox_186_413"></h7> <h7>) Every Two Weeks</h7> |
+<h7>(</h7> <h7 id="td_CheckBox_186_414"></h7> <h7>) Weekly</h7> </br>
+<h7>Base Calculation </h7><h7 id="td_TextBox_186_10301"></h7></br>
+<h7>Tax Refunds: </h7> <h7>(</h7> <h7 id="td_CheckBox_186_421"></h7> <h7>) Committed </h7> | <h7>(</h7> <h7 id="td_CheckBox_186_422"></h7><h7>) Not Committed</h7> </br>
+<h7>E: Other </h7> <h7 id="td_TextBox_186_431"></h7></br>
+<div id='td_CommentBox_186_900'><h7>Comments </h7> <h7 id="td_TextBox_186_10900"></h7></div>
+<hr  />
+<h7>Attorney Fees: </h7> <h7 id=td_TextBox_186_501></h7> </br>
+<h7>Amount paid prior to filing: </h7> <h7 id=td_TextBox_186_502></h7> </br>
+<h7>(</h7><h7 id="td_CheckBox_186_511"></h7><h7>) Prior to all Creditors </h7></br>
+<h7>(</h7><h7 id="td_CheckBox_186_512"></h7><h7>) Monthly Payment of <h7 id=td_TextBox_186_512></h7></h7> </br>
+<h7>(</h7><h7 id="td_CheckBox_186_513"></h7><h7>) All remaining funds available after designated monthly payments to creditors: <h7 id=td_TextBox_186_513></h7></h7> </br>
+<h7>(</h7><h7 id="td_CheckBox_186_514"></h7><h7>) Other: <h7 id=td_TextBox_186_514></h7></h7> </br>  </div>
+<div id='td_CommentBox_186_901'><h7>Comments </h7><h7 id="td_TextBox_186_10901"></h7></div>
+<hr  />
+
+<div id="collapse_summary_186_51" summarysection >
+<table id="table_summary_186_51" class="table table-bordered table-sm" >
+    <caption >Current Domestic Support Obligations</caption>
+    <thead >
+    <tr>
+        <th scope="col" >Creditor</th>
+        <th scope="col" >Monthly Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td id="td_TextBox_186_5101" ></td>
+        <td class="tac_money" id="td_TextBox_186_5102" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5111" ></td>
+        <td class="tac_money" id="td_TextBox_186_5112" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5121" ></td>
+        <td class="tac_money" id="td_TextBox_186_5122" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5131" ></td>
+        <td class="tac_money" id="td_TextBox_186_5132" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5141" ></td>
+        <td class="tac_money" id="td_TextBox_186_5142" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5151" ></td>
+        <td class="tac_money" id="td_TextBox_186_5152" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5161" ></td>
+        <td class="tac_money" id="td_TextBox_186_5162" ></td>
+    </tr>
+
+    <tr>
+        <td id="td_TextBox_186_5171" ></td>
+        <td class="tac_money" id="td_TextBox_186_5172" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5181" ></td>
+        <td class="tac_money" id="td_TextBox_186_5182" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5191" ></td>
+        <td class="tac_money" id="td_TextBox_186_5192" ></td>
+    </tr>
+
+</tbody>
+</table>    </div>   
+<div id='td_CommentBox_186_902'><h7>Comments </h7><h7 id="td_TextBox_186_10902"></h7></div>
+  
+<div id="collapse_summary_186_52" summarysection >
+<table id="table_summary_186_52" class="table table-bordered table-sm" >
+    <caption >1. Ongoing Payments</caption>
+<thead >
+    <tr>
+        <th scope="col" >Rank</th>
+        <th scope="col" >Monthly Payment</th>
+        <th scope="col" >Creditor</th>
+        <th scope="col" >Collateral</th>
+    </tr> 
+</thead>
+    <tbody>
+        <tr>
+        <td id="td_TextBox_186_5201" ></td>
+        <td class="tac_money" id="td_TextBox_186_5202" ></td>
+        <td id="td_TextBox_186_5203" ></td>
+        <td id="td_TextBox_186_5204" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5211" ></td>
+        <td class="tac_money" id="td_TextBox_186_5212" ></td>
+        <td id="td_TextBox_186_5213" ></td>
+        <td id="td_TextBox_186_5214" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5221" ></td>
+        <td class="tac_money" id="td_TextBox_186_5222" ></td>
+        <td id="td_TextBox_186_5223" ></td>
+        <td id="td_TextBox_186_5224" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5231"></td>
+        <td class="tac_money" id="td_TextBox_186_5232" ></td>
+        <td id="td_TextBox_186_5233" ></td>
+        <td id="td_TextBox_186_5234" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5241" ></td>
+        <td class="tac_money" id="td_TextBox_186_5242" ></td>
+        <td id="td_TextBox_186_5243" ></td>
+        <td id="td_TextBox_186_5244" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5251" ></td>
+        <td class="tac_money" id="td_TextBox_186_5252" ></td>
+        <td id="td_TextBox_186_5253" ></td>
+        <td id="td_TextBox_186_5254" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5261" ></td>
+        <td class="tac_money" id="td_TextBox_186_5262" ></td>
+        <td id="td_TextBox_186_5263" ></td>
+        <td id="td_TextBox_186_5263" ></td>
+    </tr>
+
+    <tr>
+        <td id="td_TextBox_186_5271" ></td>
+        <td class="tac_money" id="td_TextBox_186_5272" ></td>
+        <td id="td_TextBox_186_5273" ></td>
+        <td id="td_TextBox_186_5273" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5281" ></td>
+        <td class="tac_money" id="td_TextBox_186_5282" ></td>
+        <td id="td_TextBox_186_5283" ></td>
+        <td id="td_TextBox_186_5284" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5291" ></td>
+        <td class="tac_money" id="td_TextBox_186_5292" ></td>
+        <td id="td_TextBox_186_5293" ></td>
+        <td id="td_TextBox_186_5294" ></td>
+    </tr>
+
+</tbody>
+</table> </div>  
+<div id='td_CommentBox_186_903'><h7>Comments </h7><h7 id="td_TextBox_186_10903"></h7></div>
+       
+<div id="collapse_summary_186_53" summarysection  class="tac_money">
+<table id="table_summary_186_53" class="table table-bordered table-sm" >
+    <caption >1. Cure Payments</caption>
+<thead >
+    <tr>
+        <th scope="col" >Rank</th>
+        <th scope="col" >Monthly Payment</th>
+        <th scope="col" >Creditor</th>
+        <th scope="col" >Collateral</th>
+        <th scope="col" >Arrears to be Cured</th>
+        <th scope="col" >Interest Rate %</th>
+    </tr> 
+</thead>
+    <tbody>
+        <tr>
+        <td id="td_TextBox_186_5301" ></td>
+        <td id="td_TextBox_186_5302" ></td>
+        <td id="td_TextBox_186_5303" ></td>
+        <td id="td_TextBox_186_5304" ></td>
+        <td id="td_TextBox_186_5305" ></td>
+        <td id="td_TextBox_186_5306" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5311" ></td>
+        <td id="td_TextBox_186_5312" ></td>
+        <td id="td_TextBox_186_5313" ></td>
+        <td id="td_TextBox_186_5314" ></td>
+        <td id="td_TextBox_186_5315" ></td>
+        <td id="td_TextBox_186_5316" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5321" ></td>
+        <td id="td_TextBox_186_5322" ></td>
+        <td id="td_TextBox_186_5323" ></td>
+        <td id="td_TextBox_186_5324" ></td>
+        <td id="td_TextBox_186_5325" ></td>
+        <td id="td_TextBox_186_5326" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5331"></td>
+        <td id="td_TextBox_186_5332" ></td>
+        <td id="td_TextBox_186_5333" ></td>
+        <td id="td_TextBox_186_5334" ></td>
+        <td id="td_TextBox_186_5335" ></td>
+        <td id="td_TextBox_186_5336" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5341" ></td>
+        <td id="td_TextBox_186_5342" ></td>
+        <td id="td_TextBox_186_5343" ></td>
+        <td id="td_TextBox_186_5344" ></td>
+        <td id="td_TextBox_186_5345" ></td>
+        <td id="td_TextBox_186_5346" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5351" ></td>
+        <td id="td_TextBox_186_5352" ></td>
+        <td id="td_TextBox_186_5353" ></td>
+        <td id="td_TextBox_186_5354" ></td>
+        <td id="td_TextBox_186_5355" ></td>
+        <td id="td_TextBox_186_5356" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5361" ></td>
+        <td id="td_TextBox_186_5362" ></td>
+        <td id="td_TextBox_186_5363" ></td>
+        <td id="td_TextBox_186_5364" ></td>
+        <td id="td_TextBox_186_5365" ></td>
+        <td id="td_TextBox_186_5366" ></td>
+    </tr>
+
+    <tr>
+        <td id="td_TextBox_186_5371" ></td>
+        <td id="td_TextBox_186_5372" ></td>
+        <td id="td_TextBox_186_5373" ></td>
+        <td id="td_TextBox_186_5374" ></td>
+        <td id="td_TextBox_186_5375" ></td>
+        <td id="td_TextBox_186_5376" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5381" ></td>
+        <td id="td_TextBox_186_5382" ></td>
+        <td id="td_TextBox_186_5383" ></td>
+        <td id="td_TextBox_186_5384" ></td>
+        <td id="td_TextBox_186_5385" ></td>
+        <td id="td_TextBox_186_5386" ></td>
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5391" ></td>
+        <td id="td_TextBox_186_5392" ></td>
+        <td id="td_TextBox_186_5393" ></td>
+        <td id="td_TextBox_186_5394" ></td>
+        <td id="td_TextBox_186_5395" ></td>
+        <td id="td_TextBox_186_5396" ></td>
+    </tr>
+
+</tbody>
+</table></div> 
+<div id='td_CommentBox_186_904'><h7>Comments </h7><h7 id="td_TextBox_186_10904"></h7></div>
+     
+
+<div id="collapse_summary_186_54" summarysection  class="tac_money">
+<table id="table_summary_186_54" class="table table-bordered table-sm" >
+    <caption >2. Ongoing Payments</caption>
+<thead >
+    <tr>
+        <th scope="col" >Rank</th>
+        <th scope="col" >Monthly Payment</th>
+        <th scope="col" >Creditor</th>
+        <th scope="col" >Collateral</th>
+        <th scope="col" >Interest Rate</th>
+    </tr> 
+</thead>
+    <tbody>
+        <tr>
+        <td id="td_TextBox_186_5401" ></td>
+        <td id="td_TextBox_186_5402" ></td>
+        <td id="td_TextBox_186_5403" ></td>
+        <td id="td_TextBox_186_5404" ></td>
+        <td id="td_TextBox_186_5405" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5411" ></td>
+        <td id="td_TextBox_186_5412" ></td>
+        <td id="td_TextBox_186_5413" ></td>
+        <td id="td_TextBox_186_5414" ></td>
+        <td id="td_TextBox_186_5415" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5421" ></td>
+        <td id="td_TextBox_186_5422" ></td>
+        <td id="td_TextBox_186_5423" ></td>
+        <td id="td_TextBox_186_5424" ></td>
+        <td id="td_TextBox_186_5425" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5431" ></td>
+        <td id="td_TextBox_186_5432" ></td>
+        <td id="td_TextBox_186_5433" ></td>
+        <td id="td_TextBox_186_5434" ></td>
+        <td id="td_TextBox_186_5435" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5441" ></td>
+        <td id="td_TextBox_186_5442" ></td>
+        <td id="td_TextBox_186_5443" ></td>
+        <td id="td_TextBox_186_5444" ></td>
+        <td id="td_TextBox_186_5445" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5451" ></td>
+        <td id="td_TextBox_186_5452" ></td>
+        <td id="td_TextBox_186_5453" ></td>
+        <td id="td_TextBox_186_5454" ></td>
+        <td id="td_TextBox_186_5455" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5461" ></td>
+        <td id="td_TextBox_186_5462" ></td>
+        <td id="td_TextBox_186_5463" ></td>
+        <td id="td_TextBox_186_5464" ></td>
+        <td id="td_TextBox_186_5465" ></td>
+        
+    </tr>
+
+    <tr>
+        <td id="td_TextBox_186_5471" ></td>
+        <td id="td_TextBox_186_5472" ></td>
+        <td id="td_TextBox_186_5473" ></td>
+        <td id="td_TextBox_186_5474" ></td>
+        <td id="td_TextBox_186_5475" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5481" ></td>
+        <td id="td_TextBox_186_5482" ></td>
+        <td id="td_TextBox_186_5483" ></td>
+        <td id="td_TextBox_186_5484" ></td>
+        <td id="td_TextBox_186_5485" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5491" ></td>
+        <td id="td_TextBox_186_5492" ></td>
+        <td id="td_TextBox_186_5493" ></td>
+        <td id="td_TextBox_186_5494" ></td>
+        <td id="td_TextBox_186_5495" ></td>
+        
+    </tr>
+
+</tbody>
+</table> </div>    
+<div id='td_CommentBox_186_905'><h7>Comments </h7><h7 id="td_TextBox_186_10905"></h7></div>
+
+<div id="collapse_summary_186_55" summarysection  class="tac_money">
+<table id="table_summary_186_55" class="table table-bordered table-sm" >
+    <caption >2. Cure Payments</caption>
+<thead >
+    <tr>
+        <th scope="col" >Rank</th>
+        <th scope="col" >Monthly Payment</th>
+        <th scope="col" >Creditor</th>
+        <th scope="col" >Collateral</th>
+        <th scope="col" >Arrears to be Cured</th>
+        <th scope="col" >Interest Rate %</th>
+    </tr> 
+</thead>
+    <tbody>
+        <tr>
+        <td id="td_TextBox_186_5501" ></td>
+        <td id="td_TextBox_186_5502" ></td>
+        <td id="td_TextBox_186_5503" ></td>
+        <td id="td_TextBox_186_5504" ></td>
+        <td id="td_TextBox_186_5505" ></td>
+        <td id="td_TextBox_186_5506" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5511" ></td>
+        <td id="td_TextBox_186_5512" ></td>
+        <td id="td_TextBox_186_5513" ></td>
+        <td id="td_TextBox_186_5514" ></td>
+        <td id="td_TextBox_186_5515" ></td>
+        <td id="td_TextBox_186_5516" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5521" ></td>
+        <td id="td_TextBox_186_5522" ></td>
+        <td id="td_TextBox_186_5523" ></td>
+        <td id="td_TextBox_186_5524" ></td>
+        <td id="td_TextBox_186_5525" ></td>
+        <td id="td_TextBox_186_5526" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5531" ></td>
+        <td id="td_TextBox_186_5532" ></td>
+        <td id="td_TextBox_186_5533" ></td>
+        <td id="td_TextBox_186_5534" ></td>
+        <td id="td_TextBox_186_5535" ></td>
+        <td id="td_TextBox_186_5536" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5541" ></td>
+        <td id="td_TextBox_186_5542" ></td>
+        <td id="td_TextBox_186_5543" ></td>
+        <td id="td_TextBox_186_5544" ></td>
+        <td id="td_TextBox_186_5545" ></td>
+        <td id="td_TextBox_186_5546" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5551" ></td>
+        <td id="td_TextBox_186_5552" ></td>
+        <td id="td_TextBox_186_5553" ></td>
+        <td id="td_TextBox_186_5554" ></td>
+        <td id="td_TextBox_186_5555" ></td>
+        <td id="td_TextBox_186_5556" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5561" ></td>
+        <td id="td_TextBox_186_5562" ></td>
+        <td id="td_TextBox_186_5563" ></td>
+        <td id="td_TextBox_186_5564" ></td>
+        <td id="td_TextBox_186_5565" ></td>
+        <td id="td_TextBox_186_5566" ></td>
+
+        
+    </tr>
+
+    <tr>
+        <td id="td_TextBox_186_5571" ></td>
+        <td id="td_TextBox_186_5572" ></td>
+        <td id="td_TextBox_186_5573" ></td>
+        <td id="td_TextBox_186_5574" ></td>
+        <td id="td_TextBox_186_5575" ></td>
+        <td id="td_TextBox_186_5576" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5581" ></td>
+        <td id="td_TextBox_186_5582" ></td>
+        <td id="td_TextBox_186_5583" ></td>
+        <td id="td_TextBox_186_5584" ></td>
+        <td id="td_TextBox_186_5585" ></td>
+        <td id="td_TextBox_186_5586" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5591" ></td>
+        <td id="td_TextBox_186_5592" ></td>
+        <td id="td_TextBox_186_5593" ></td>
+        <td id="td_TextBox_186_5594" ></td>
+        <td id="td_TextBox_186_5595" ></td>
+        <td id="td_TextBox_186_5596" ></td>
+        
+    </tr>
+
+</tbody>
+</table></div> 
+<div id='td_CommentBox_186_906'><h7>Comments </h7><h7 id="td_TextBox_186_10906"></h7></div>
+      
+<div id="collapse_summary_186_56" summarysection  class="tac_money">
+<table id="table_summary_186_56" class="table table-bordered table-sm" >
+    <caption >3. 910 Collateral</caption>
+<thead >
+    <tr>
+        <th scope="col" >Rank</th>
+        <th scope="col" >Monthly Payment</th>
+        <th scope="col" >Creditor</th>
+        <th scope="col" >Collateral</th>
+        <th scope="col" >Pre-Confirmation Adequate Protection Monthly Payment</th>
+        <th scope="col" >Interest Rate %</th>
+    </tr> 
+</thead>
+    <tbody>
+        <tr>
+        <td id="td_TextBox_186_5601" ></td>
+        <td id="td_TextBox_186_5602" ></td>
+        <td id="td_TextBox_186_5603" ></td>
+        <td id="td_TextBox_186_5604" ></td>
+        <td id="td_TextBox_186_5605" ></td>
+        <td id="td_TextBox_186_5606" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5611" ></td>
+        <td id="td_TextBox_186_5612" ></td>
+        <td id="td_TextBox_186_5613" ></td>
+        <td id="td_TextBox_186_5614" ></td>
+        <td id="td_TextBox_186_5615" ></td>
+        <td id="td_TextBox_186_5616" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5621" ></td>
+        <td id="td_TextBox_186_5622" ></td>
+        <td id="td_TextBox_186_5623" ></td>
+        <td id="td_TextBox_186_5624" ></td>
+        <td id="td_TextBox_186_5625" ></td>
+        <td id="td_TextBox_186_5626" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5631" ></td>
+        <td id="td_TextBox_186_5632" ></td>
+        <td id="td_TextBox_186_5633" ></td>
+        <td id="td_TextBox_186_5634" ></td>
+        <td id="td_TextBox_186_5635" ></td>
+        <td id="td_TextBox_186_5636" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5641" ></td>
+        <td id="td_TextBox_186_5642" ></td>
+        <td id="td_TextBox_186_5643" ></td>
+        <td id="td_TextBox_186_5644" ></td>
+        <td id="td_TextBox_186_5645" ></td>
+        <td id="td_TextBox_186_5646" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5651" ></td>
+        <td id="td_TextBox_186_5652" ></td>
+        <td id="td_TextBox_186_5653" ></td>
+        <td id="td_TextBox_186_5654" ></td>
+        <td id="td_TextBox_186_5655" ></td>
+        <td id="td_TextBox_186_5656" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5661" ></td>
+        <td id="td_TextBox_186_5662" ></td>
+        <td id="td_TextBox_186_5663" ></td>
+        <td id="td_TextBox_186_5664" ></td>
+        <td id="td_TextBox_186_5665" ></td>
+        <td id="td_TextBox_186_5666" ></td>
+
+        
+    </tr>
+
+    <tr>
+        <td id="td_TextBox_186_5671" ></td>
+        <td id="td_TextBox_186_5672" ></td>
+        <td id="td_TextBox_186_5673" ></td>
+        <td id="td_TextBox_186_5674" ></td>
+        <td id="td_TextBox_186_5675" ></td>
+        <td id="td_TextBox_186_5676" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5681" ></td>
+        <td id="td_TextBox_186_5682" ></td>
+        <td id="td_TextBox_186_5683" ></td>
+        <td id="td_TextBox_186_5684" ></td>
+        <td id="td_TextBox_186_5685" ></td>
+        <td id="td_TextBox_186_5686" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5691" ></td>
+        <td id="td_TextBox_186_5692" ></td>
+        <td id="td_TextBox_186_5693" ></td>
+        <td id="td_TextBox_186_5694" ></td>
+        <td id="td_TextBox_186_5695" ></td>
+        <td id="td_TextBox_186_5696" ></td>
+        
+    </tr>
+
+</tbody>
+</table>   </div> 
+<div id='td_CommentBox_186_907'><h7>Comments </h7><h7 id="td_TextBox_186_10907"></h7></div>
+  
+<div id="collapse_summary_186_57" summarysection  class="tac_money">
+<table id="table_summary_186_57" class="table table-bordered table-sm" >
+    <caption >3. Non-910 Collateral</caption>
+<thead >
+    <tr>
+        <th scope="col" >Rank</th>
+        <th scope="col" >Monthly Payment</th>
+        <th scope="col" >Creditor</th>
+        <th scope="col" >Debtor's Value of Collateral</th>
+        <th scope="col" >Collateral</th>
+        <th scope="col" >Pre-Confirmation Adequate Protection Monthly Payment</th>
+        <th scope="col" >Interest Rate %</th>
+    </tr> 
+</thead>
+    <tbody>
+        <tr>
+        <td id="td_TextBox_186_5701" ></td>
+        <td id="td_TextBox_186_5702" ></td>
+        <td id="td_TextBox_186_5703" ></td>
+        <td id="td_TextBox_186_5704" ></td>
+        <td id="td_TextBox_186_5705" ></td>
+        <td id="td_TextBox_186_5706" ></td>
+        <td id="td_TextBox_186_5707" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5711" ></td>
+        <td id="td_TextBox_186_5712" ></td>
+        <td id="td_TextBox_186_5713" ></td>
+        <td id="td_TextBox_186_5714" ></td>
+        <td id="td_TextBox_186_5715" ></td>
+        <td id="td_TextBox_186_5716" ></td>
+        <td id="td_TextBox_186_5717" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5721" ></td>
+        <td id="td_TextBox_186_5722" ></td>
+        <td id="td_TextBox_186_5723" ></td>
+        <td id="td_TextBox_186_5724" ></td>
+        <td id="td_TextBox_186_5725" ></td>
+        <td id="td_TextBox_186_5726" ></td>
+        <td id="td_TextBox_186_5727" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5731" ></td>
+        <td id="td_TextBox_186_5732" ></td>
+        <td id="td_TextBox_186_5733" ></td>
+        <td id="td_TextBox_186_5734" ></td>
+        <td id="td_TextBox_186_5735" ></td>
+        <td id="td_TextBox_186_5736" ></td>
+        <td id="td_TextBox_186_5737" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5741" ></td>
+        <td id="td_TextBox_186_5742" ></td>
+        <td id="td_TextBox_186_5743" ></td>
+        <td id="td_TextBox_186_5744" ></td>
+        <td id="td_TextBox_186_5745" ></td>
+        <td id="td_TextBox_186_5746" ></td>
+        <td id="td_TextBox_186_5747" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5751" ></td>
+        <td id="td_TextBox_186_5752" ></td>
+        <td id="td_TextBox_186_5753" ></td>
+        <td id="td_TextBox_186_5754" ></td>
+        <td id="td_TextBox_186_5755" ></td>
+        <td id="td_TextBox_186_5756" ></td>
+        <td id="td_TextBox_186_5757" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5761" ></td>
+        <td id="td_TextBox_186_5762" ></td>
+        <td id="td_TextBox_186_5763" ></td>
+        <td id="td_TextBox_186_5764" ></td>
+        <td id="td_TextBox_186_5765" ></td>
+        <td id="td_TextBox_186_5766" ></td>
+        <td id="td_TextBox_186_5767" ></td>
+
+        
+    </tr>
+
+    <tr>
+        <td id="td_TextBox_186_5771" ></td>
+        <td id="td_TextBox_186_5772" ></td>
+        <td id="td_TextBox_186_5773" ></td>
+        <td id="td_TextBox_186_5774" ></td>
+        <td id="td_TextBox_186_5775" ></td>
+        <td id="td_TextBox_186_5776" ></td>
+        <td id="td_TextBox_186_5777" ></td>
+
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5781" ></td>
+        <td id="td_TextBox_186_5782" ></td>
+        <td id="td_TextBox_186_5783" ></td>
+        <td id="td_TextBox_186_5784" ></td>
+        <td id="td_TextBox_186_5785" ></td>
+        <td id="td_TextBox_186_5786" ></td>
+        <td id="td_TextBox_186_5787" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5791" ></td>
+        <td id="td_TextBox_186_5792" ></td>
+        <td id="td_TextBox_186_5793" ></td>
+        <td id="td_TextBox_186_5794" ></td>
+        <td id="td_TextBox_186_5795" ></td>
+        <td id="td_TextBox_186_5796" ></td>
+        <td id="td_TextBox_186_5797" ></td>
+        
+    </tr>
+
+</tbody>
+</table></div>
+<div id='td_CommentBox_186_908'><h7>Comments </h7><h7 id="td_TextBox_186_10908"></h7></div>
+    
+<div id="collapse_summary_186_58">
+<h7>Part IV E: Non-Priority Unsecured Claims</h7></br>
+<h7>(</h7><h7 id="td_CheckBox_186_580"></h7><h7>) None </h7></br>
+<h7>(</h7><h7 id="td_CheckBox_186_581"></h7><h7>) 100% </h7></br>
+<h7>(</h7><h7 id="td_CheckBox_186_582"></h7><h7>) At least $</h7><h7 id="td_TextBox_186_5821"></h7> </br>  </div>
+<div id='td_CommentBox_186_909'><h7>Comments </h7><h7 id="td_TextBox_186_10909"></h7></div>
+<div id="collapse_summary_186_59" summarysection  class="tac_money">
+<table id="table_summary_186_59" class="table table-bordered table-sm" >
+    <caption >Non-Priority Unsecured Claims</caption>
+<thead >
+    <tr>
+        <th scope="col" >Rank</th>
+        <th scope="col" >Creditor</th>
+        <th scope="col" >Amount of Claim</th>
+        <th scope="col" >Percentage to be Paid %</th>
+        <th scope="col" >Reason for Special Classification </th>
+    </tr> 
+</thead>
+    <tbody>
+    <tr>
+        <td id="td_TextBox_186_5901" ></td>
+        <td id="td_TextBox_186_5902" ></td>
+        <td id="td_TextBox_186_5903" ></td>
+        <td id="td_TextBox_186_5904" ></td>
+        <td id="td_TextBox_186_5905" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5911" ></td>
+        <td id="td_TextBox_186_5912" ></td>
+        <td id="td_TextBox_186_5913" ></td>
+        <td id="td_TextBox_186_5914" ></td>
+        <td id="td_TextBox_186_5915" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5921" ></td>
+        <td id="td_TextBox_186_5922" ></td>
+        <td id="td_TextBox_186_5923" ></td>
+        <td id="td_TextBox_186_5924" ></td>
+        <td id="td_TextBox_186_5925" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5931" ></td>
+        <td id="td_TextBox_186_5932" ></td>
+        <td id="td_TextBox_186_5933" ></td>
+        <td id="td_TextBox_186_5934" ></td>
+        <td id="td_TextBox_186_5935" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5941" ></td>
+        <td id="td_TextBox_186_5942" ></td>
+        <td id="td_TextBox_186_5943" ></td>
+        <td id="td_TextBox_186_5944" ></td>
+        <td id="td_TextBox_186_5945" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5951" ></td>
+        <td id="td_TextBox_186_5952" ></td>
+        <td id="td_TextBox_186_5953" ></td>
+        <td id="td_TextBox_186_5954" ></td>
+        <td id="td_TextBox_186_5955" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5961" ></td>
+        <td id="td_TextBox_186_5962" ></td>
+        <td id="td_TextBox_186_5963" ></td>
+        <td id="td_TextBox_186_5964" ></td>
+        <td id="td_TextBox_186_5965" ></td>
+        
+    </tr>
+
+    <tr>
+        <td id="td_TextBox_186_5971" ></td>
+        <td id="td_TextBox_186_5972" ></td>
+        <td id="td_TextBox_186_5973" ></td>
+        <td id="td_TextBox_186_5974" ></td>
+        <td id="td_TextBox_186_5975" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5981" ></td>
+        <td id="td_TextBox_186_5982" ></td>
+        <td id="td_TextBox_186_5983" ></td>
+        <td id="td_TextBox_186_5984" ></td>
+        <td id="td_TextBox_186_5985" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_5991" ></td>
+        <td id="td_TextBox_186_5992" ></td>
+        <td id="td_TextBox_186_5993" ></td>
+        <td id="td_TextBox_186_5994" ></td>
+        <td id="td_TextBox_186_5995" ></td>
+        
+    </tr>
+
+</tbody>
+</table></div>  
+<div id='td_CommentBox_186_910'><h7>Comments </h7><h7 id="td_TextBox_186_10910"></h7></div>
+
+<div id="collapse_summary_186_61" summarysection  class="tac_money">
+<table id="table_summary_186_61" class="table table-bordered table-sm" >
+    <caption >Direct Payments to be made by debtor</caption>
+<thead >
+    <tr>
+        <th scope="col" >Creditor</th>
+        <th scope="col" >Current Monthly Support Obligation</th>
+        <th scope="col" >Monthly Arrearage Payment</th>
+    </tr> 
+</thead>
+    <tbody>
+        <tr>
+        <td id="td_TextBox_186_6101" ></td>
+        <td id="td_TextBox_186_6102" ></td>
+        <td id="td_TextBox_186_6103" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6111" ></td>
+        <td id="td_TextBox_186_6112" ></td>
+        <td id="td_TextBox_186_6113" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6121" ></td>
+        <td id="td_TextBox_186_6122" ></td>
+        <td id="td_TextBox_186_6123" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6131" ></td>
+        <td id="td_TextBox_186_6132" ></td>
+        <td id="td_TextBox_186_6133" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6141" ></td>
+        <td id="td_TextBox_186_6142" ></td>
+        <td id="td_TextBox_186_6143" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6151" ></td>
+        <td id="td_TextBox_186_6152" ></td>
+        <td id="td_TextBox_186_6153" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6161" ></td>
+        <td id="td_TextBox_186_6162" ></td>
+        <td id="td_TextBox_186_6163" ></td>
+        
+    </tr>
+
+    <tr>
+        <td id="td_TextBox_186_6171" ></td>
+        <td id="td_TextBox_186_6172" ></td>
+        <td id="td_TextBox_186_6173" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6181" ></td>
+        <td id="td_TextBox_186_6182" ></td>
+        <td id="td_TextBox_186_6183" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6191" ></td>
+        <td id="td_TextBox_186_6192" ></td>
+        <td id="td_TextBox_186_6193" ></td>
+    </tr>
+
+</tbody>
+</table> </div> 
+<div id='td_CommentBox_186_911'><h7>Comments </h7><h7 id="td_TextBox_186_10911"></h7></div>
+
+<div id="collapse_summary_186_62" summarysection  class="tac_money">
+<table id="table_summary_186_62" class="table table-bordered table-sm" >
+    <caption >B. Other Direct Payments</caption>
+<thead >
+    <tr>
+        <th scope="col" >Creditor</th>
+        <th scope="col" >Nature of Debt</th>
+        <th scope="col" >Amount of Claim</th>
+        <th scope="col" >Monthly Payment</th>
+    </tr> 
+</thead>
+    <tbody>
+        <tr>
+        <td id="td_TextBox_186_6201" ></td>
+        <td id="td_TextBox_186_6202" ></td>
+        <td id="td_TextBox_186_6203" ></td>
+        <td id="td_TextBox_186_6204" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6211" ></td>
+        <td id="td_TextBox_186_6212" ></td>
+        <td id="td_TextBox_186_6213" ></td>
+        <td id="td_TextBox_186_6214" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6221" ></td>
+        <td id="td_TextBox_186_6222" ></td>
+        <td id="td_TextBox_186_6223" ></td>
+        <td id="td_TextBox_186_6224" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6231" ></td>
+        <td id="td_TextBox_186_6232" ></td>
+        <td id="td_TextBox_186_6233" ></td>
+        <td id="td_TextBox_186_6234" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6241" ></td>
+        <td id="td_TextBox_186_6242" ></td>
+        <td id="td_TextBox_186_6243" ></td>
+        <td id="td_TextBox_186_6244" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6251" ></td>
+        <td id="td_TextBox_186_6252" ></td>
+        <td id="td_TextBox_186_6253" ></td>
+        <td id="td_TextBox_186_6254" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6261" ></td>
+        <td id="td_TextBox_186_6262" ></td>
+        <td id="td_TextBox_186_6263" ></td>
+        <td id="td_TextBox_186_6264" ></td>
+        
+    </tr>
+
+    <tr>
+        <td id="td_TextBox_186_6271" ></td>
+        <td id="td_TextBox_186_6272" ></td>
+        <td id="td_TextBox_186_6273" ></td>
+        <td id="td_TextBox_186_6274" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6281" ></td>
+        <td id="td_TextBox_186_6282" ></td>
+        <td id="td_TextBox_186_6283" ></td>
+        <td id="td_TextBox_186_6284" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6291" ></td>
+        <td id="td_TextBox_186_6292" ></td>
+        <td id="td_TextBox_186_6293" ></td>
+        <td id="td_TextBox_186_6294" ></td>
+        
+    </tr>
+
+</tbody>
+</table></div> 
+<div id='td_CommentBox_186_912'><h7>Comments </h7><h7 id="td_TextBox_186_10912"></h7></div>
+ 
+<div id="collapse_summary_186_63" summarysection  class="tac_money">
+<table id="table_summary_186_63" class="table table-bordered table-sm" >
+    <caption >Part VI Secured Property to be Surrendered</caption>
+<thead >
+    <tr>
+        <th scope="col" >Creditor</th>
+        <th scope="col" >Property To Be Surrendered</th>
+    </tr> 
+</thead>
+    <tbody>
+        <tr>
+        <td id="td_TextBox_186_6301" ></td>
+        <td id="td_TextBox_186_6302" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6311" ></td>
+        <td id="td_TextBox_186_6312" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6321" ></td>
+        <td id="td_TextBox_186_6322" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6331" ></td>
+        <td id="td_TextBox_186_6332" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6341" ></td>
+        <td id="td_TextBox_186_6342" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6351" ></td>
+        <td id="td_TextBox_186_6352" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6361" ></td>
+        <td id="td_TextBox_186_6362" ></td>
+        
+    </tr>
+
+    <tr>
+        <td id="td_TextBox_186_6371" ></td>
+        <td id="td_TextBox_186_6372" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6381" ></td>
+        <td id="td_TextBox_186_6382" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6391" ></td>
+        <td id="td_TextBox_186_6392" ></td>
+    </tr>
+
+</tbody>
+</table>        
+</div>
+<div id='td_CommentBox_186_913'><h7>Comments </h7><h7 id="td_TextBox_186_10913"></h7></div>
+
+<div id="collapse_summary_186_64" summarysection  class="tac_money">        
+<table id="table_summary_186_64" class="table table-bordered table-sm" >
+    <caption >Part VII. Executory Contracts and Leases</caption>
+<thead >
+    <tr>
+        <th scope="col" >Contract / Lease</th>
+        <th scope="col" >Assumed or Rejected</th>
+    </tr> 
+</thead>
+    <tbody>
+        <tr>
+        <td id="td_TextBox_186_6401" ></td>
+        <td id="td_TextBox_186_6402" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6411" ></td>
+        <td id="td_TextBox_186_6412" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6421" ></td>
+        <td id="td_TextBox_186_6422" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6431" ></td>
+        <td id="td_TextBox_186_6432" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6441" ></td>
+        <td id="td_TextBox_186_6442" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6451" ></td>
+        <td id="td_TextBox_186_6452" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6461" ></td>
+        <td id="td_TextBox_186_6462" ></td>
+        
+    </tr>
+
+    <tr>
+        <td id="td_TextBox_186_6471" ></td>
+        <td id="td_TextBox_186_6472" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6481" ></td>
+        <td id="td_TextBox_186_6482" ></td>
+        
+    </tr>
+    <tr>
+        <td id="td_TextBox_186_6491" ></td>
+        <td id="td_TextBox_186_6492" ></td>
+    </tr>
+
+</tbody>
+</table>
+<div id='td_CommentBox_186_914'><h7>Comments </h7><h7 id="td_TextBox_186_10914"></h7></div>
+</div>  
+<div id="collapse_summary_186_65">
+<h6>Part IX. Liquidation Analysis</h6>
+<h7>The liquidation value of the estate is: </h7><h7 id="td_TextBox_186_6501"></h7></br>
+<h7>Rate of Interest: </h7> <h7 id="td_TextBox_186_6502"></h7></br>
+<div id='td_CommentBox_186_915'><h7>Comments </h7><h7 id="td_TextBox_186_10915"></h7></div>
+
+
+<div id="collapsex_summary_186_66" summarysection  class="tac_money">        
+    <table id="tablex_summary_186_66" class="table table-sm table-bordered ">
+        <caption >Part X. Non-Standard Provisions</caption>
+        <tbody>
+        <tr>
+             <td id="td_TextBox_186_16601" ></td>
+        </tr>
+        <tr>
+            <td id="td_TextBox_186_16611" ></td>
+        </tr>
+        <tr>
+            <td id="td_TextBox_186_16621" ></td>
+        </tr>
+        <tr>
+            <td id="td_TextBox_186_16631" ></td>
+        </tr>
+        <tr>
+            <td id="td_TextBox_186_16641" ></td>
+        </tr>
+        <tr>
+            <td id="td_TextBox_186_16651" ></td>
+        </tr>
+        <tr>
+            <td id="td_TextBox_186_16661" ></td>
+        </tr>
+        <tr>
+            <td id="td_TextBox_186_16671" ></td>
+        </tr>
+        <tr>
+            <td id="td_TextBox_186_16681" ></td>
+        </tr>
+        <tr>
+            <td id="td_TextBox_186_16691" ></td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+    <div id='td_CommentBox_186_916'><h7>Comments </h7><h7 id="td_TextBox_186_10916"></h7></div>
+    </div>
+
+</div>
