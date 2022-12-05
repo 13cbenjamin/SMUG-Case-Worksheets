@@ -1,0 +1,253 @@
+
+.mainHeader {
+    background-color:#74b9ff;
+    padding: 0 0 10 0;
+}
+
+.worksheetHeader td{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.titleSection {
+    background-color:#3A506B; 
+    height: 28px; 
+    width: 100%;
+}
+
+.titleSection ul {
+    margin: 10; 
+    padding: 0; 
+    list-style-type: none; 
+    color:#FFFFFF;
+}
+
+.titleSection ul li {
+    display: inline; 
+    font-size: 150%; 
+    font-weight: bold; 
+    padding: 0 0 0 10;
+    list-style-type: none; 
+}
+.headerSection {
+    background-color: #f9f9f9;
+    border:1px solid #DDDDDD; 
+    border-radius: 4px; 
+    padding:10px;
+    position:relative;
+    display: flex;
+    flex-direction:column;
+    width: auto;
+}
+
+.mainContent {
+    display: block; 
+    float:left; 
+    padding: 10 10 10 10;
+    background-color: #f9f9f9;
+}
+
+.sectionTitle {
+    border: 1px solid black;
+    background-color: #0984e3;
+    margin-top: 10px;
+}
+
+.sectionSubTitle {
+    border: 1px solid black;
+    background-color: lightgray;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+
+.headertable {
+    border: none;
+    margin: 0;
+}
+
+.headertable td {
+    border:none;
+}
+
+.actionButtons {
+   list-style-type:none;
+   list-style: none;
+   position:absolute;
+   top:15px;
+   right:10%;
+}
+
+.actionButtons ul{
+    display: inline;
+    list-style-type:none;
+}
+
+.actionButtons li{
+    display: inline;
+    list-style-type:none;
+}
+
+.checkboxradio ul {
+    list-style-type:none;
+}
+
+
+.checkboxradio .inline ul {
+    display: inline;
+}
+.checkboxradio .inline li {
+    display: inline;
+}
+
+h7 {
+    font-weight: bold;
+}
+
+h6 {
+    font-weight: bold;
+}
+
+.tac_money p {
+    font-weight: bold;
+}
+
+.wide100 {
+    width: 100px;
+}
+
+.wide90 {
+    width: 90px;
+}
+
+.wide150 {
+    width: 150px;;
+}
+
+.wide200 {
+    width: 200px;
+}
+
+.wide250 {
+    width: 250px;
+}
+
+.wide300 {
+
+}
+
+.wide350 {
+    width: 350px;
+}
+
+.wide400 {
+
+}
+
+.wide450 {
+    width: 450px;
+}
+
+.wide650 {
+    width: 650px;
+}
+
+.wide900 {
+    width: 900;;
+}
+
+tfoot tr td {
+    text-align: left;
+}
+
+.borderless {
+    border:none;
+}
+
+
+.tableHeaders {
+    background-color: #CAD3C8;
+}
+
+/* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  left: 0;
+  opacity: 0.01;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 2.3em;
+  font-size: 1.05em;
+  line-height: 1.7;
+  cursor: pointer;
+}
+
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.4em;
+  height: 1.4em;
+  border: 1px solid #aaa;
+  background: #FFF;
+  border-radius: .2em;
+  box-shadow: inset 0 1px 3px rgba(0,0,0, .1), 0 0 0 rgba(203, 34, 237, .2);
+  -webkit-transition: all .275s;
+      transition: all .275s;
+}
+
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) ,
+[type="checkbox"]:checked {
+  content: '?';
+  position: absolute;
+  top: .525em;
+  left: .18em;
+  font-size: 1.375em;
+  color: #CB22ED;
+  line-height: 0;
+  -webkit-transition: all .2s;
+      transition: all .2s;
+}
+
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) {
+  opacity: 0;
+  -webkit-transform: scale(0) rotate(45deg);
+      transform: scale(0) rotate(45deg);
+}
+
+[type="checkbox"]:checked {
+  opacity: 1;
+  -webkit-transform: scale(1) rotate(0);
+      transform: scale(1) rotate(0);
+}
+
+/* Disabled checkbox */
+[type="checkbox"]:disabled:not(:checked),
+[type="checkbox"]:disabled:checked {
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #e9e9e9;
+}
+
+[type="checkbox"]:disabled:checked  {
+  color: #777;
+}
+
+[type="checkbox"]:disabled  {
+  color: #aaa;
+}
+
+/* Accessibility */
+[type="checkbox"]:checked:focus ,
+[type="checkbox"]:not(:checked):focus  {
+  box-shadow: inset 0 1px 3px rgba(0,0,0, .1), 0 0 0 6px rgba(203, 34, 237, .2);
+}
+
+

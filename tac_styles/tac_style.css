@@ -1,0 +1,170 @@
+
+.mainHeader {
+    background-color:#74b9ff;
+    padding: 0 0 10 0;
+    width: auto;
+}
+
+.worksheetHeader td{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.titleSection {
+    background-color:#3A506B; 
+    height: 28px; 
+    width: 100%;
+}
+
+.titleSection ul {
+    margin: 10; 
+    padding: 0; 
+    list-style-type: none; 
+    color:#FFFFFF;
+}
+
+.titleSection ul li {
+    display: inline; 
+    font-size: 150%; 
+    font-weight: bold; 
+    padding: 0 0 0 10;
+    list-style-type: none; 
+}
+.headerSection {
+    background-color: #f9f9f9;
+    border:1px solid #DDDDDD; 
+    border-radius: 4px; 
+    padding:10px;
+    position:relative;
+    display: flex;
+    flex-direction:column;
+    width: auto;
+}
+
+.mainContent {
+    display: block; 
+    float:left; 
+    padding: 10 10 10 10;
+    background-color: #f9f9f9;
+}
+
+.sectionTitle {
+    border: 1px solid black;
+    background-color: #0984e3;
+    margin-top: 10px;
+}
+
+.sectionSubTitle {
+    border: 1px solid black;
+    background-color: lightgray;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+
+.headertable {
+    border: none;
+    margin: 0;
+}
+
+.headertable td {
+    border:none;
+}
+
+.actionButtons {
+   list-style-type:none;
+   list-style: none;
+   position:absolute;
+   top:15px;
+   right:10%;
+}
+
+.actionButtons ul{
+    display: inline;
+    list-style-type:none;
+}
+
+.actionButtons li{
+    display: inline;
+    list-style-type:none;
+}
+
+.checkboxradio ul {
+    list-style-type:none;
+}
+
+
+.checkboxradio .inline ul {
+    display: inline;
+}
+.checkboxradio .inline li {
+    display: inline;
+}
+
+h7 {
+    font-weight: bold;
+}
+
+h6 {
+    font-weight: bold;
+}
+
+.tac_money p {
+    font-weight: bold;
+}
+
+.wide100 {
+    width: 100px;
+}
+
+.wide90 {
+    width: 90px;
+}
+
+.wide150 {
+    width: 150px;;
+}
+
+.wide200 {
+    width: 200px;
+}
+
+.wide250 {
+    width: 250px;
+}
+
+.wide300 {
+    width: 300px;
+}
+
+.wide350 {
+    width: 350px;
+}
+
+.wide400 {
+    width: 400px
+}
+
+.wide450 {
+    width: 450px;
+}
+
+.wide650 {
+    width: 650px;
+}
+
+.wide900 {
+    width: 900;;
+}
+
+tfoot tr td {
+    text-align: left;
+}
+
+.borderless {
+    border:none;
+}
+
+
+.tableHeaders {
+    background-color: #CAD3C8;
+}

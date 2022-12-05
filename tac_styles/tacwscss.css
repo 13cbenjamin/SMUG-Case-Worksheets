@@ -1,0 +1,55 @@
+.TAC_DataTable {
+    width:auto;
+    border-collapse: collapse; 
+    padding: 0 10 0 10;
+    white-space: nowrap;
+}
+.TAC_RowClr1 {
+    background-color: #CCCCCC;
+    border-left: 1px solid #999999;
+    border-top: 1px solid #999999;
+    border-right: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    white-space: nowrap;
+}
+.TAC_RowClr2 {
+    background-color: #FFFFFF;
+    border-left: 1px solid #999999;
+    border-top: 1px solid #999999;
+    border-right: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    white-space: nowrap;
+}
+.TAC_RowClr3 {
+    background-color: transparent;
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    border-left: none;
+    border-right: none;
+    white-space: nowrap;
+}
+.alert1{
+    background: Orange;
+}
+.TAC_backgroundOrange{
+    background: Orange;
+}
+.TAC_PayeeTable {
+    width:auto;
+    border-collapse: collapse; 
+    padding: 0 10 0 10;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.TAC_PayeeTable th{
+    border: 1px solid #999;
+    padding: 0 10 0 10;
+    font-family: verdana,helvetica,sans-serif;
+}
+.TAC_PayeeTable td{
+    border: 1px solid #999;
+    padding: 0 10 0 10;
+    color: #000;
+    font-family: verdana,helvetica,sans-serif;
+    font-size: 8pt;
+}
